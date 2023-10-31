@@ -1,0 +1,24 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+            "label": "build",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "src/*.c libft/*.c", // Esto compilará todos los archivos .c en el directorio actual
+                "-o",
+                "bin/program.exe",
+                "-g"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "silent",
+                "panel": "dedicated"
+            }
+        }
+	]
+}
