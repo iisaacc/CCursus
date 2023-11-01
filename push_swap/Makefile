@@ -37,9 +37,6 @@ RM = rm -f
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
 
-push_swap: $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $^ -o $@
-
 all: $(NAME)
 
 $(NAME): $(OBJ) $(MYHEADERS) $(LIBFT)
