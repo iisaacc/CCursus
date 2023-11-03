@@ -13,9 +13,9 @@
 #ifndef PUSH_SWAP_BONUS_H
 # define PUSH_SWAP_BONUS_H
 
-#include "./libft/libft.h"
-#include <stdlib.h>
-#include <stdio.h>
+# include "./libft/libft.h"
+# include <stdlib.h>
+# include <stdio.h>
 
 typedef struct s_stack
 {
@@ -28,7 +28,7 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-void	ft_stackpushfirstlst(t_stack **a , t_stack **b);
+void	ft_stackpushfirstlst(t_stack **a, t_stack **b);
 void	ft_stackswap(t_stack **a);
 void	ft_stackrotate(t_stack **a);
 void	ft_stackreverserotate(t_stack **a);
@@ -52,7 +52,10 @@ void	ft_arraytolist(t_stack **stack, int *array, int len);
 t_stack	*ft_onebeforelast(t_stack **lst);
 void	ft_print_stack(t_stack **stack);
 int		*ft_argvtoint(int argc, char **argv);
-void	ft_free(t_stack **a, t_stack **b,int *stack_a);
+void	ft_free(t_stack **a, t_stack **b, int *stack_a);
 char	*ft_read(size_t bufsize);
-void	ft_read_and_do(t_stack **a, t_stack **b);
+void	ft_do(char *output, t_stack **a, t_stack **b);
+char	*ft_read(size_t bufsize);
+void	ft_is_ordered(t_stack **a, t_stack **b);
+void	ft_set_index(t_stack **a);
 #endif

@@ -12,8 +12,8 @@
 
 #include "../push_swap_bonus.h"
 
- void	ft_stackpushfirstlst(t_stack **a , t_stack **b)
- {
+void	ft_stackpushfirstlst(t_stack **a, t_stack **b)
+{
 	t_stack	*tmp;
 
 	if (*a == NULL)
@@ -29,7 +29,7 @@ void	ft_stackswap(t_stack **a)
 	t_stack	*tmp;
 
 	if (*a == NULL || (*a)->next == NULL)
-		return;
+		return ;
 	tmp = (*a)->next;
 	(*a)->next = ((*a)->next)->next;
 	tmp->next = *a;
@@ -38,11 +38,11 @@ void	ft_stackswap(t_stack **a)
 
 void	ft_stackrotate(t_stack **a)
 {
-	t_stack *last;
-	t_stack *second;
+	t_stack	*last;
+	t_stack	*second;
 
 	if (*a == NULL || (*a)->next == NULL)
-		return;
+		return ;
 	second = (*a)->next;
 	last = ft_stacklstlast(a);
 	last->next = *a;
@@ -56,7 +56,7 @@ void	ft_stackreverserotate(t_stack **a)
 	t_stack	*onebefore;
 
 	if (*a == NULL || (*a)->next == NULL)
-		return;
+		return ;
 	last = ft_stacklstlast(a);
 	onebefore = ft_onebeforelast(a);
 	last->next = *a;

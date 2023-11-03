@@ -12,6 +12,56 @@
 
 #include "../push_swap.h"
 
+void	ft_double_rot(t_stack	*cheapest_node, t_stack **a, t_stack **b)
+{
+	while ((cheapest_node->cost_a > 0) && (cheapest_node->cost_b > 0))
+	{
+		ft_do_rr(a, b);
+		cheapest_node->cost_a--;
+		cheapest_node->cost_b--;
+	}
+	while ((cheapest_node->cost_a < 0) && (cheapest_node->cost_b < 0))
+	{
+		ft_do_rrr(a, b);
+		cheapest_node->cost_a++;
+		cheapest_node->cost_b++;
+	}
+}
+
+void	ft_single_rot_pos(t_stack	*cheapest_node, t_stack **a, t_stack **b)
+{
+	while ((cheapest_node->cost_a > 0) || (cheapest_node->cost_b > 0))
+	{
+		if (cheapest_node->cost_a > 0)
+		{
+			ft_do_ra(a);
+			cheapest_node->cost_a--;
+		}
+		else if (cheapest_node->cost_b > 0)
+		{
+			ft_do_rb(b);
+			cheapest_node->cost_b--;
+		}
+	}
+}
+
+void	ft_single_rot_neg(t_stack	*cheapest_node, t_stack **a, t_stack **b)
+{
+	while ((cheapest_node->cost_a < 0) || (cheapest_node->cost_b < 0))
+	{
+		if (cheapest_node->cost_a < 0)
+		{
+			ft_do_rra(a);
+			cheapest_node->cost_a++;
+		}
+		else if (cheapest_node->cost_b < 0)
+		{
+			ft_do_rrb(b);
+			cheapest_node->cost_b++;
+		}
+	}
+}
+
 //Coge el array de argumentos y lo convierte en un array de enteros
 int	*ft_argvtoint(int argc, char **argv)
 {
@@ -19,7 +69,7 @@ int	*ft_argvtoint(int argc, char **argv)
 	int	i;
 
 	i = 0;
-	stack = ft_calloc((argc - 1),sizeof(int));
+	stack = ft_calloc((argc - 1), sizeof(int));
 	while (i < argc - 1)
 	{
 		stack[i] = ft_atoi(argv[i + 1]);
@@ -28,11 +78,11 @@ int	*ft_argvtoint(int argc, char **argv)
 	return (stack);
 }
 
-void	ft_free(t_stack **a, t_stack **b,int *stack_a)
+void	ft_free(t_stack **a, t_stack **b, int *stack_a)
 {
-	t_stack *tmpa;
-	t_stack *tmpb;
-	t_stack *aux;
+	t_stack	*tmpa;
+	t_stack	*tmpb;
+	t_stack	*aux;
 
 	aux = NULL;
 	tmpa = *a;

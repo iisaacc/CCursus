@@ -20,6 +20,7 @@ char	*ft_read(size_t bufsize)
 
 	tmp = ft_strdup("");
 	buffer = ft_calloc(bufsize + 1, sizeof(char));
+	bytesread = 1;
 	while (bytesread > 0)
 	{
 		bytesread = read(0, buffer, bufsize);
@@ -34,41 +35,46 @@ char	*ft_read(size_t bufsize)
 	return (tmp);
 }
 
+void	ft_switch(char *output, t_stack **a, t_stack **b)
+{
+	if (ft_strncmp(output, "pa", 2) == 0)
+		ft_do_pa(a, b);
+	else if (ft_strncmp(output, "pb", 2) == 0)
+		ft_do_pb(a, b);
+	else if (ft_strncmp(output, "sa", 2) == 0)
+		ft_do_sa(a);
+	else if (ft_strncmp(output, "sb", 2) == 0)
+		ft_do_sb(b);
+	else if (ft_strncmp(output, "ss", 2) == 0)
+		ft_do_ss(a, b);
+	else if (ft_strncmp(output, "ra", 2) == 0)
+		ft_do_ra(a);
+	else if (ft_strncmp(output, "rb", 2) == 0)
+		ft_do_rb(b);
+	else if (ft_strncmp(output, "rra", 3) == 0)
+		ft_do_rra(a);
+	else if (ft_strncmp(output, "rrb", 3) == 0)
+		ft_do_rrb(b);
+	else if (ft_strncmp(output, "rrr", 3) == 0)
+		ft_do_rrr(a, b);
+	else if (ft_strncmp(output, "rr", 2) == 0)
+		ft_do_rr(a, b);
+}
+
 void	ft_do(char *output, t_stack **a, t_stack **b)
 {
 	while (output)
 	{
-		if (ft_strncmp(output, "pa", 2) == 0)
-			ft_do_pa(a, b);
-		else if (ft_strncmp(output, "pb", 2) == 0)
-			ft_do_pb(a, b);
-		else if (ft_strncmp(output, "sa", 2) == 0)
-			ft_do_sa(a);
-		else if (ft_strncmp(output, "sb", 2) == 0)
-			ft_do_sb(b);
-		else if (ft_strncmp(output, "ss", 2) == 0)
-			ft_do_ss(a, b);
-		else if (ft_strncmp(output, "ra", 2) == 0)
-			ft_do_ra(a);
-		else if (ft_strncmp(output, "rb", 2) == 0)
-			ft_do_rb(b);
-		else if (ft_strncmp(output, "rra", 3) == 0)
-			ft_do_rra(a);
-		else if (ft_strncmp(output, "rrb", 3) == 0)
-			ft_do_rrb(b);
-		else if (ft_strncmp(output, "rrr", 3) == 0)
-			ft_do_rrr(a, b);
-		else if (ft_strncmp(output, "rr", 2) == 0)
-			ft_do_rr(a, b);
+		ft_switch(output, a, b);
 		output = ft_strchr(output, '\n');
 		if (output)
 			output++;
 	}
 }
 
-int		ft_checkindex(t_stack **stack_a)
+int	ft_checkindex(t_stack **stack_a)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 	int		i;
 
 	tmp = *stack_a;
@@ -82,21 +88,21 @@ int		ft_checkindex(t_stack **stack_a)
 	return (i);
 }
 
-void	ft_set_index(t_stack **stack_a)
+void	ft_set_index(t_stack **a)
 {
-	t_stack *tmp_x;
-	t_stack *tmp_y;
+	t_stack	*tmp_x;
+	t_stack	*tmp_y;
 	int		index;
 	int		lower;
 
 	index = 1;
-	while (ft_checkindex(stack_a) == 1)
+	while (ft_checkindex(a) == 1)
 	{
-		tmp_x = *stack_a;
+		tmp_x = *a;
 		while (tmp_x)
 		{
 			lower = 0;
-			tmp_y = *stack_a;
+			tmp_y = *a;
 			while (tmp_y)
 			{
 				if (tmp_x->value > tmp_y->value && tmp_y->index == -1)
@@ -104,42 +110,8 @@ void	ft_set_index(t_stack **stack_a)
 				tmp_y = tmp_y->next;
 			}
 			if (lower == 0 && tmp_x->index == -1)
-			{
-				tmp_x->index = index;
-				index++;
-			}
+				tmp_x->index = index++;
 			tmp_x = tmp_x->next;
 		}
 	}
-}
-
-void	ft_is_ordered(t_stack **a, t_stack **b)
-{
-	int		i;
-	t_stack	*tmp;
-
-	i = 1;
-	ft_set_index(a);
-	tmp = *a;
-	while (tmp)
-	{
-		if (tmp->index != i)
-		{
-			write(1, "KO\n", 3);
-			return ;
-		}
-		tmp = tmp->next;
-		i++;
-	}
-	if (*b)
-		write(1, "KO\n", 3);
-	else
-		write(1, "OK\n", 3);
-
-}
-
-void ft_read_and_do(t_stack **a, t_stack **b)
-{
-	ft_do(ft_read(1024), a, b);
-	ft_is_ordered(a, b);
 }

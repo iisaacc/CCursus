@@ -14,7 +14,7 @@
 
 int	ft_stacksize(t_stack **stack_a)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 	int		x;
 
 	x = 0;
@@ -28,9 +28,9 @@ int	ft_stacksize(t_stack **stack_a)
 	return (x);
 }
 
-int		ft_checkindex(t_stack **stack_a)
+int	ft_checkindex(t_stack **stack_a)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 	int		i;
 
 	tmp = *stack_a;
@@ -46,8 +46,8 @@ int		ft_checkindex(t_stack **stack_a)
 
 void	ft_set_index(t_stack **stack_a)
 {
-	t_stack *tmp_x;
-	t_stack *tmp_y;
+	t_stack	*tmp_x;
+	t_stack	*tmp_y;
 	int		index;
 	int		lower;
 
@@ -66,10 +66,7 @@ void	ft_set_index(t_stack **stack_a)
 				tmp_y = tmp_y->next;
 			}
 			if (lower == 0 && tmp_x->index == -1)
-			{
-				tmp_x->index = index;
-				index++;
-			}
+				tmp_x->index = index++;
 			tmp_x = tmp_x->next;
 		}
 	}

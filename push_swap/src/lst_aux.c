@@ -12,24 +12,6 @@
 
 #include "../push_swap.h"
 
-//Crea un nuevo nodo de la lista y lo inicializa
-t_stack	*ft_stacklstnewnode(int value, int pos)
-{
-	struct s_stack	*newobj;
-
-	newobj = (t_stack *)malloc(sizeof(struct s_stack));
-	if (!newobj)
-		return (NULL);
-	newobj->value = value;
-	newobj->pos = pos;
-	newobj->target_pos = -1;
-	newobj->index = -1;
-	newobj->cost_a = -1;
-	newobj->cost_b = -1;
-	newobj->next = NULL;
-	return (newobj);
-}
-
 //Devuelve el último nodo de la lista
 t_stack	*ft_stacklstlast(t_stack **lst)
 {
@@ -95,7 +77,7 @@ t_stack	*ft_onebeforelast(t_stack **lst)
 	return (nolast);
 }
 
-void ft_print_stack(t_stack **stack)
+/*void ft_print_stack(t_stack **stack)
 {
 	t_stack *tmp;
 
@@ -103,7 +85,9 @@ void ft_print_stack(t_stack **stack)
 	printf("STACK:\n");
 	while (tmp)
 	{
-		printf("VALUE: %d, pos: %d, target_pos: %d, index: %d, cost_a: %d, cost_b: %d\n", tmp->value, tmp->pos, tmp->target_pos, tmp->index, tmp->cost_a, tmp->cost_b);
+		printf("VALUE: %d, pos: %d, target_pos: %d, index: %d, cost_a: %d
+			, cost_b: %d\n", tmp->value, tmp->pos, tmp->target_pos
+			, tmp->index, tmp->cost_a, tmp->cost_b);
 		tmp = tmp->next;
 	}
-}
+}*/

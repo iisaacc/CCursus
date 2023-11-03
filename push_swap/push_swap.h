@@ -12,10 +12,9 @@
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-
-#include "./libft/libft.h"
-#include <stdlib.h>
-#include <stdio.h>
+# include "./libft/libft.h"
+# include <stdlib.h>
+# include <stdio.h>
 
 typedef struct s_stack
 {
@@ -34,7 +33,7 @@ t_stack	*ft_stacklstlast(t_stack **lst);
 void	ft_stacklstadd_back(t_stack **lst, t_stack *new);
 void	ft_stacklstadd_front(t_stack **lst, t_stack *new);
 void	ft_arraytolist(t_stack **stack, int *array, int len);
-void	ft_stackpushfirstlst(t_stack **a , t_stack **b);
+void	ft_stackpushfirstlst(t_stack **a, t_stack **b);
 void	ft_do_pa(t_stack **a, t_stack **b);
 void	ft_do_pb(t_stack **a, t_stack **b);
 void	ft_do_sa(t_stack **a);
@@ -50,7 +49,7 @@ void	ft_stackswap(t_stack **a);
 void	ft_stackrotate(t_stack **a);
 void	ft_stackreverserotate(t_stack **a);
 t_stack	*ft_onebeforelast(t_stack **lst);
-void	ft_print_stack(t_stack **stack);
+//void	ft_print_stack(t_stack **stack);
 int		ft_check_errors(int argc, char **argv, int *stack_a);
 void	ft_set_index(t_stack **stack_a);
 int		ft_stacksize(t_stack **stack_a);
@@ -58,5 +57,12 @@ void	ft_sort_3(t_stack **stack);
 void	ft_bigsort(t_stack **a, t_stack **b);
 void	ft_rev_sort_3(t_stack **stack);
 int		ft_find_idx_max(t_stack **a);
-void	ft_free(t_stack **a, t_stack **b,int *stack_a);
+void	ft_free(t_stack **a, t_stack **b, int *stack_a);
+void	ft_send_b(t_stack **a, t_stack **b);
+void	ft_refresh_pos(t_stack **a, t_stack **b);
+void	ft_target_pos(t_stack **a, t_stack **b);
+void	ft_refresh_pos(t_stack **a, t_stack **b);
+void	ft_double_rot(t_stack	*cheapest_node, t_stack **a, t_stack **b);
+void	ft_single_rot_pos(t_stack	*cheapest_node, t_stack **a, t_stack **b);
+void	ft_single_rot_neg(t_stack	*cheapest_node, t_stack **a, t_stack **b);
 #endif

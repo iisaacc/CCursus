@@ -35,8 +35,8 @@ int	ft_check_char(int argc, char **argv)
 //Devuelve 1 si encuentra valores duplicados
 int	ft_check_doubles(int argc, int *stack_a)
 {
-	int i;
-	int i2;
+	int	i;
+	int	i2;
 
 	i = 0;
 	while (i < argc - 1)
@@ -54,7 +54,7 @@ int	ft_check_doubles(int argc, int *stack_a)
 }
 
 //Devuelve 1 si algún valor supera el rango de int
-int ft_check_range(int argc, int *stack_a)
+int	ft_check_range(int argc, int *stack_a)
 {
 	int	i;
 
@@ -68,8 +68,9 @@ int ft_check_range(int argc, int *stack_a)
 	return (0);
 }
 
-//Llama a todos los checks y devuelve 0 en caso de no haber encontrado ningun error
+//Llama a todos los checks y devuelve 0 en caso de no haber ningun error
 int	ft_check_errors(int argc, char **argv, int *stack_a)
 {
-	return (ft_check_char(argc, argv) + ft_check_doubles(argc, stack_a) + ft_check_range(argc, stack_a));
+	return (ft_check_char(argc, argv)
+		+ ft_check_doubles(argc, stack_a) + ft_check_range(argc, stack_a));
 }

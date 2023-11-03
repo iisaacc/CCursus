@@ -21,7 +21,7 @@ void	ft_sort_3(t_stack **stack)
 	if ((*stack)->index > ((*stack)->next)->index)
 		ft_do_sa(stack);
 	else
-		return;
+		return ;
 }
 
 void	ft_rev_sort_3(t_stack **stack)
@@ -33,5 +33,5 @@ void	ft_rev_sort_3(t_stack **stack)
 	if ((*stack)->index < ((*stack)->next)->index)
 		ft_do_sa(stack);
 	else
-		return;
+		return ;
 }
