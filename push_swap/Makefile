@@ -1,16 +1,18 @@
 NAME = push_swap
 
+BONUS = checker
+
 LIB = ar rcs
 
 SRC_PATH = src/
 
 SRC_BONUS_PATH = bonus_src/
 
-SRCS = do_mvmnt.c lst_aux.c main.c movements1.c push_swap.c \
-	ft_set_atributes.c sort3.c sort_algorithm.c error_check.c
+SRCS = do_mvmnt.c do_mvmnt2.c do_mvmnt3.c lst_aux.c main.c movements1.c push_swap.c \
+	ft_set_atributes.c sort3.c sort_algorithm.c sort_algorithm2.c error_check.c
 
-BONUS_SRC = do_mvmnt_bonus.c lst_aux_bonus.c movements_bonus.c push_swap_bonus.c \
-	error_check_bonus.c main_bonus.c
+BONUS_SRC = do_mvmnt_bonus1.c do_mvmnt_bonus2.c do_mvmnt_bonus3.c lst_aux_bonus.c movements_bonus.c \
+	error_check_bonus.c main_bonus.c read_and_do.c push_swap_bonus.c
 
 LIBFT = ./libft/libft.a
 
@@ -34,14 +36,18 @@ BONUSHEADERS = push_swap_bonus.h \
 
 RM = rm -f
 
-.c.o:
-	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(MYHEADERS) $(LIBFT)
-	cp $(LIBFT) $(NAME)
-	$(LIB) $(NAME) $(OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT)
+
+bonus: $(BONUS)
+
+$(BONUS): $(OBJ_BONUS) $(BONUSHEADERS) $(LIBFT)
+	$(CC) $(CFLAGS) -o $(BONUS) $(OBJ_BONUS) $(LIBFT)
 
 $(LIBFT):
 	make -C ./libft all
@@ -56,7 +62,7 @@ libfclean:
 	make -C ./libft fclean
 
 fclean: libfclean clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(BONUS)
 
 re: fclean all
 
