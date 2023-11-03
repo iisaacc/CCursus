@@ -30,8 +30,8 @@ typedef struct s_stack
 int		*ft_argvtoint(int argc, char **argv);
 t_stack	*ft_stacklstnewnode(int value, int pos);
 t_stack	*ft_stacklstlast(t_stack **lst);
-void	ft_stacklstadd_back(t_stack **lst, t_stack *new);
-void	ft_stacklstadd_front(t_stack **lst, t_stack *new);
+void	ft_stacklstadd_back(t_stack **lst, t_stack *newnode);
+void	ft_stacklstadd_front(t_stack **lst, t_stack *newnode);
 void	ft_arraytolist(t_stack **stack, int *array, int len);
 void	ft_stackpushfirstlst(t_stack **a, t_stack **b);
 void	ft_do_pa(t_stack **a, t_stack **b);
@@ -49,7 +49,7 @@ void	ft_stackswap(t_stack **a);
 void	ft_stackrotate(t_stack **a);
 void	ft_stackreverserotate(t_stack **a);
 t_stack	*ft_onebeforelast(t_stack **lst);
-//void	ft_print_stack(t_stack **stack);
+void	ft_print_stack(t_stack **stack);
 int		ft_check_errors(int argc, char **argv, int *stack_a);
 void	ft_set_index(t_stack **stack_a);
 int		ft_stacksize(t_stack **stack_a);
@@ -65,4 +65,7 @@ void	ft_refresh_pos(t_stack **a, t_stack **b);
 void	ft_double_rot(t_stack	*cheapest_node, t_stack **a, t_stack **b);
 void	ft_single_rot_pos(t_stack	*cheapest_node, t_stack **a, t_stack **b);
 void	ft_single_rot_neg(t_stack	*cheapest_node, t_stack **a, t_stack **b);
+void	ft_finish_it(t_stack **a);
+int		ft_is_ordered(int *stack_a, int argc);
+void	ft_sort_2(t_stack **stack);
 #endif

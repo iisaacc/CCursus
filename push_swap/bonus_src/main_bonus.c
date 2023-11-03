@@ -38,7 +38,15 @@ void	ft_is_ordered(t_stack **a, t_stack **b)
 
 void	ft_read_and_do(t_stack **a, t_stack **b)
 {
-	ft_do(ft_read(1024), a, b);
+	char *output;
+
+	output = ft_read(1024);
+	if (ft_correct_input(output) == 1)
+	{
+		write(2, "Error\n", 6);
+		return ;
+	}
+	ft_do(output, a, b);
 	ft_is_ordered(a, b);
 }
 
@@ -51,12 +59,15 @@ int	main(int argc, char **argv)
 	list_a = NULL;
 	list_b = NULL;
 	stack_a = ft_argvtoint(argc, argv);
-	if (ft_check_errors(argc, argv, stack_a) > 0)
-		write(1, "Error\n", 6);
-	else
+	if(argc > 1)
 	{
-		ft_arraytolist(&list_a, stack_a, argc - 1);
-		ft_read_and_do(&list_a, &list_b);
+		if (ft_check_errors(argc, argv, stack_a) > 0)
+			write(2, "Error\n", 6);
+		else
+		{
+			ft_arraytolist(&list_a, stack_a, argc - 1);
+			ft_read_and_do(&list_a, &list_b);
+		}
 	}
 	ft_free(&list_a, &list_b, stack_a);
 	return (0);

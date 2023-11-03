@@ -32,21 +32,38 @@ void	ft_get_cost(t_stack **a, t_stack **b)
 	}
 }
 
+int	ft_calculate_cost(int cost_a, int cost_b)
+{
+	int cost;
+
+	cost = 0;	
+	if((cost_a > 0 && cost_b > 0) || (cost_a < 0 && cost_b < 0))
+	{
+		if((abs)(cost_a) >= (abs)(cost_b))
+			cost = (abs)(cost_a);
+		else
+			cost = (abs)(cost_b);
+	}
+	else
+		cost = (abs)(cost_a) + (abs)(cost_b);
+	return(cost);
+}
+
 //Calcula el elemento de b que es menos costoso mover a su target pos en A.
 t_stack	*ft_cheapest(t_stack **b)
 {
-	int		cheapest;
+	int		cost;
 	t_stack	*tmpb;
 	t_stack	*cheapest_node;
 
 	tmpb = *b;
 	cheapest_node = tmpb;
-	cheapest = (abs)(tmpb->cost_a) + (abs)(tmpb->cost_b);
+	cost = ft_calculate_cost(tmpb->cost_a, tmpb->cost_b);
 	while (tmpb)
 	{
-		if (((abs)(tmpb->cost_a) + (abs)(tmpb->cost_b)) < cheapest)
+		if (ft_calculate_cost(tmpb->cost_a, tmpb->cost_b) < cost)
 		{
-			cheapest = (abs)(tmpb->cost_a) + (abs)(tmpb->cost_b);
+			cost = ft_calculate_cost(tmpb->cost_a, tmpb->cost_b);
 			cheapest_node = tmpb;
 		}
 		tmpb = tmpb->next;
@@ -64,17 +81,11 @@ void	ft_do_actions(t_stack **a, t_stack **b)
 	if (((cheapest_node->cost_a > 0) && (cheapest_node->cost_b > 0))
 		|| ((cheapest_node->cost_a < 0) && (cheapest_node->cost_b < 0)))
 		ft_double_rot(cheapest_node, a, b);
-	else if ((cheapest_node->cost_a > 0) || (cheapest_node->cost_b > 0))
+	if ((cheapest_node->cost_a > 0) || (cheapest_node->cost_b > 0))
 		ft_single_rot_pos(cheapest_node, a, b);
-	else
+	if ((cheapest_node->cost_a < 0) || (cheapest_node->cost_b < 0))
 		ft_single_rot_neg(cheapest_node, a, b);
 	ft_do_pa(a, b);
-}
-
-void	ft_finish_it(t_stack **a)
-{
-	while ((*a)->index != 1)
-		ft_do_rra(a);
 }
 
 void	ft_bigsort(t_stack **a, t_stack **b)

@@ -58,4 +58,5 @@ void	ft_do(char *output, t_stack **a, t_stack **b);
 char	*ft_read(size_t bufsize);
 void	ft_is_ordered(t_stack **a, t_stack **b);
 void	ft_set_index(t_stack **a);
+int		ft_correct_input(char *output);
 #endif

@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../push_swap.h"
+
 //Devuelve 1 si encuentra un carácter no numérico.
 int	ft_check_char(int argc, char **argv)
 {
@@ -68,10 +70,27 @@ int	ft_check_range(int argc, int *stack_a)
 	return (0);
 }
 
+int	ft_is_ordered(int *stack_a, int argc)
+{
+	int i;
+
+	i = 0;
+	while (i < argc - 2)
+	{
+		if (stack_a[i] > stack_a[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 //Llama a todos los checks y devuelve 0 en caso de no haber
 //encontrado ningun error
 int	ft_check_errors(int argc, char **argv, int *stack_a)
 {
+	if (ft_check_char(argc, argv) + ft_check_doubles(argc, stack_a)
+		+ ft_check_range(argc, stack_a) > 0)
+		write(2, "Error\n", 6);
 	return (ft_check_char(argc, argv) + ft_check_doubles(argc, stack_a)
-		+ ft_check_range(argc, stack_a));
+		+ ft_check_range(argc, stack_a) + ft_is_ordered(stack_a, argc));
 }

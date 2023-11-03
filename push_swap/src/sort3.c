@@ -12,6 +12,12 @@
 
 #include "../push_swap.h"
 
+void	ft_sort_2(t_stack **stack)
+{
+	if ((*stack)->index == ft_find_idx_max(stack))
+		ft_do_sa(stack);
+}
+
 void	ft_sort_3(t_stack **stack)
 {
 	if ((*stack)->index == ft_find_idx_max(stack))

@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../push_swap_bonus.h"
+
 //Devuelve 1 si encuentra un carácter no numérico.
 int	ft_check_char(int argc, char **argv)
 {
@@ -64,6 +66,31 @@ int	ft_check_range(int argc, int *stack_a)
 		if (stack_a[i] < -2147483647 || stack_a[i] > 2147483647)
 			return (1);
 		i++;
+	}
+	return (0);
+}
+
+int	ft_correct_input(char *output)
+{
+	while (output)
+	{
+		if (ft_strncmp(output, "pa", 2) == 0 
+			|| ft_strncmp(output, "pb", 2) == 0
+			|| ft_strncmp(output, "sa", 2) == 0
+			|| ft_strncmp(output, "sa", 2) == 0
+			|| ft_strncmp(output, "sb", 2) == 0
+			|| ft_strncmp(output, "ss", 2) == 0
+			|| ft_strncmp(output, "ra", 2) == 0
+			|| ft_strncmp(output, "rb", 2) == 0
+			|| ft_strncmp(output, "rra", 3) == 0
+			|| ft_strncmp(output, "rrb", 3) == 0
+			|| ft_strncmp(output, "rrr", 3) == 0
+			|| ft_strncmp(output, "rr", 2) == 0)
+		output = ft_strchr(output, '\n');
+		else
+			return (1);
+		if (output)
+			output++;
 	}
 	return (0);
 }
