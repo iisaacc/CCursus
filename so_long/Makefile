@@ -24,14 +24,10 @@ RM = rm -f
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
 
-so_long: $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -o so_long
-
 all: $(NAME)
 
-$(NAME): $(OBJ) $(MYHEADERS) $(LIBFT)
-	cp $(LIBFT) $(NAME)
-	$(LIB) $(NAME) $(OBJ)
+$(NAME): $(OBJ) $(LIBFT) $(MYHEADERS)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -o so_long
 
 $(LIBFT):
 	make -C ./libft all
