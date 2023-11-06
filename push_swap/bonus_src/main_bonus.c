@@ -43,7 +43,7 @@ void	ft_read_and_do(t_stack **a, t_stack **b)
 	output = ft_read(1024);
 	if (ft_correct_input(output) == 1)
 	{
-		write(2, "Error\n", 6);
+		write(2, "Errori\n", 7);
 		return ;
 	}
 	ft_do(output, a, b);

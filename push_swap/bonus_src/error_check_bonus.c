@@ -86,7 +86,7 @@ int	ft_correct_input(char *output)
 			|| ft_strncmp(output, "rrb", 3) == 0
 			|| ft_strncmp(output, "rrr", 3) == 0
 			|| ft_strncmp(output, "rr", 2) == 0)
-		output = ft_strchr(output, '\n');
+			output = ft_strchr(output, '\n');
 		else
 			return (1);
 		if (output)
