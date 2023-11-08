@@ -1,0 +1,30 @@
+{
+    "version": "0.2",
+    "configurations": [
+        {
+            "name": "C/C++ Debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "C:\\Users\\Usuario\\Desktop\\42CURSUS\\gitCursus\\CCursus\\push_swap\\programa",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build",
+            "miDebuggerPath": "gdb",
+            "logging": {
+                "engineLogging": true,
+                "trace": true
+            },
+        }
+    ]
+}
