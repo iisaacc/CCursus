@@ -12,6 +12,30 @@
 
 #include "../so_long.h"
 
+int	ft_sprite(t_data *data)
+{
+	time_t	ct;
+
+	ct = time(NULL);
+	if (ct - data->spr->updttime >= 0.1)
+	{
+		if (data->spr->state == 1)
+		{
+			img_win(data, data->img->extd, data->ex, data->ey);
+			data->spr->state = 0;
+		}
+		else
+		{
+			img_win(data, data->img->extu, data->ex, data->ey);
+			data->spr->state = 1;
+		}
+		mlx_do_sync(data->mlx_ptr);
+		data->spr->updttime = ct;
+	}
+	mlx_loop_hook(data->mlx_ptr, &ft_sprite, data);
+	return (0);
+}
+
 void	ft_dstry_img(t_data *data)
 {
 	if (data->img->back)
@@ -24,8 +48,12 @@ void	ft_dstry_img(t_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->img->police);
 	if (data->img->speaker)
 		mlx_destroy_image(data->mlx_ptr, data->img->speaker);
-	if (data->img->exit)
-		mlx_destroy_image(data->mlx_ptr, data->img->exit);
+	if (data->img->extu)
+		mlx_destroy_image(data->mlx_ptr, data->img->extu);
+	if (data->img->extd)
+		mlx_destroy_image(data->mlx_ptr, data->img->extd);
+	if (data->img->box)
+		mlx_destroy_image(data->mlx_ptr, data->img->box);
 }
 
 int	dstry(t_data *data)
@@ -54,6 +82,8 @@ int	dstry(t_data *data)
 
 int	ft_on_kpress(int keysym, t_data *data)
 {
+	char	*str;
+
 	(void)data;
 	if (keysym == XK_Escape)
 		dstry(data);
@@ -65,6 +95,11 @@ int	ft_on_kpress(int keysym, t_data *data)
 		ft_move_object(data, UP);
 	if (keysym == XK_s)
 		ft_move_object(data, DOWN);
+	img_win(data, data->img->box, 0, data->map->heigth);
+	str = ft_strjoinmod("Movements: ", ft_itoa(data->movements));
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, data->map->heigth + 20,
+		0x00FFFFFF, str);
+	free(str);
 	return (0);
 }
 
@@ -72,4 +107,5 @@ void	ft_mlx_hooks(t_data *data)
 {
 	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, &ft_on_kpress, data);
 	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask, &dstry, data);
+	mlx_loop_hook(data->mlx_ptr, &ft_sprite, data);
 }

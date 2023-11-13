@@ -141,8 +141,7 @@ int	ft_check_tokens(char *map)
 //Checkea que el mapa cumpla los requisitos como mapa válido.
 int	ft_check_map(char *map)
 {
-	if (ft_check_line_len(map) + ft_check_walls(map)
-		+ ft_check_tokens(map) + ft_check_way(map) > 0)
+	if (ft_check_line_len(map) + ft_check_walls(map) + ft_check_tokens(map) > 0)
 	{
 		write(1, "Error\n", 6);
 		if (ft_check_line_len(map) == 1)
@@ -151,8 +150,11 @@ int	ft_check_map(char *map)
 			write(1, "Map is not closed by obstacles\n", 31);
 		if (ft_check_tokens(map) == 1)
 			write(1, "Map has invalid tokens or there is some missing\n", 48);
-		if (ft_check_way(map) == 1)
-			write(1, "Map has no valid way\n", 21);
+		return (1);
+	}
+	else if (ft_check_way(map) > 0)
+	{
+		ft_printf("Map has no valid way\n");
 		return (1);
 	}
 	return (0);

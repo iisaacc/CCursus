@@ -17,7 +17,6 @@ t_img	*ft_load_assets(t_data *data)
 	int		w;
 	int		h;
 
-	printf("cargando assets\n");
 	if (!data->mlx_ptr || !data->win_ptr)
 		return (NULL);
 	data->img->back = mlx_xpm_file_to_image(data->mlx_ptr, BCKGRND, &w, &h);
@@ -25,9 +24,12 @@ t_img	*ft_load_assets(t_data *data)
 	data->img->playerl = mlx_xpm_file_to_image(data->mlx_ptr, PLAYERL, &w, &h);
 	data->img->police = mlx_xpm_file_to_image(data->mlx_ptr, POLICE, &w, &h);
 	data->img->speaker = mlx_xpm_file_to_image(data->mlx_ptr, SPEAKER, &w, &h);
-	data->img->exit = mlx_xpm_file_to_image(data->mlx_ptr, EXIT, &w, &h);
+	data->img->extu = mlx_xpm_file_to_image(data->mlx_ptr, EXTU, &w, &h);
+	data->img->extd = mlx_xpm_file_to_image(data->mlx_ptr, EXTD, &w, &h);
+	data->img->box = mlx_xpm_file_to_image(data->mlx_ptr, BOX, &w, &h);
 	if (!data->img->back || !data->img->player || !data->img->police
-		|| !data->img->speaker || !data->img->exit || !data->img->playerl)
+		|| !data->img->speaker || !data->img->extu || !data->img->playerl
+		|| !data->img->extd)
 		return (NULL);
 	return (data->img);
 }
@@ -44,6 +46,16 @@ void	ft_put_background(t_data *data)
 		while (x < data->map->width)
 		{
 			img_win(data, data->img->back, x, y);
+			x += 32;
+		}
+		x = 0;
+		y += 32;
+	}
+	while (y < data->map->heigth + 32)
+	{
+		while (x < data->map->width)
+		{
+			img_win(data, data->img->box, x, y);
 			x += 32;
 		}
 		x = 0;
@@ -91,7 +103,11 @@ void	ft_put_objects(t_data *data)
 			if (data->map->map[y / 32][x / 32] == 'C')
 				img_win(data, data->img->speaker, x, y);
 			if (data->map->map[y / 32][x / 32] == 'E')
-				img_win(data, data->img->exit, x, y);
+			{
+				img_win(data, data->img->extu, x, y);
+				data->ex = x;
+				data->ey = y;
+			}
 			x += 32;
 		}
 		x = 0;
@@ -106,4 +122,5 @@ void	ft_load_put_assets(t_data *data)
 	ft_put_background(data);
 	ft_put_objects(data);
 	ft_put_player(data);
+	img_win(data, data->img->box, 0, data->map->heigth);
 }

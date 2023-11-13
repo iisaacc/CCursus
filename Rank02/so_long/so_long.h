@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <time.h>
 
 # define WIDTH 512
 # define HEIGTH 512
@@ -34,16 +35,20 @@
 # define PLAYERL "assets/Wleft.xpm"
 # define POLICE "assets/police.xpm"
 # define SPEAKER "assets/speaker.xpm"
-# define EXIT "assets/exit.xpm"
+# define EXTD "assets/extd.xpm"
+# define EXTU "assets/extu.xpm"
+# define BOX "assets/box.xpm"
 
 typedef struct s_img
 {
 	void	*police;
 	void	*back;
 	void	*speaker;
-	void	*exit;
+	void	*extu;
+	void	*extd;
 	void	*player;
 	void	*playerl;
+	void	*box;
 }	t_img;
 
 typedef struct s_map
@@ -55,6 +60,12 @@ typedef struct s_map
 	int		py;
 }	t_map;
 
+typedef struct s_spr
+{
+	time_t	updttime;
+	int		state;
+}	t_spr;
+
 typedef struct s_data
 {
 	void	*mlx_ptr;
@@ -64,6 +75,10 @@ typedef struct s_data
 	char	*map1d;
 	t_img	*img;
 	t_map	*map;
+	t_spr	*spr;
+	int		ex;
+	int		ey;
+	int		lost;
 }	t_data;
 
 char	*ft_read_map(char *argv);
@@ -78,4 +93,7 @@ void	*ft_init(t_data *data, char *map);
 void	ft_mlx_hooks(t_data *data);
 void	ft_move_object(t_data *data, int dir);
 void	img_win(t_data *data, void *img, int x, int y);
+char	*ft_strjoinmod(char *line, char *buffer);
+void	ft_on_lost(t_data *data);
+void	ft_on_win(t_data *data);
 #endif

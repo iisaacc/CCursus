@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 10:50:38 by isporras          #+#    #+#             */
-/*   Updated: 2023/11/10 12:30:04 by isporras         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:35:56 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ char	*ft_strjoinfree(char *line, char *buffer)
 	if (buffer[i] == '\n')
 		str[j++] = buffer[i];
 	str[j] = 0;
-	if (line)
-		free(line);
 	return (str);
 }
 //int main()

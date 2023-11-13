@@ -33,7 +33,7 @@ void	*ft_mlxptr_init(t_data *data)
 void	*ft_mlxwin_init(t_data *data)
 {
 	data->win_ptr = mlx_new_window(data->mlx_ptr,
-			data->map->width, data->map->heigth, "VENTANICA");
+			data->map->width, data->map->heigth + 32, "VENTANICA");
 	if (!data->win_ptr)
 		return (free(data->mlx_ptr), NULL);
 	return (data->win_ptr);
@@ -70,8 +70,11 @@ void	*ft_init(t_data *data, char *map)
 	data->map->width = ft_strlen(map2d[0]) * 32;
 	data->map->heigth = ft_count_lines2d(map2d) * 32;
 	data->movements = 0;
+	data->spr->state = 1;
+	data->spr->updttime = time(NULL);
 	data->collectibles = ft_find_collectibles(data);
 	data->mlx_ptr = ft_mlxptr_init(data);
+	data->lost = 0;
 	if (!data->mlx_ptr)
 		return (NULL);
 	data->win_ptr = ft_mlxwin_init(data);

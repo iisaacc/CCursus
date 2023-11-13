@@ -12,12 +12,62 @@
 
 #include "../so_long.h"
 
+char	*ft_strjoinmod(char *line, char *buffer)
+{
+	char	*str;
+	size_t	i;
+	size_t	j;
+
+	str = ft_calloc((ft_strlen(line) + ft_strlen(buffer) + 1), sizeof(char));
+	i = 0;
+	j = 0;
+	while (line && line[i])
+	{
+		str[j++] = line[i];
+		i++;
+	}
+	i = 0;
+	while (buffer[i])
+	{
+		str[j++] = buffer[i];
+		i++;
+	}
+	free(buffer);
+	str[j] = 0;
+	return (str);
+}
+
+void	ft_on_lost(t_data *data)
+{
+	printf("GAME OVER! PRESS ESC TO EXIT\n");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, data->map->heigth + 20,
+		0x00FFFFFF, "GAME OVER!");
+	data->lost = 1;
+}
+
+void	ft_on_win(t_data *data)
+{
+	printf("YOU WIN! PRESS ESC TO EXIT\n");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, data->map->heigth + 20,
+		0x00FFFFFF, "YOU WIN!");
+	data->lost = 1;
+}
+
+int	ft_errorcase(void)
+{
+	ft_printf("Error\n");
+	ft_printf("Introduce a single argument with a valid .ber map file.\n");
+	return (1);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_data	data;
 	t_img	img;
 	t_map	map;
+	t_spr	spr;
 
+	data.spr = &spr;
 	data.img = &img;
 	data.map = &map;
 	data.map1d = ft_read_map(argv[1]);
@@ -33,9 +83,5 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	else
-	{
-		ft_printf("Error\n");
-		ft_pintf("Introduce a single argument with a valid .ber map file.\n");
-		return (1);
-	}
+		return (ft_errorcase());
 }
