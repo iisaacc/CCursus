@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 10:50:38 by isporras          #+#    #+#             */
-/*   Updated: 2023/10/20 11:14:17 by isporras         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:30:04 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	}
 	str[j] = 0;
+	free((char *)s1);
 	return (str);
 }
 

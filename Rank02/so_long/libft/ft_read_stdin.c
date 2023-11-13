@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	*ft_read_stdinput()
+char	*ft_read_stdinput(void)
 {
 	char	*buffer;
 	char	*tmp;

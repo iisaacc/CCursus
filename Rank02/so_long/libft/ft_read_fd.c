@@ -27,7 +27,7 @@ char	*ft_read_fd(int fd)
 		buffer[bytesread] = '\0';
 		tmp = ft_strjoin(tmp, buffer);
 		free(buffer);
-		buffer = (char *)malloc(sizeof(char) * (BUFSIZE + 1));
+		buffer = ft_calloc(BUFSIZE + 1, sizeof(char));
 		if (!buffer)
 			return (NULL);
 	}

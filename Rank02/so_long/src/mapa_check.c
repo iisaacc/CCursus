@@ -28,12 +28,30 @@
 	return (0);
 }*/
 
-//Chequea que haya un camino válido.
-int	ft_check_way(char *map)
+char	*ft_read_map(char *argv)
 {
-	char	**map2d;
+	char	*map1d;
+	int		i;
+	int		fd;
 
-	map2d = ft_split(map, '\n');
+	i = 0;
+	while (argv[i] != '\0')
+	{
+		if (argv[i] == '.' && ft_strncmp(argv + i, ".ber", 4) != 0)
+			return (NULL);
+		i++;
+	}
+	fd = open(argv, O_RDONLY);
+	if (fd == -1)
+		return (NULL);
+	map1d = ft_read_fd(fd);
+	if (*map1d == '\0')
+	{
+		free(map1d);
+		return (NULL);
+	}
+	else
+		return (map1d);
 }
 
 //Chequea que todas las líneas midan lo mismo.
@@ -78,12 +96,12 @@ int	ft_check_walls(char *map)
 	i = 0;
 	while (map[i] != '\0')
 	{
-		if ((current_ln == 1 || current_ln == total_ln) 
+		if ((current_ln == 1 || current_ln == total_ln)
 			&& map[i] != '1' && map[i] != '\n')
 			return (1);
 		else if ((map[i] == '\n' && map[i + 1] != '1')
-				|| (map[i + 1] == '\n' && map[i] != '1')
-				|| (map[i + 1] == '\0' && map[i] != '1'))
+			|| (map[i + 1] == '\n' && map[i] != '1')
+			|| (map[i + 1] == '\0' && map[i] != '1'))
 			return (1);
 		if (map[i] == '\n')
 			current_ln++;
@@ -95,49 +113,46 @@ int	ft_check_walls(char *map)
 //Cheque que haya un p_inicial una salida y al menos un objeto.
 int	ft_check_tokens(char *map)
 {
-	int	i;
-	int	P;
-	int	E;
-	int	C;
+	int	p;
+	int	e;
+	int	c;
 
-	P = 0;
-	E = 0;
-	C = 0;
-	i = 0;
-	while (map[i] != '\0')
+	p = 0;
+	e = 0;
+	c = 0;
+	while (*map != '\0')
 	{
-		if (map[i] == 'P')
-			P++;
-		else if (map[i] == 'C')
-			C++;
-		else if (map[i] == 'E')
-			E++;
-		else if (map[i] != '0' && map[i] != '1' && map[i] != 'C'
-			&& map[i] != 'E' && map[i] != 'P' && map[i] != '\n')
+		if (*map == 'P')
+			p++;
+		else if (*map == 'C')
+			c++;
+		else if (*map == 'E')
+			e++;
+		else if (*map != '0' && *map != '1' && *map != 'C'
+			&& *map != 'E' && *map != 'P' && *map != '\n')
 			return (1);
-		i++;
+		map++;
 	}
-	if (P == 1 && E == 1 && C >= 1)
+	if (p == 1 && e == 1 && c >= 1)
 		return (0);
-	else
-		return (1);
+	return (1);
 }
 
 //Checkea que el mapa cumpla los requisitos como mapa válido.
 int	ft_check_map(char *map)
 {
-	if (ft_check_characters(map) + ft_check_line_len(map) + ft_check_walls(map)
-		+ ft_check_tokens(map) > 0)
-	{	
+	if (ft_check_line_len(map) + ft_check_walls(map)
+		+ ft_check_tokens(map) + ft_check_way(map) > 0)
+	{
 		write(1, "Error\n", 6);
-		if (ft_check_characters(map) == 1)
-			write(1, "Invalid character/s\n", 20);
 		if (ft_check_line_len(map) == 1)
 			write(1, "Invalid line length/s\n", 22);
 		if (ft_check_walls(map) == 1)
 			write(1, "Map is not closed by obstacles\n", 31);
 		if (ft_check_tokens(map) == 1)
-			write(1, "Map has no exit/initial pos/objects\n", 36);
+			write(1, "Map has invalid tokens or there is some missing\n", 48);
+		if (ft_check_way(map) == 1)
+			write(1, "Map has no valid way\n", 21);
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 12:05:47 by isporras          #+#    #+#             */
-/*   Updated: 2023/11/07 13:18:00 by isporras         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:57:44 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		countn(long n);
 char	*ft_strjoinfree(char *line, char *buffer);
-char	*ft_read_stdinput();
+char	*ft_read_stdinput(void);
 char	*ft_read_fd(int fd);
-int	ft_count_lines(char *map);
+int		ft_count_lines(char *map);
+int		ft_count_lines2d(char **array2);
 #endif
