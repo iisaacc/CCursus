@@ -47,7 +47,7 @@ void	ft_on_lost(t_data *data)
 
 void	ft_on_win(t_data *data)
 {
-	printf("YOU WIN! PRESS ESC TO EXIT\n");
+	printf("YOU WIN! PRESS ESC TO EXIT.\n");
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, data->map->heigth + 20,
 		0x00FFFFFF, "YOU WIN!");
 	data->lost = 1;
