@@ -77,7 +77,7 @@ t_stack	*ft_onebeforelast(t_stack **lst)
 	return (nolast);
 }
 
-void ft_print_stack(t_stack **stack)
+/*void ft_print_stack(t_stack **stack)
 {
 	t_stack *tmp;
 
@@ -85,7 +85,9 @@ void ft_print_stack(t_stack **stack)
 	printf("STACK:\n");
 	while (tmp)
 	{
-		printf("VALUE: %d, pos: %d, target_pos: %d, index: %d, cost_a: %d, cost_b: %d\n", tmp->value, tmp->pos, tmp->target_pos, tmp->index, tmp->cost_a, tmp->cost_b);
+		printf("VALUE: %d, pos: %d, target_pos: %d, index: %d,
+		cost_a: %d, cost_b: %d\n", tmp->value, tmp->pos, tmp->target_pos,
+		tmp->index, tmp->cost_a, tmp->cost_b);
 		tmp = tmp->next;
 	}
-}
+}*/

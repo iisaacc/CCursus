@@ -34,19 +34,19 @@ void	ft_get_cost(t_stack **a, t_stack **b)
 
 int	ft_calculate_cost(int cost_a, int cost_b)
 {
-	int cost;
+	int	cost;
 
-	cost = 0;	
-	if((cost_a > 0 && cost_b > 0) || (cost_a < 0 && cost_b < 0))
+	cost = 0;
+	if ((cost_a > 0 && cost_b > 0) || (cost_a < 0 && cost_b < 0))
 	{
-		if((abs)(cost_a) >= (abs)(cost_b))
+		if ((abs)(cost_a) >= (abs)(cost_b))
 			cost = (abs)(cost_a);
 		else
 			cost = (abs)(cost_b);
 	}
 	else
 		cost = (abs)(cost_a) + (abs)(cost_b);
-	return(cost);
+	return (cost);
 }
 
 //Calcula el elemento de b que es menos costoso mover a su target pos en A.

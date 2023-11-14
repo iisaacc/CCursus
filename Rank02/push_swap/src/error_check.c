@@ -56,7 +56,7 @@ int	ft_check_doubles(int argc, int *stack_a)
 }
 
 //Devuelve 1 si algún valor supera el rango de int
-int	ft_check_range(int argc, int *stack_a)
+/*int	ft_check_range(int argc, int *stack_a)
 {
 	int	i;
 
@@ -68,11 +68,11 @@ int	ft_check_range(int argc, int *stack_a)
 		i++;
 	}
 	return (0);
-}
+}*/
 
 int	ft_is_ordered(int *stack_a, int argc)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < argc - 2)
@@ -88,9 +88,12 @@ int	ft_is_ordered(int *stack_a, int argc)
 //encontrado ningun error
 int	ft_check_errors(int argc, char **argv, int *stack_a)
 {
-	if (ft_check_char(argc, argv) + ft_check_doubles(argc, stack_a)
-		+ ft_check_range(argc, stack_a) > 0)
+	if (!stack_a || (ft_check_char(argc, argv)
+			+ ft_check_doubles(argc, stack_a) > 0))
 		write(2, "Error\n", 6);
-	return (ft_check_char(argc, argv) + ft_check_doubles(argc, stack_a)
-		+ ft_check_range(argc, stack_a) + ft_is_ordered(stack_a, argc));
+	if (!stack_a)
+		return (1);
+	else
+		return (ft_check_char(argc, argv) + ft_check_doubles(argc, stack_a)
+			+ ft_is_ordered(stack_a, argc));
 }

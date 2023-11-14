@@ -45,16 +45,16 @@ int	main(int argc, char **argv)
 	list_a = NULL;
 	list_b = NULL;
 	stack_a = ft_argvtoint(argc, argv);
-	if (argc > 2 && ft_check_errors(argc, argv, stack_a) == 0)
+	if (ft_check_errors(argc, argv, stack_a) == 0 && argc > 2)
 	{
-			ft_arraytolist(&list_a, stack_a, argc - 1);
-			ft_set_index(&list_a);
-			if (argc == 3)
-				ft_sort_2(&list_a);
-			else if (argc == 4)
-				ft_sort_3(&list_a);
-			else
-				ft_bigsort(&list_a, &list_b);
+		ft_arraytolist(&list_a, stack_a, argc - 1);
+		ft_set_index(&list_a);
+		if (argc == 3)
+			ft_sort_2(&list_a);
+		else if (argc == 4)
+			ft_sort_3(&list_a);
+		else
+			ft_bigsort(&list_a, &list_b);
 	}
 	ft_free(&list_a, &list_b, stack_a);
 	return (0);

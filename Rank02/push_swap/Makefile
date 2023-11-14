@@ -44,6 +44,9 @@ all: $(NAME)
 $(NAME): $(OBJ) $(MYHEADERS) $(LIBFT)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT)
 
+debug: $(OBJ) $(MYHEADERS) $(LIBFT)
+	$(CC) $(CFLAGS) -o debug $(OBJ) $(LIBFT) -g
+
 bonus: $(BONUS)
 
 $(BONUS): $(OBJ_BONUS) $(BONUSHEADERS) $(LIBFT)

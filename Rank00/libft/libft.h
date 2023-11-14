@@ -73,4 +73,5 @@ char	*ft_read_stdinput(void);
 char	*ft_read_fd(int fd);
 int		ft_count_lines(char *map);
 int		ft_count_lines2d(char **array2);
+long	ft_atoi_mod(const char *str);
 #endif

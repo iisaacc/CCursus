@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_count_lines.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 14:42:54 by isporras          #+#    #+#             */
-/*   Updated: 2023/11/13 10:58:27 by isporras         ###   ########.fr       */
+/*   Created: 2023/11/07 13:17:06 by isporras          #+#    #+#             */
+/*   Updated: 2023/11/07 13:17:06 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_count_lines2d(char **array2)
 {
-	size_t	i;
+	int	i;
 
-	if (!s)
-		return (0);
 	i = 0;
-	while (s[i] != '\0')
+	while (array2[i])
 		i++;
 	return (i);
 }
-//int main()
-//{
-//	char hola[] = "holajjjj";
-//	printf("%zu", ft_strlen(hola));
-//}

@@ -38,7 +38,7 @@ void	ft_is_ordered(t_stack **a, t_stack **b)
 
 void	ft_read_and_do(t_stack **a, t_stack **b)
 {
-	char *output;
+	char	*output;
 
 	output = ft_read(1024);
 	if (ft_correct_input(output) == 1)
@@ -60,7 +60,7 @@ int	main(int argc, char **argv)
 	list_a = NULL;
 	list_b = NULL;
 	stack_a = ft_argvtoint(argc, argv);
-	if(argc > 1)
+	if (argc > 1)
 	{
 		if (ft_check_errors(argc, argv, stack_a) > 0)
 			write(2, "Error\n", 6);

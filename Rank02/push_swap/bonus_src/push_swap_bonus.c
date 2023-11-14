@@ -33,14 +33,19 @@ t_stack	*ft_stacklstnewnode(int value, int pos)
 //Coge el array de argumentos y lo convierte en un array de enteros
 int	*ft_argvtoint(int argc, char **argv)
 {
-	int	*stack;
-	int	i;
+	int		*stack;
+	int		i;
+	long	num;
 
 	i = 0;
 	stack = ft_calloc((argc - 1), sizeof(int));
 	while (i < argc - 1)
 	{
-		stack[i] = ft_atoi(argv[i + 1]);
+		num = ft_atoi_mod(argv[i + 1]);
+		if (num < -2147483648 || num > 2147483647)
+			return (NULL);
+		else
+			stack[i] = (int)num;
 		i++;
 	}
 	return (stack);

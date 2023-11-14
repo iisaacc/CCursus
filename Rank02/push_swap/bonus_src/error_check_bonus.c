@@ -55,26 +55,11 @@ int	ft_check_doubles(int argc, int *stack_a)
 	return (0);
 }
 
-//Devuelve 1 si algún valor supera el rango de int
-int	ft_check_range(int argc, int *stack_a)
-{
-	int	i;
-
-	i = 0;
-	while (i < argc - 1)
-	{
-		if (stack_a[i] < -2147483648 || stack_a[i] > 2147483647)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 int	ft_correct_input(char *output)
 {
 	while (*output != '\0')
 	{
-		if (ft_strncmp(output, "pa", 2) == 0 
+		if (ft_strncmp(output, "pa", 2) == 0
 			|| ft_strncmp(output, "pb", 2) == 0
 			|| ft_strncmp(output, "sa", 2) == 0
 			|| ft_strncmp(output, "sa", 2) == 0
@@ -98,6 +83,8 @@ int	ft_correct_input(char *output)
 //Llama a todos los checks y devuelve 0 en caso de no haber ningun error
 int	ft_check_errors(int argc, char **argv, int *stack_a)
 {
+	if (!stack_a)
+		return (1);
 	return (ft_check_char(argc, argv)
-		+ ft_check_doubles(argc, stack_a) + ft_check_range(argc, stack_a));
+		+ ft_check_doubles(argc, stack_a));
 }

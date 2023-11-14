@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 12:05:47 by isporras          #+#    #+#             */
-/*   Updated: 2023/05/02 17:23:32 by isporras         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:57:44 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
+# define BUFSIZE 1024
 
 typedef struct s_list
 {
@@ -47,7 +49,7 @@ void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(const char *s1);
 char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_itoa(int n);
 void	ft_putchar_fd(char c, int fd);
@@ -66,4 +68,10 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		countn(long n);
+char	*ft_strjoinfree(char *line, char *buffer);
+char	*ft_read_stdinput(void);
+char	*ft_read_fd(int fd);
+int		ft_count_lines(char *map);
+int		ft_count_lines2d(char **array2);
+long	ft_atoi_mod(const char *str);
 #endif

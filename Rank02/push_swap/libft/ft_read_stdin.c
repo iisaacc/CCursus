@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_read.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 14:42:54 by isporras          #+#    #+#             */
-/*   Updated: 2023/11/13 10:58:27 by isporras         ###   ########.fr       */
+/*   Created: 2023/11/07 11:52:21 by isporras          #+#    #+#             */
+/*   Updated: 2023/11/07 11:52:21 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+char	*ft_read_stdinput(void)
 {
-	size_t	i;
+	char	*buffer;
+	char	*tmp;
+	int		bytesread;
 
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	tmp = ft_strdup("");
+	buffer = ft_calloc(BUFSIZE + 1, sizeof(char));
+	bytesread = 1;
+	while (bytesread > 0)
+	{
+		bytesread = read(0, buffer, BUFSIZE);
+		buffer[bytesread] = '\0';
+		tmp = ft_strjoin(tmp, buffer);
+		free(buffer);
+		buffer = (char *)malloc(sizeof(char) * (BUFSIZE + 1));
+		if (!buffer)
+			return (NULL);
+	}
+	free(buffer);
+	return (tmp);
 }
-//int main()
-//{
-//	char hola[] = "holajjjj";
-//	printf("%zu", ft_strlen(hola));
-//}
