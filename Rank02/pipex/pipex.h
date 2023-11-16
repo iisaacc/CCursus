@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef PIPEX_H
+# define PIPEX_H
 
 # include <unistd.h>
 # include <stdio.h>
@@ -27,10 +27,11 @@ typedef struct s_pipex
 	char	**cmnd1;
 	char	**cmnd2;
 	char	*pth[2];
-} t_pipex;
+}	t_pipex;
 
 char	*ft_find_cmnd_path(char *command, char **envp);
 char	*ft_find_cmnd_path(char *command, char **envp);
 void	*ft_init(t_pipex *px, char **argv, char **envp);
+void	ft_cleanup(t_pipex *px);
 
 #endif

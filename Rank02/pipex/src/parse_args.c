@@ -41,23 +41,30 @@ char	*ft_strjointest(char const *s1, char const *s2)
 	return (str);
 }
 
-char *ft_find_cmnd_path(char *command, char **envp)
+char	**ft_find_cmnd_path2(char **envp)
 {
-	(void)command;
-	char	**splitpth;
-	char	*fullpth;
 	int		i;
+	char	**splitpth;
 
-	splitpth = NULL;
-	fullpth = NULL;
 	i = 0;
 	while (envp[i])
 	{
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
-			break;
+			break ;
 		i++;
 	}
 	splitpth = ft_split(&envp[i][5], ':');
+	return (splitpth);
+}
+
+char	*ft_find_cmnd_path(char *command, char **envp)
+{
+	char	**splitpth;
+	char	*fullpth;
+	int		i;
+
+	splitpth = ft_find_cmnd_path2(envp);
+	fullpth = NULL;
 	i = 0;
 	while (splitpth[i])
 	{
@@ -76,4 +83,3 @@ char *ft_find_cmnd_path(char *command, char **envp)
 	ft_free_2d(splitpth);
 	return (NULL);
 }
-

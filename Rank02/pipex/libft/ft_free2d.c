@@ -16,11 +16,14 @@ void	ft_free_2d(char **str)
 {
 	int	i;
 
-	i = 0;
-	while (str[i])
+	if (str)
 	{
-		free(str[i]);
-		i++;
+		i = 0;
+		while (str[i] != NULL)
+		{
+			free(str[i]);
+			i++;
+		}
+		free(str);
 	}
-	free(str);
 }
