@@ -4,7 +4,7 @@ LIB = ar rcs
 
 SRC_PARTH = src/
 
-SRCS = pipex.c parse_args.c init_clean.c
+SRCS = pipex.c parse_args.c init_clean.c ft_split_mod.c
 
 LIBFT = ./libft/libft.a
 

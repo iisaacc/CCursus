@@ -15,9 +15,14 @@
 void	*ft_get_argv(t_pipex *px, char **argv)
 {
 	px->fd[0] = open(argv[1], O_RDONLY);
+	if (px->fd[0] == -1)
+	{
+		perror("Failed to open file");
+		px->fd[0] = open("/dev/null", O_RDONLY);
+	}
 	px->fd[1] = open(argv[4], O_WRONLY | O_CREAT, 0644);
-	px->cmnd1 = ft_split(argv[2], ' ');
-	px->cmnd2 = ft_split(argv[3], ' ');
+	px->cmnd1 = ft_split_mod(argv[2], ' ');
+	px->cmnd2 = ft_split_mod(argv[3], ' ');
 	if (!px->cmnd1 || !px->cmnd2)
 	{
 		ft_cleanup(px);
@@ -25,13 +30,8 @@ void	*ft_get_argv(t_pipex *px, char **argv)
 		exit(EXIT_FAILURE);
 		return (NULL);
 	}
-	if (px->fd[0] == -1 || px->fd[1] == -1)
-	{
-		ft_cleanup(px);
+	if (px->fd[1] == -1)
 		perror("Failed to open file");
-		exit(EXIT_FAILURE);
-		return (NULL);
-	}
 	return (px);
 }
 
@@ -63,11 +63,8 @@ void	*ft_init(t_pipex *px, char **argv, char **envp)
 		exit(EXIT_FAILURE);
 	}
 	if (!px->pth[0] || !px->pth[1])
-	{
-		ft_cleanup(px);
 		perror("command not found");
-		exit(EXIT_FAILURE);
-	}
+	
 	return (px);
 }
 
