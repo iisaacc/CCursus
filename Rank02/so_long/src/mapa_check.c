@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:09:01 by isporras          #+#    #+#             */
-/*   Updated: 2023/11/07 12:09:01 by isporras         ###   ########.fr       */
+/*   Updated: 2023/11/14 14:53:56 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	ft_check_line_len(char *map)
 
 	l_len = 0;
 	l_one = 0;
+	i = 0;
 	while (map[l_one] != '\0' && map[l_one] != '\n')
 		l_one++;
 	if (map[l_one] != '\0')

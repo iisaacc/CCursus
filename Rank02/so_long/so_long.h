@@ -6,20 +6,20 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 11:01:28 by isporras          #+#    #+#             */
-/*   Updated: 2023/11/13 11:01:28 by isporras         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:44:37 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "./minilibx-linux/mlx.h"
+# include "./minilibx/mlx.h"
 # include "./libft/libft.h"
 # include "./ft_printf/ft_printf.h"
 # include <stdlib.h>
 # include <stdio.h>
-# include <X11/X.h>
-# include <X11/keysym.h>
+//# include <X11/X.h>
+//# include <X11/keysym.h>
 # include <time.h>
 
 # define WIDTH 512
