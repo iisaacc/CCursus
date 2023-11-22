@@ -2,11 +2,11 @@ NAME = philo
 
 LIB = ar rcs
 
-SRCS =
+SRCS = aux.c init.c main.c
 
 OBJ_NAME = $(SRCS:.c=.o)
 
-OBJ = $(addprefix $(SRC_PARTH), $(OBJ_NAME))
+OBJ = $(OBJ_NAME)
 
 CC = gcc
 

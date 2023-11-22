@@ -6,6 +6,7 @@
 		"unistd.h": "c",
 		"stdio.h": "c",
 		"stdlib.h": "c",
-		"ft_printf.h": "c"
+		"ft_printf.h": "c",
+		"_select.h": "c"
 	}
 }
