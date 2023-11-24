@@ -23,6 +23,7 @@ void	*ft_get_argv(t_pipex *px, char **argv)
 	px->fd[1] = open(argv[4], O_WRONLY | O_CREAT, 0644);
 	px->cmnd1 = ft_split_mod(argv[2], ' ');
 	px->cmnd2 = ft_split_mod(argv[3], ' ');
+	ft_clean_cmnd(px);
 	if (!px->cmnd1 || !px->cmnd2)
 	{
 		ft_cleanup(px);
@@ -64,7 +65,6 @@ void	*ft_init(t_pipex *px, char **argv, char **envp)
 	}
 	if (!px->pth[0] || !px->pth[1])
 		perror("command not found");
-	
 	return (px);
 }
 

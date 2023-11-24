@@ -75,4 +75,5 @@ int		ft_count_lines(char *map);
 int		ft_count_lines2d(char **array2);
 long	ft_atoi_mod(const char *str);
 void	ft_free_2d(char **str);
+int		ft_to2d(char const *s, int len, char **ans, int lap);
 #endif

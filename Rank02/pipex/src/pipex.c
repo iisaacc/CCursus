@@ -39,7 +39,6 @@ int	main(int argc, char *argv[], char **envp)
 	t_pipex	px;
 	pid_t	pid;
 
-	(void)argc;
 	if (argc == 5)
 	{
 		if (!ft_init(&px, argv, envp))
@@ -59,5 +58,5 @@ int	main(int argc, char *argv[], char **envp)
 		return (0);
 	}
 	else
-		ft_printf("Introduce 4 arguments specifying the infile, first command, second command and outfile\n");
+		ft_printf("Introduce 4 arguments\n");
 }

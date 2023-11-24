@@ -34,5 +34,6 @@ char	*ft_find_cmnd_path(char *command, char **envp);
 void	*ft_init(t_pipex *px, char **argv, char **envp);
 void	ft_cleanup(t_pipex *px);
 char	**ft_split_mod(char const *s, char c);
+void	ft_clean_cmnd(t_pipex *px);
 
 #endif

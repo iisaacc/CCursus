@@ -14,83 +14,28 @@
 
 int	ft_countl_mod(char const *s, char c)
 {
-	int		i;
-	int		b;
-	int		b2;
-	int		n;
-
-	n = 0;
-	b = 0;
-	b2 = 0;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] == '\"')
-		{
-			c = '\"';
-			b2 = 1;
-		}
-		if (s[i] == '\'' && b2 == 0)
-			c = '\'';
-		if (s[i] == c)
-			b = 0;
-		if (s[i] != c && b == 0)
-		{
-			n++;
-			b = 1;
-		}
-		i++;
-	}
-	return (n);
-}
-
-int	ft_to2d_mod(char const *s, int len, char **ans, int lap)
-{
 	int	i;
-
-	ans[lap] = (char *)malloc((len + 1) * sizeof(char));
-	i = 0;
-	if (!ans[lap])
-	{
-		while (lap > 0)
-		{
-			free(ans[lap - 1]);
-			lap--;
-		}
-		free(ans);
-		return (1);
-	}
-	while (i < len)
-	{
-		ans[lap][i] = s[i];
-		i++;
-	}
-	ans[lap][i] = '\0';
-	return (0);
-}
-
-void	ft_skip(char *s, char *c, int *i)
-{
+	int	count;
 	int	b;
 
 	b = 0;
-	while (s[*i] == *c && s[*i] != '\0')
+	i = 0;
+	count = 0;
+	while (s && s[i] && count < 2)
 	{
-		(*i)++;
-		if (s[*i] == '\'' && b == 0)
+		if (s[i] != c && b == 0 && count < 2)
 		{
-			*c = '\'';
+			count++;
 			b = 1;
 		}
-		if (s[*i] == '\"' && b == 0)
-		{
-			*c = '\"';
-			b = 1;
-		}
+		if (s[i] == c)
+			b = 0;
+		i++;
 	}
+	return (count);
 }
 
-char	**ft_splitaux_mod(char **ans, char *s, char c)
+char	**ft_splitaux_mod(char **str, char *s, char c)
 {
 	int		i;
 	int		len;
@@ -98,23 +43,20 @@ char	**ft_splitaux_mod(char **ans, char *s, char c)
 
 	lap = 0;
 	i = 0;
-	while (s[i] != '\0')
+	while (s && s[i])
 	{
 		len = 0;
-		ft_skip(s, &c, &i);
-		while (s[i + len] != '\0' && s[i + len] != c)
+		while (s[i + len] != c && s[i + len] != '\0')
 			len++;
 		if (len > 0)
-		{
-			if (ft_to2d_mod(&s[i], len, ans, lap) == 1)
-				return (NULL);
-			lap++;
-			i += len;
-		}
+			ft_to2d(&s[i], len, str, lap++);
+		i += len;
+		c = '\0';
+		if (s[i] != '\0')
+			i++;
 	}
-
-	ans[ft_countl_mod(s, ' ')] = NULL;
-	return (ans);
+	str[lap] = NULL;
+	return (str);
 }
 
 char	**ft_split_mod(char const *s, char c)

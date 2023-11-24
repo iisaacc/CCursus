@@ -4,7 +4,7 @@ LIB = ar rcs
 
 SRC_PARTH = src/
 
-SRCS = pipex.c parse_args.c init_clean.c ft_split_mod.c
+SRCS = pipex.c parse_args.c init_clean.c ft_split_mod.c ft_clean_cmnd.c
 
 LIBFT = ./libft/libft.a
 
@@ -33,7 +33,7 @@ $(NAME): $(OBJ) $(LIBFT) $(MYHEADERS) $(PRINTF)
 	$(CC) $(CFLAGS) -o pipex $(OBJ) $(PRINTF) $(LIBFT)
 
 debug: $(OBJ) $(LIBFT) $(MYHEADERS) $(PRINTF)
-	$(CC) $(CFLAGS) -o pipexd $(OBJ) $(PRINTF) $(LIBFT) -g
+	$(CC) -o pipexd $(OBJ) $(PRINTF) $(LIBFT) -g
 
 $(LIBFT):
 	make -C ./libft all
