@@ -16,11 +16,9 @@ OBJ = $(addprefix $(SRC_PARTH), $(OBJ_NAME))
 
 CC = gcc
 
-MACINCLUDES = -I/opt/X11/include -Imlx
+CFLAGS = -Wall -Wextra -Werror -Iinclude/
 
-MLXFLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
-
-CFLAGS = -Werror -Wall -Wextra
+MLXFLAGS = -Lminilibx -lmlx -framework OpenGL -framework AppKit
 
 MYHEADERS = so_long.h \
 			./libft/libft.h \
@@ -29,12 +27,12 @@ MYHEADERS = so_long.h \
 RM = rm -f
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ $(MACINCLUDES)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT) $(MYHEADERS) $(PRINTF)
-	$(CC) $(CFLAGS) -o so_long $(OBJ) $(MLXFLAGS)
+$(NAME): $(OBJ) $(LIBFT) $(MYHEADERS) $(PRINTF) $(MINILIBX)
+	$(CC) $(CFLAGS) -o so_long $(OBJ) $(MLXFLAGS) $(LIBFT) $(PRINTF)
 
 linux: $(OBJ) $(LIBFT) $(MYHEADERS) $(PRINTF)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -Lminilibx-linux -lmlx_Linux -lX11 -lXext -o so_long
@@ -47,6 +45,9 @@ $(LIBFT):
 
 $(PRINTF):
 	make -C ./ft_printf all
+
+$(MINILIBX):
+	make -C ./minilibx all
 
 clean: libclean printfclean
 	$(RM) $(OBJ)

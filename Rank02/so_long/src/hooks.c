@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:07:13 by isporras          #+#    #+#             */
-/*   Updated: 2023/11/09 17:07:13 by isporras         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:50:42 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,7 @@ int	dstry(t_data *data)
 	if (data->win_ptr)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	if (data->mlx_ptr)
-	{
-		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
-	}
 	while (data->map->heigth > 0
 		&& data->map->map[(data->map->heigth / 32) - 1])
 	{
@@ -85,15 +82,15 @@ int	ft_on_kpress(int keysym, t_data *data)
 	char	*str;
 
 	(void)data;
-	if (keysym == XK_Escape)
+	if (keysym == 53)
 		dstry(data);
-	if (keysym == XK_a)
+	if (keysym == 0)
 		ft_move_object(data, LEFT);
-	if (keysym == XK_d)
+	if (keysym == 2)
 		ft_move_object(data, RIGHT);
-	if (keysym == XK_w)
+	if (keysym == 13)
 		ft_move_object(data, UP);
-	if (keysym == XK_s)
+	if (keysym == 1)
 		ft_move_object(data, DOWN);
 	img_win(data, data->img->box, 0, data->map->heigth);
 	str = ft_strjoinmod("Movements: ", ft_itoa(data->movements));
@@ -105,7 +102,7 @@ int	ft_on_kpress(int keysym, t_data *data)
 
 void	ft_mlx_hooks(t_data *data)
 {
-	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, &ft_on_kpress, data);
-	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask, &dstry, data);
+	mlx_hook(data->win_ptr, 3, 2, &ft_on_kpress, data);
+	mlx_hook(data->win_ptr, 17, 1<<17, &dstry, data);
 	mlx_loop_hook(data->mlx_ptr, &ft_sprite, data);
 }
