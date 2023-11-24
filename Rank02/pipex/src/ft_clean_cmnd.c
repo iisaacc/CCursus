@@ -32,8 +32,8 @@ void	ft_clean_ext(char **cmnd)
 //Elimina los carácteres no permitidos en el interior de los comandos
 void	ft_clean_ins(char *cmnd)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -59,5 +59,4 @@ void	ft_clean_cmnd(t_pipex *px)
 		ft_clean_ext(&px->cmnd2[1]);
 		ft_clean_ins(px->cmnd2[1]);
 	}
-	
 }
