@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mapa_check.c                                       :+:      :+:    :+:   */
+/*   mapa_check_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:09:01 by isporras          #+#    #+#             */
-/*   Updated: 2023/11/30 11:24:12 by isporras         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:09:43 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../so_long_bonus.h"
 
 //Chequea que solo haya caracteres admitidos.
 /*int	ft_check_characters(char *map)

@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:45:50 by isporras          #+#    #+#             */
-/*   Updated: 2023/11/15 13:45:50 by isporras         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:33:29 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ char	*ft_find_cmnd_path(char *command, char **envp)
 	while (splitpth[i])
 	{
 		fullpth = ft_strjointest(fullpth, splitpth[i]);
-		fullpth = ft_strjointest(fullpth, "/\0");
 		fullpth = ft_strjointest(fullpth, command);
 		if (access(fullpth, F_OK) == 0)
 		{
