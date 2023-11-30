@@ -37,23 +37,53 @@ int	ft_atoi(char *str)
 	return (n * sign);
 }
 
-void	ft_init(t_philo *ph, char **argv, int argc)
+void	*ft_init_threads(t_philo *ph)
 {
-	ph->n_phi = ft_atoi(argv[1]);
-	ph->to_die = (int64_t)ft_atoi(argv[2]);
-	ph->to_eat = (int64_t)ft_atoi(argv[3]);
-	ph->to_sleep = (int64_t)ft_atoi(argv[4]);
-	if (argc == 6)
-		ph->times_eat = ft_atoi(argv[5]);
-	else
-		ph->times_eat = -1;
+	int	i;
+
+	i = 0;
+	while (i < ph[i].total_phi)
+	{
+		pthread_create(ph[i].thread, NULL, &ft_routine, (void *)&ph[i]);
+		if (ph[i].thread == NULL)
+			return (NULL);
+		i++;
+	}
+	
+	i = 0;
+	while (i < ph[i].total_phi)
+	{
+		pthread_join(*(ph[i].thread), NULL);
+		i++;
+	}
+	return (ph);
 }
 
-void print_philo(t_philo *ph)
+void	ft_init(t_philo *ph, char **argv, int argc)
 {
-	printf("n_phi: %d\n", ph->n_phi);
-	printf("to_die: %" PRId64 "\n", ph->to_die);
-	printf("to_eat: %" PRId64 "\n", ph->to_eat);
-	printf("to_sleep: %" PRId64 "\n", ph->to_sleep);
-	printf("times_eat: %d \n", ph->times_eat);
+	int	i;
+	int	total_phi;
+
+	total_phi = ft_atoi(argv[1]);
+	i = 0;
+	while (i < total_phi)
+	{
+		ph[i].total_phi = total_phi;
+		ph[i].to_die = (int64_t)ft_atoi(argv[2]);
+		ph[i].to_eat = (int64_t)ft_atoi(argv[3]);
+		ph[i].to_sleep = (int64_t)ft_atoi(argv[4]);
+		ph[i].n_phi = i;
+		ph[i].thread = malloc(sizeof(pthread_t));
+		ph[i].forks = malloc(sizeof(pthread_mutex_t));
+		i++;
+	}
+	i = 0;
+	while (i < total_phi)
+	{
+		if (argc == 6)
+			ph[i++].times_eat = ft_atoi(argv[5]);
+		else
+			ph[i++].times_eat = -1;
+	}
+	ft_init_threads(ph);
 }

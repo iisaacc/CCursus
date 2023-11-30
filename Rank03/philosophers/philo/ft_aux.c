@@ -12,12 +12,21 @@
 
 #include "philo.h"
 
-void	ft_print_stamp(void)
+int64_t	ft_print_stamp(void)
 {
 	struct timeval	tv;
 	int64_t			time;
 
 	gettimeofday(&tv, NULL);
 	time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
-	printf("%" PRId64 " ", time);
+	return (time);
+}
+
+void print_philo(t_data *data)
+{
+	printf("n_phi: %d\n", data->total_phi);
+	printf("to_die: %" PRId64 "\n", data->to_die);
+	printf("to_eat: %" PRId64 "\n", data->to_eat);
+	printf("to_sleep: %" PRId64 "\n", data->to_sleep);
+	printf("times_eat: %d \n", data->times_eat);
 }

@@ -2,7 +2,7 @@ NAME = philo
 
 LIB = ar rcs
 
-SRCS = aux.c init.c main.c
+SRCS = ft_aux.c init.c main.c threads.c
 
 OBJ_NAME = $(SRCS:.c=.o)
 

@@ -24,13 +24,11 @@ void	ft_print_arg(void)
 
 int	main(int argc, char **argv)
 {
-	t_philo	ph;
+	t_philo	ph[200];
 
 	if (argc == 5 || argc == 6)
 	{
-		ft_init(&ph, argv, argc);
-		print_philo(&ph);
-		ft_print_stamp();
+		ft_init(ph, argv, argc);
 	}
 	else
 		ft_print_arg();
