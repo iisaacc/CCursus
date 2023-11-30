@@ -1,16 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:07:13 by isporras          #+#    #+#             */
-/*   Updated: 2023/11/30 11:00:14 by isporras         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:09:40 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../so_long_bonus.h"
+
+int	ft_sprite(t_data *data)
+{
+	time_t	ct;
+
+	ct = time(NULL);
+	if (ct - data->spr->updttime >= 0.1)
+	{
+		if (data->spr->state == 1)
+		{
+			img_win(data, data->img->extd, data->ex, data->ey);
+			data->spr->state = 0;
+		}
+		else
+		{
+			img_win(data, data->img->extu, data->ex, data->ey);
+			data->spr->state = 1;
+		}
+		mlx_do_sync(data->mlx_ptr);
+		data->spr->updttime = ct;
+	}
+	mlx_loop_hook(data->mlx_ptr, &ft_sprite, data);
+	return (0);
+}
 
 void	ft_dstry_img(t_data *data)
 {
@@ -80,4 +104,5 @@ void	ft_mlx_hooks(t_data *data)
 {
 	mlx_hook(data->win_ptr, 3, 2, &ft_on_kpress, data);
 	mlx_hook(data->win_ptr, 17, 1 << 17, &dstry, data);
+	mlx_loop_hook(data->mlx_ptr, &ft_sprite, data);
 }

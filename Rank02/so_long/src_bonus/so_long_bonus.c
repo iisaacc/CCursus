@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 11:40:21 by isporras          #+#    #+#             */
-/*   Updated: 2023/11/30 11:57:32 by isporras         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:56:44 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../so_long_bonus.h"
 
 char	*ft_strjoinmod(char *line, char *buffer)
 {
@@ -75,11 +75,11 @@ int	main(int argc, char *argv[])
 	data.spr = &spr;
 	data.img = &img;
 	data.map = &map;
-	if (argc == 2)
+	if (argc == 2 && data.map1d)
 	{
 		data.map1d = ft_read_map(argv[1]);
 		if (data.map1d == NULL)
-			return (ft_errorcase());
+			return (ft_errorcase(), free(data.map1d), 1);
 		if (ft_check_map(data.map1d) == 1)
 			return (free(data.map1d), 1);
 		if (ft_init(&data, data.map1d) == NULL)

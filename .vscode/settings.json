@@ -7,6 +7,7 @@
 		"stdio.h": "c",
 		"stdlib.h": "c",
 		"ft_printf.h": "c",
-		"_select.h": "c"
+		"_select.h": "c",
+		"so_long.h": "c"
 	}
 }
