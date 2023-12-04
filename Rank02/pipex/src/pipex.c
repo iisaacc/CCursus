@@ -34,11 +34,17 @@ void	ft_execve(t_pipex *px, int pid)
 	}
 }
 
+// void ft_leaks(void)
+// {
+// 	system("leaks pipex");
+// }
+
 int	main(int argc, char *argv[], char **envp)
 {
 	t_pipex	px;
 	pid_t	pid;
 
+	//atexit(ft_leaks);
 	if (argc == 5)
 	{
 		if (!ft_init(&px, argv, envp))

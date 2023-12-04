@@ -17,7 +17,7 @@ void	*ft_get_argv(t_pipex *px, char **argv)
 	px->fd[0] = open(argv[1], O_RDONLY);
 	if (px->fd[0] == -1)
 	{
-		perror("Failed to open file");
+		perror("bash: infile");
 		px->fd[0] = open("/dev/null", O_RDONLY);
 	}
 	px->fd[1] = open(argv[4], O_WRONLY | O_CREAT, 0644);

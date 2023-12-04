@@ -69,6 +69,7 @@ char	*ft_find_cmnd_path(char *command, char **envp)
 	while (splitpth[i])
 	{
 		fullpth = ft_strjointest(fullpth, splitpth[i]);
+		fullpth = ft_strjointest(fullpth, "/");
 		fullpth = ft_strjointest(fullpth, command);
 		if (access(fullpth, F_OK) == 0)
 		{
