@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aux.c                                              :+:      :+:    :+:   */
+/*   ft_aux.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 13:34:26 by isporras          #+#    #+#             */
-/*   Updated: 2023/11/22 11:55:10 by isporras         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:54:49 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	ft_print_arg(void)
 	printf("- Time to die\n");
 	printf("- Time to eat\n");
 	printf("- Time to sleep\n");
-	printf("- Number of times each philosopher must eat to \"win\" (OPTIONAL)\n");
+	printf("- Number of times each philosopher must eat (OPTIONAL)\n");
 }
 
-int64_t	ft_print_stamp(void)
+int64_t	ft_time(void)
 {
 	struct timeval	tv;
 	int64_t			time;
@@ -32,7 +32,17 @@ int64_t	ft_print_stamp(void)
 	return (time);
 }
 
-void print_philo(t_philo *ph)
+int64_t	ft_stamp(t_philo *ph)
+{
+	int64_t	stamp;
+	int64_t	time;
+
+	time = ft_time();
+	stamp = time - ph->begin;
+	return (stamp);
+}
+
+void	print_philo(t_philo *ph)
 {
 	printf("n_phi: %d\n", ph->total_phi);
 	printf("to_die: %" PRId64 "\n", ph->to_die);

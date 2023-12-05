@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 13:25:36 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/05 15:09:19 by isporras         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:51:19 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,29 +57,38 @@ void	*ft_init_threads(t_philo *ph)
 	}
 	return (ph);
 }
+
 pthread_mutex_t	**ft_init_forks(int total_phi)
 {
 	pthread_mutex_t	**forks;
 	int				i;
 
-	forks = malloc(total_phi * (sizeof(pthread_mutex_t*)));
+	forks = malloc(total_phi * (sizeof(pthread_mutex_t *)));
+	if (forks == NULL)
+	{
+		printf("Error: malloc failed\n");
+		return (NULL);
+	}
 	i = 0;
 	while (i < total_phi)
 	{
 		forks[i] = malloc(sizeof(pthread_mutex_t));
+		if (forks[i] == NULL)
+		{
+			printf("Error: malloc failed\n");
+			return (NULL);
+		}
+		pthread_mutex_init(forks[i], NULL);
 		i++;
 	}
 	return (forks);
 }
 
-void	ft_init(t_philo *ph, char **argv, int argc)
+void	ft_init_struct(t_philo *ph, char **argv, int total_phi
+					, pthread_mutex_t	**forks)
 {
-	int				i;
-	int				total_phi;
-	pthread_mutex_t	**forks;
+	int	i;
 
-	total_phi = ft_atoi(argv[1]);
-	forks = ft_init_forks(total_phi);
 	i = 0;
 	while (i < total_phi)
 	{
@@ -90,8 +99,21 @@ void	ft_init(t_philo *ph, char **argv, int argc)
 		ph[i].n_phi = i;
 		ph[i].thread = malloc(sizeof(pthread_t));
 		ph[i].forks = forks;
+		ph[i].last_eat = (int64_t)(-1);
+		ph[i].begin = ft_time();
 		i++;
 	}
+}
+
+void	ft_init(t_philo *ph, char **argv, int argc)
+{
+	int				i;
+	int				total_phi;
+	pthread_mutex_t	**forks;
+
+	total_phi = ft_atoi(argv[1]);
+	forks = ft_init_forks(total_phi);
+	ft_init_struct(ph, argv, total_phi, forks);
 	i = 0;
 	while (i < total_phi)
 	{
