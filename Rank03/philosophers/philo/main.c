@@ -12,16 +12,6 @@
 
 #include "philo.h"
 
-void	ft_print_arg(void)
-{
-	printf("Introduce at least 4 arguments especifying:\n");
-	printf("- Number of philosophers\n");
-	printf("- Time to die\n");
-	printf("- Time to eat\n");
-	printf("- Time to sleep\n");
-	printf("- Number of times each philosopher must eat to \"win\" (OPTIONAL)\n");
-}
-
 int	main(int argc, char **argv)
 {
 	t_philo	ph[200];

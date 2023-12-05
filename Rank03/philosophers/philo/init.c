@@ -41,7 +41,7 @@ void	*ft_init_threads(t_philo *ph)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	while (i < ph[i].total_phi)
 	{
 		pthread_create(ph[i].thread, NULL, &ft_routine, (void *)&ph[i]);
@@ -50,7 +50,7 @@ void	*ft_init_threads(t_philo *ph)
 		i++;
 	}
 	
-	i = 0;
+	i = 1;
 	while (i < ph[i].total_phi)
 	{
 		pthread_join(*(ph[i].thread), NULL);
@@ -65,8 +65,8 @@ void	ft_init(t_philo *ph, char **argv, int argc)
 	int	total_phi;
 
 	total_phi = ft_atoi(argv[1]);
-	i = 0;
-	while (i < total_phi)
+	i = 1;
+	while (i <= total_phi)
 	{
 		ph[i].total_phi = total_phi;
 		ph[i].to_die = (int64_t)ft_atoi(argv[2]);
@@ -77,7 +77,7 @@ void	ft_init(t_philo *ph, char **argv, int argc)
 		ph[i].forks = malloc(sizeof(pthread_mutex_t));
 		i++;
 	}
-	i = 0;
+	i = 1;
 	while (i < total_phi)
 	{
 		if (argc == 6)

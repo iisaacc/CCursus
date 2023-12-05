@@ -37,5 +37,6 @@ void	ft_init(t_philo *ph, char **argv, int argc);
 void	print_philo(t_philo *ph);
 int64_t	ft_print_stamp(void);
 void	*ft_routine(void *arg);
+void	ft_print_arg(void);
 
 #endif
