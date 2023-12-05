@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 13:25:36 by isporras          #+#    #+#             */
-/*   Updated: 2023/11/22 11:47:35 by isporras         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:09:19 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	*ft_init_threads(t_philo *ph)
 {
 	int	i;
 
-	i = 1;
+	i = 0;
 	while (i < ph[i].total_phi)
 	{
 		pthread_create(ph[i].thread, NULL, &ft_routine, (void *)&ph[i]);
@@ -49,8 +49,7 @@ void	*ft_init_threads(t_philo *ph)
 			return (NULL);
 		i++;
 	}
-	
-	i = 1;
+	i = 0;
 	while (i < ph[i].total_phi)
 	{
 		pthread_join(*(ph[i].thread), NULL);
@@ -58,15 +57,31 @@ void	*ft_init_threads(t_philo *ph)
 	}
 	return (ph);
 }
+pthread_mutex_t	**ft_init_forks(int total_phi)
+{
+	pthread_mutex_t	**forks;
+	int				i;
+
+	forks = malloc(total_phi * (sizeof(pthread_mutex_t*)));
+	i = 0;
+	while (i < total_phi)
+	{
+		forks[i] = malloc(sizeof(pthread_mutex_t));
+		i++;
+	}
+	return (forks);
+}
 
 void	ft_init(t_philo *ph, char **argv, int argc)
 {
-	int	i;
-	int	total_phi;
+	int				i;
+	int				total_phi;
+	pthread_mutex_t	**forks;
 
 	total_phi = ft_atoi(argv[1]);
-	i = 1;
-	while (i <= total_phi)
+	forks = ft_init_forks(total_phi);
+	i = 0;
+	while (i < total_phi)
 	{
 		ph[i].total_phi = total_phi;
 		ph[i].to_die = (int64_t)ft_atoi(argv[2]);
@@ -74,10 +89,10 @@ void	ft_init(t_philo *ph, char **argv, int argc)
 		ph[i].to_sleep = (int64_t)ft_atoi(argv[4]);
 		ph[i].n_phi = i;
 		ph[i].thread = malloc(sizeof(pthread_t));
-		ph[i].forks = malloc(sizeof(pthread_mutex_t));
+		ph[i].forks = forks;
 		i++;
 	}
-	i = 1;
+	i = 0;
 	while (i < total_phi)
 	{
 		if (argc == 6)
