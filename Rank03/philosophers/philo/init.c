@@ -12,37 +12,24 @@
 
 #include "philo.h"
 
-int	ft_atoi(char *str)
+void	ft_init_obs(t_philo *ph)
 {
-	int	n;
-	int	sign;
-	int	i;
+	int idx;
 
-	i = 0;
-	n = 0;
-	sign = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		n = (n * 10) + (str[i] - '0');
-		i++;
-	}
-	return (n * sign);
+	idx = ph[0].total_phi;
+	ph[idx].total_phi = ph[0].total_phi;
+	ph[idx].thread = calloc(1, sizeof(pthread_t));
+	ph[idx].to_die = ph[0].to_die;
+	ph[idx].eaten = 0;
 }
 
 void	*ft_init_threads(t_philo *ph)
 {
-	int	i;
+	int			i;
 
+	pthread_create(ph[ph[0].total_phi].thread, NULL, &ft_observing, (void *)ph);
 	i = 0;
-	while (i < ph[i].total_phi)
+	while (i < ph[0].total_phi)
 	{
 		pthread_create(ph[i].thread, NULL, &ft_routine, (void *)&ph[i]);
 		if (ph[i].thread == NULL)
@@ -50,11 +37,12 @@ void	*ft_init_threads(t_philo *ph)
 		i++;
 	}
 	i = 0;
-	while (i < ph[i].total_phi)
+	while (i < ph[0].total_phi)
 	{
 		pthread_join(*(ph[i].thread), NULL);
 		i++;
 	}
+	pthread_join(*(ph[ph[0].total_phi].thread), NULL);
 	return (ph);
 }
 
@@ -63,7 +51,7 @@ pthread_mutex_t	**ft_init_forks(int total_phi)
 	pthread_mutex_t	**forks;
 	int				i;
 
-	forks = malloc(total_phi * (sizeof(pthread_mutex_t *)));
+	forks = calloc(total_phi, (sizeof(pthread_mutex_t *)));
 	if (forks == NULL)
 	{
 		printf("Error: malloc failed\n");
@@ -72,7 +60,7 @@ pthread_mutex_t	**ft_init_forks(int total_phi)
 	i = 0;
 	while (i < total_phi)
 	{
-		forks[i] = malloc(sizeof(pthread_mutex_t));
+		forks[i] = calloc(1, sizeof(pthread_mutex_t));
 		if (forks[i] == NULL)
 		{
 			printf("Error: malloc failed\n");
@@ -87,8 +75,10 @@ pthread_mutex_t	**ft_init_forks(int total_phi)
 void	ft_init_struct(t_philo *ph, char **argv, int total_phi
 					, pthread_mutex_t	**forks)
 {
-	int	i;
+	int		i;
+	int64_t	begin;
 
+	begin = ft_time();
 	i = 0;
 	while (i < total_phi)
 	{
@@ -97,10 +87,11 @@ void	ft_init_struct(t_philo *ph, char **argv, int total_phi
 		ph[i].to_eat = (int64_t)ft_atoi(argv[3]);
 		ph[i].to_sleep = (int64_t)ft_atoi(argv[4]);
 		ph[i].n_phi = i;
-		ph[i].thread = malloc(sizeof(pthread_t));
+		ph[i].thread = calloc(1, sizeof(pthread_t));
 		ph[i].forks = forks;
-		ph[i].last_eat = (int64_t)(-1);
-		ph[i].begin = ft_time();
+		ph[i].last_eat = ft_time();
+		ph[i].begin = begin;
+		ph[i].times_eat = 0;
 		i++;
 	}
 }
@@ -115,12 +106,13 @@ void	ft_init(t_philo *ph, char **argv, int argc)
 	forks = ft_init_forks(total_phi);
 	ft_init_struct(ph, argv, total_phi, forks);
 	i = 0;
-	while (i < total_phi)
+	while (i <= total_phi)
 	{
 		if (argc == 6)
-			ph[i++].times_eat = ft_atoi(argv[5]);
+			ph[i++].max_eat = ft_atoi(argv[5]);
 		else
-			ph[i++].times_eat = -1;
+			ph[i++].max_eat = -1;
 	}
+	ft_init_obs(ph);
 	ft_init_threads(ph);
 }

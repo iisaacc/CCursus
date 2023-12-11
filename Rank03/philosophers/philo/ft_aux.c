@@ -12,6 +12,31 @@
 
 #include "philo.h"
 
+int	ft_atoi(char *str)
+{
+	int	n;
+	int	sign;
+	int	i;
+
+	i = 0;
+	n = 0;
+	sign = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		n = (n * 10) + (str[i] - '0');
+		i++;
+	}
+	return (n * sign);
+}
+
 void	ft_print_arg(void)
 {
 	printf("Introduce at least 4 arguments especifying:\n");
@@ -42,11 +67,21 @@ int64_t	ft_stamp(t_philo *ph)
 	return (stamp);
 }
 
-void	print_philo(t_philo *ph)
+void	ft_clean(t_philo *ph)
 {
-	printf("n_phi: %d\n", ph->total_phi);
-	printf("to_die: %" PRId64 "\n", ph->to_die);
-	printf("to_eat: %" PRId64 "\n", ph->to_eat);
-	printf("to_sleep: %" PRId64 "\n", ph->to_sleep);
-	printf("times_eat: %d \n", ph->times_eat);
+	int	i;
+
+	i = 0;
+	while (i <= ph[0].total_phi)
+	{
+		free(ph[i].thread);
+		i++;
+	}
+	i = 0;
+	while (i < ph[0].total_phi)
+	{
+		free(ph[0].forks[i]);
+		i++;
+	}
+	free(ph[0].forks);
 }

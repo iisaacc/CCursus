@@ -25,13 +25,13 @@ $(NAME): $(OBJ) $(MYHEADERS)
 	$(CC) $(CFLAGS) -o philo $(OBJ)
 
 debug: $(OBJ) $(MYHEADERS)
-	$(CC) $(CFLAGS) -o philo_d $(OBJ) -g
+	$(CC) -fsanitize=thread $(CFLAGS) -o philo_d $(OBJ) -g
 
 clean:
 	$(RM) $(OBJ)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) philo_d
 
 re: fclean all
 

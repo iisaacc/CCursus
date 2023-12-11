@@ -22,6 +22,7 @@
 
 typedef struct s_philo
 {
+
 	int				n_phi;
 	int				total_phi;
 	pthread_t		*thread;
@@ -30,15 +31,19 @@ typedef struct s_philo
 	int64_t			to_die;
 	int64_t			to_eat;
 	int64_t			to_sleep;
+	int				max_eat;
+	int				eaten;
 	int				times_eat;
 	int64_t			begin;
 }	t_philo;
 
 void	ft_init(t_philo *ph, char **argv, int argc);
-void	print_philo(t_philo *ph);
 int64_t	ft_time(void);
 int64_t	ft_stamp(t_philo *ph);
 void	*ft_routine(void *arg);
 void	ft_print_arg(void);
+int		ft_atoi(char *str);
+void	*ft_observing(void *arg);
+void	ft_clean(t_philo *ph);
 
 #endif
