@@ -12,17 +12,18 @@
 
 #include "philo.h"
 
-void	ft_unlock(t_philo *ph)
-{
-	int	i;
+// void	ft_unlock(t_philo *ph)
+// {
+// 	int	i;
 
-	i = 0;
-	while (i < ph[0].total_phi)
-	{
-		pthread_mutex_unlock(ph[0].forks[i]);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < ph[0].total_phi)
+// 	{
+// 		if (ph[i].mutex[i] == 1)
+// 			pthread_mutex_unlock(ph[i].forks[i]);
+// 		i++;
+// 	}
+// }
 
 void	*ft_observing(void *arg)
 {
@@ -55,45 +56,76 @@ void	*ft_observing(void *arg)
 	return (NULL);
 }
 
-pthread_mutex_t	*ft_mutex_forks(t_philo *ph)
+int	ft_next_fork(t_philo *ph)
 {
-	pthread_mutex_t	*next_fork;
-	
+	int	pos;
+
+	pos = 0;
 	if (ph->n_phi == (ph->total_phi - 1) && ph->total_phi > 1)
-		next_fork = ph->forks[0];
+		pos = 0;
 	else
-		next_fork = ph->forks[ph->n_phi + 1];
+		pos = ph->n_phi + 1;
+	return (pos);
+}
+
+void	ft_first_fork(t_philo *ph)
+{	
+	if (ph->n_phi % 2 == 0)
+	{
+		pthread_mutex_lock(ph->forks[ph->n_phi]);
+		ph->mutex[ph->n_phi] = 1;
+	}
+	else
+	{
+		pthread_mutex_lock(ph->forks[ft_next_fork(ph)]);
+		ph->mutex[ft_next_fork(ph)] = 1;
+	}
+	if (ph->to_eat == -1)
+		return ;
+	printf("%" PRId64 " %d has taken a fork\n", ft_stamp(ph), ph->n_phi);
+}
+
+void	ft_second_fork(t_philo *ph)
+{
+	if (ph->n_phi % 2 == 0)
+	{
+		pthread_mutex_lock(ph->forks[ft_next_fork(ph)]);
+		ph->mutex[ft_next_fork(ph)] = 1;
+	}
+	else
+	{
+		pthread_mutex_lock(ph->forks[ph->n_phi]);
+		ph->mutex[ph->n_phi] = 1;
+	}
+	if (ph->to_eat == -1)
+		return ;
+	printf("%" PRId64 " %d has taken a fork\n", ft_stamp(ph), ph->n_phi);
+}
+
+t_philo	*ft_mutex_forks(t_philo *ph)
+{
 	if (ph->to_eat == -1)
 		return (NULL);
-	if (ph->n_phi % 2 == 0)
-		pthread_mutex_lock(ph->forks[ph->n_phi]);
-	else
-		pthread_mutex_lock(next_fork);
-	printf("%" PRId64 " %d has taken a fork\n", ft_stamp(ph), ph->n_phi);
-	if (ph->to_eat == -1)
-			return (NULL);
-	if (ph->n_phi % 2 == 0)
-		pthread_mutex_lock(next_fork);
-	else
-		pthread_mutex_lock(ph->forks[ph->n_phi]);
+	ft_first_fork(ph);
 	if (ph->to_eat == -1)
 		return (NULL);
-	printf("%" PRId64 " %d has taken a fork\n", ft_stamp(ph), ph->n_phi);
-	return (next_fork);
+	ft_second_fork(ph);
+	if (ph->to_eat == -1)
+		return (NULL);
+	return (ph);
 }
 
 void	ft_eating(t_philo *ph)
 {
-	pthread_mutex_t	*next_fork;
-
-	next_fork = ft_mutex_forks(ph);
-	if (!next_fork)
+	if(!ft_mutex_forks(ph))
 		return ;
 	printf("%" PRId64 " %d is eating\n", ft_stamp(ph), ph->n_phi);
 	ph->last_eat = ft_time();
 	usleep(ph->to_eat * 1000);
 	pthread_mutex_unlock(ph->forks[ph->n_phi]);
-	pthread_mutex_unlock(next_fork);
+	ph->mutex[ph->n_phi] = 0;
+	pthread_mutex_unlock(ph->forks[ft_next_fork(ph)]);
+	ph->mutex[ft_next_fork(ph)] = 0;
 	ph->times_eat += 1;
 }
 

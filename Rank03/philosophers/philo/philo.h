@@ -35,6 +35,7 @@ typedef struct s_philo
 	int				eaten;
 	int				times_eat;
 	int64_t			begin;
+	int				*mutex;
 }	t_philo;
 
 void	ft_init(t_philo *ph, char **argv, int argc);

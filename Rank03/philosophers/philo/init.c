@@ -72,12 +72,14 @@ pthread_mutex_t	**ft_init_forks(int total_phi)
 	return (forks);
 }
 
-void	ft_init_struct(t_philo *ph, char **argv, int total_phi
-					, pthread_mutex_t	**forks)
+void	ft_init_struct(t_philo *ph, char **argv, pthread_mutex_t **forks
+						, int *mutex)
 {
 	int		i;
 	int64_t	begin;
+	int		total_phi;
 
+	total_phi = ft_atoi(argv[1]);
 	begin = ft_time();
 	i = 0;
 	while (i < total_phi)
@@ -92,6 +94,7 @@ void	ft_init_struct(t_philo *ph, char **argv, int total_phi
 		ph[i].last_eat = ft_time();
 		ph[i].begin = begin;
 		ph[i].times_eat = 0;
+		ph[i].mutex = mutex;
 		i++;
 	}
 }
@@ -101,10 +104,12 @@ void	ft_init(t_philo *ph, char **argv, int argc)
 	int				i;
 	int				total_phi;
 	pthread_mutex_t	**forks;
+	int				*mutex;
 
 	total_phi = ft_atoi(argv[1]);
+	mutex = calloc(total_phi, sizeof(int));
 	forks = ft_init_forks(total_phi);
-	ft_init_struct(ph, argv, total_phi, forks);
+	ft_init_struct(ph, argv, forks, mutex);
 	i = 0;
 	while (i <= total_phi)
 	{
