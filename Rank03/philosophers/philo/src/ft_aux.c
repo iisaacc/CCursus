@@ -6,11 +6,11 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 13:34:26 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/05 16:54:49 by isporras         ###   ########.fr       */
+/*   Updated: 2023/12/14 13:21:47 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
 int	ft_atoi(char *str)
 {

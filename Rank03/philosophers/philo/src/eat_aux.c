@@ -6,11 +6,11 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:36:39 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/13 10:44:57 by isporras         ###   ########.fr       */
+/*   Updated: 2023/12/14 13:21:50 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
 void	ft_dead_flag(t_philo *ph)
 {

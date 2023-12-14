@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 09:44:04 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/14 10:49:59 by isporras         ###   ########.fr       */
+/*   Updated: 2023/12/14 11:20:56 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,26 @@ void	ft_execve(t_pipex *px, int pid)
 		close(px->pipefd[0]);
 		dup2(px->pipefd[1], STDOUT_FILENO);
 		dup2(px->fd[0], STDIN_FILENO);
-		execve(px->pth[0], px->cmnd1, NULL);
+		if (execve(px->pth[0], px->cmnd1, NULL) == -1)
+		{
+			perror(px->cmnd1[0]);
+			exit(EXIT_FAILURE);
+		}
 		close(px->pipefd[1]);
-		ft_cleanup(px);
 	}
 	else
 	{
 		close(px->pipefd[1]);
 		dup2(px->pipefd[0], STDIN_FILENO);
 		dup2(px->fd[1], STDOUT_FILENO);
-		execve(px->pth[1], px->cmnd2, NULL);
+		if (execve(px->pth[1], px->cmnd2, NULL) == -1)
+		{
+			perror(px->cmnd2[0]);
+			exit(EXIT_FAILURE);
+		}
 		close(px->pipefd[0]);
-		ft_cleanup(px);
 	}
+	ft_cleanup(px);
 }
 
 //void ft_leaks(void)

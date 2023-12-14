@@ -6,11 +6,11 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:54:16 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/05 16:43:01 by isporras         ###   ########.fr       */
+/*   Updated: 2023/12/14 13:21:41 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
 int	main(int argc, char **argv)
 {
