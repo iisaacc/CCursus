@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 13:25:36 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/05 16:51:19 by isporras         ###   ########.fr       */
+/*   Updated: 2023/12/13 10:44:41 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_init_obs(t_philo *ph)
 {
-	int idx;
+	int	idx;
 
 	idx = ph[0].total_phi;
 	ph[idx].total_phi = ph[0].total_phi;

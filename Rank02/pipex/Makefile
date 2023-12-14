@@ -1,6 +1,6 @@
 NAME = pipex
 
-LIB = ar rcs
+LIB = @ar rcs
 
 SRC_PARTH = src/
 
@@ -25,7 +25,7 @@ MYHEADERS = pipex.h \
 RM = rm -f
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ -g
+	@$(CC) $(CFLAGS) -c $< -o $@ -g
 
 all: $(NAME)
 
@@ -36,25 +36,25 @@ debug: $(OBJ) $(LIBFT) $(MYHEADERS) $(PRINTF)
 	$(CC) -o pipexd $(OBJ) $(PRINTF) $(LIBFT) -g
 
 $(LIBFT):
-	make -C ./libft all
+	@make -C ./libft all
 
 $(PRINTF):
-	make -C ./ft_printf all
+	@make -C ./ft_printf all
 
 clean: libclean printfclean
 	$(RM) $(OBJ)
 
 libclean:
-	make -C ./libft clean
+	@make -C ./libft clean
 
 libfclean:
-	make -C ./libft fclean
+	@make -C ./libft fclean
 
 printfclean:
-	make -C ./ft_printf fclean
+	@make -C ./ft_printf fclean
 
 fclean: libfclean clean printfclean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 

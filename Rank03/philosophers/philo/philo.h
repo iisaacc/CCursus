@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:07:38 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/05 16:55:07 by isporras         ###   ########.fr       */
+/*   Updated: 2023/12/13 10:45:09 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 typedef struct s_philo
 {
-
 	int				n_phi;
 	int				total_phi;
 	pthread_t		*thread;
@@ -46,5 +45,8 @@ void	ft_print_arg(void);
 int		ft_atoi(char *str);
 void	*ft_observing(void *arg);
 void	ft_clean(t_philo *ph);
+t_philo	*ft_mutex_forks(t_philo *ph);
+int		ft_next_fork(t_philo *ph);
+void	ft_dead_flag(t_philo *ph);
 
 #endif

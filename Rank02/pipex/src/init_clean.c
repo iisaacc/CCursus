@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_clean.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:11:51 by isporras          #+#    #+#             */
-/*   Updated: 2023/11/16 11:11:51 by isporras         ###   ########.fr       */
+/*   Updated: 2023/12/13 11:04:35 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_get_argv(t_pipex *px, char **argv)
 		perror("bash: infile");
 		px->fd[0] = open("/dev/null", O_RDONLY);
 	}
-	px->fd[1] = open(argv[4], O_WRONLY | O_CREAT, 0644);
+	px->fd[1] = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	px->cmnd1 = ft_split_mod(argv[2], ' ');
 	px->cmnd2 = ft_split_mod(argv[3], ' ');
 	ft_clean_cmnd(px);
