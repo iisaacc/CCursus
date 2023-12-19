@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_argv.c                                       :+:      :+:    :+:   */
+/*   check_argv_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 13:23:28 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/14 13:29:52 by isporras         ###   ########.fr       */
+/*   Created: 2023/12/15 11:48:18 by isporras          #+#    #+#             */
+/*   Updated: 2023/12/15 11:48:18 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../philo_bonus.h"
 
 long	ft_atolong(const char *str)
 {

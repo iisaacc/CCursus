@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   threads.c                                          :+:      :+:    :+:   */
+/*   routine_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 12:06:08 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/14 13:22:28 by isporras         ###   ########.fr       */
+/*   Created: 2023/12/15 12:00:44 by isporras          #+#    #+#             */
+/*   Updated: 2023/12/15 12:00:44 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../philo_bonus.h"
 
-// void	ft_unlock(t_philo *ph)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < ph[0].total_phi)
-// 	{
-// 		if (ph[i].mutex[i] == 1)
-// 			pthread_mutex_unlock(ph[i].forks[i]);
-// 		i++;
-// 	}
-// }
-
-void	*ft_observing(void *arg)
+void	ft_observer(t_philo *ph)
 {
 	int		i;
-	t_philo	*ph;
 	t_philo	*obs;
 
-	ph = (t_philo *)arg;
 	obs = &ph[ph[0].total_phi];
+	i = 0;
 	while (obs->total_phi != 0 && obs->eaten != obs->total_phi)
 	{
 		i = 0;
@@ -50,21 +36,6 @@ void	*ft_observing(void *arg)
 		}
 	}
 	ft_dead_flag(ph);
-	return (NULL);
-}
-
-void	ft_eating(t_philo *ph)
-{
-	if (!ft_mutex_forks(ph))
-		return ;
-	printf("%" PRId64 " %d is eating\n", ft_stamp(ph), ph->n_phi);
-	ph->last_eat = ft_time();
-	usleep(ph->to_eat * 1000);
-	pthread_mutex_unlock(ph->forks[ph->n_phi]);
-	ph->mutex[ph->n_phi] = 0;
-	pthread_mutex_unlock(ph->forks[ft_next_fork(ph)]);
-	ph->mutex[ft_next_fork(ph)] = 0;
-	ph->times_eat += 1;
 }
 
 void	ft_thinking(t_philo *ph)
@@ -78,22 +49,35 @@ void	ft_sleeping(t_philo *ph)
 	usleep(ph->to_sleep * 1000);
 }
 
-void	*ft_routine(void *arg)
+void	ft_eating(t_philo *ph)
 {
-	t_philo	*ph;
+	if (ph->to_eat < 0)
+		return ;
+	sem_wait(ph->sem);
+	printf("%" PRId64 " %d has taken a fork\n", ft_stamp(ph), ph->n_phi);
+	if (ph->to_eat < 0)
+		return ;
+	sem_wait(ph->sem);
+	if (ph->to_eat < 0)
+		return ;
+	printf("%" PRId64 " %d has taken a fork\n", ft_stamp(ph), ph->n_phi);
+	printf("%" PRId64 " %d is eating\n", ft_stamp(ph), ph->n_phi);
+	ph->last_eat = ft_time();
+	usleep(ph->to_eat * 1000);
+	ph->times_eat++;
+	sem_post(ph->sem);
+	sem_post(ph->sem);
+}
 
-	ph = (t_philo *)arg;
-	while (1 && ph->to_eat > 0)
+void	ft_routine(t_philo *ph)
+{
+	while (ph->to_eat > 0)
 	{
 		ft_thinking(ph);
 		if (ph->to_eat > 0)
 			ft_eating(ph);
-		else
-			break ;
+		printf("to_eat: %d\n", ph->to_eat);
 		if (ph->to_eat > 0)
 			ft_sleeping(ph);
-		else
-			break ;
 	}
-	return (NULL);
 }

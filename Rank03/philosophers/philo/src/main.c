@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_philo	ph[200];
 
-	if (argc == 5 || argc == 6)
+	if ((argc == 5 || argc == 6) && ft_check_argv(argv) == 0)
 	{
 		ft_init(ph, argv, argc);
 		ft_clean(ph);

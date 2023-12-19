@@ -12,17 +12,6 @@
 
 #include "../philo.h"
 
-void	ft_init_obs(t_philo *ph)
-{
-	int	idx;
-
-	idx = ph[0].total_phi;
-	ph[idx].total_phi = ph[0].total_phi;
-	ph[idx].thread = calloc(1, sizeof(pthread_t));
-	ph[idx].to_die = ph[0].to_die;
-	ph[idx].eaten = 0;
-}
-
 void	*ft_init_threads(t_philo *ph)
 {
 	int			i;
@@ -82,7 +71,7 @@ void	ft_init_struct(t_philo *ph, char **argv, pthread_mutex_t **forks
 	total_phi = ft_atoi(argv[1]);
 	begin = ft_time();
 	i = 0;
-	while (i < total_phi)
+	while (i <= total_phi)
 	{
 		ph[i].total_phi = total_phi;
 		ph[i].to_die = (int64_t)ft_atoi(argv[2]);
@@ -95,6 +84,7 @@ void	ft_init_struct(t_philo *ph, char **argv, pthread_mutex_t **forks
 		ph[i].begin = begin;
 		ph[i].times_eat = 0;
 		ph[i].mutex = mutex;
+		ph[i].eaten = 0;
 		i++;
 	}
 }
@@ -118,6 +108,8 @@ void	ft_init(t_philo *ph, char **argv, int argc)
 		else
 			ph[i++].max_eat = -1;
 	}
-	ft_init_obs(ph);
-	ft_init_threads(ph);
+	if (total_phi == 1)
+		ft_one_philo(ph);
+	else
+		ft_init_threads(ph);
 }
