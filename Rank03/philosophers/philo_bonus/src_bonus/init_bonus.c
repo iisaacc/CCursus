@@ -72,7 +72,7 @@ void	ft_init(t_philo *ph, char **argv, int argc)
 	total_phi = ft_atoi(argv[1]);
 	ft_init_struct(ph, argv);
 	i = 0;
-	while (i < total_phi)
+	while (i <= total_phi)
 	{
 		if (argc == 6)
 			ph[i].max_eat = ft_atoi(argv[5]);

@@ -12,6 +12,8 @@
 
 #include "../philo_bonus.h"
 
+
+//El problema es que no se ejecuta la línea de illoooo al acabar los bucles
 void	ft_observer(t_philo *ph)
 {
 	int		i;
@@ -35,6 +37,7 @@ void	ft_observer(t_philo *ph)
 			i++;
 		}
 	}
+	printf("illoooo");
 	ft_dead_flag(ph);
 }
 
@@ -76,7 +79,6 @@ void	ft_routine(t_philo *ph)
 		ft_thinking(ph);
 		if (ph->to_eat > 0)
 			ft_eating(ph);
-		printf("to_eat: %d\n", ph->to_eat);
 		if (ph->to_eat > 0)
 			ft_sleeping(ph);
 	}

@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 13:05:09 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/14 13:05:11 by isporras         ###   ########.fr       */
+/*   Created: 2023/04/17 14:42:54 by isporras          #+#    #+#             */
+/*   Updated: 2023/11/13 10:58:27 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo_bonus.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+size_t	ft_strlen(const char *s)
 {
-	t_philo	ph[200];
+	size_t	i;
 
-	sem_unlink("/sema");
-	if ((argc == 5 || argc == 6) && ft_check_argv(argv) == 0)
-		ft_init(ph, argv, argc);
-	else
-		ft_print_arg();
+	if (!s)
+		return (0);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
+//int main()
+//{
+//	char hola[] = "holajjjj";
+//	printf("%zu", ft_strlen(hola));
+//}

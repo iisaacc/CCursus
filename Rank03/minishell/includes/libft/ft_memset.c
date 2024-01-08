@@ -1,24 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 13:05:09 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/14 13:05:11 by isporras         ###   ########.fr       */
+/*   Created: 2023/04/17 19:25:35 by isporras          #+#    #+#             */
+/*   Updated: 2023/04/21 17:44:24 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo_bonus.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	t_philo	ph[200];
+	unsigned char	*ptr;
+	unsigned char	val;
+	size_t			i;
 
-	sem_unlink("/sema");
-	if ((argc == 5 || argc == 6) && ft_check_argv(argv) == 0)
-		ft_init(ph, argv, argc);
-	else
-		ft_print_arg();
+	ptr = b;
+	val = (unsigned char)c;
+	i = 0;
+	while (i < len)
+	{
+		ptr[i] = val;
+		i++;
+	}
+	b = ptr;
+	return (b);
 }
+//int main ()
+//{
+//	char b[10];
+//	char *c;
+//	int i = 0;
+
+//	c = ft_memset(b, 0, 0);
+
+//	while (i < 10)
+//	{
+//		printf("%i",c[i]);
+//		i++;
+//	}
+//	return (0);
+//}

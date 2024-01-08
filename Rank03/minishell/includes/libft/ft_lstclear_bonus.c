@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 13:05:09 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/14 13:05:11 by isporras         ###   ########.fr       */
+/*   Created: 2023/04/21 17:54:07 by isporras          #+#    #+#             */
+/*   Updated: 2023/04/21 20:03:24 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo_bonus.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_philo	ph[200];
+	t_list	*obj;
+	t_list	*tmp;
 
-	sem_unlink("/sema");
-	if ((argc == 5 || argc == 6) && ft_check_argv(argv) == 0)
-		ft_init(ph, argv, argc);
-	else
-		ft_print_arg();
+	tmp = *lst;
+	if (!tmp)
+		return ;
+	while (tmp)
+	{
+		obj = tmp->next;
+		del(tmp->content);
+		free(tmp);
+		tmp = obj;
+	}
+	*lst = NULL;
 }

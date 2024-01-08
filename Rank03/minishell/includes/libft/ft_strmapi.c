@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 13:05:09 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/14 13:05:11 by isporras         ###   ########.fr       */
+/*   Created: 2023/04/21 15:38:12 by isporras          #+#    #+#             */
+/*   Updated: 2023/04/21 17:45:19 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo_bonus.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	t_philo	ph[200];
+	char	*str;
+	size_t	i;
 
-	sem_unlink("/sema");
-	if ((argc == 5 || argc == 6) && ft_check_argv(argv) == 0)
-		ft_init(ph, argv, argc);
-	else
-		ft_print_arg();
+	str = (char *)malloc(ft_strlen(s) + 1 * sizeof(char));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < ft_strlen(s))
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

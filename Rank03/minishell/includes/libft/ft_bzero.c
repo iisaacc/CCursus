@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 13:05:09 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/14 13:05:11 by isporras         ###   ########.fr       */
+/*   Created: 2023/04/18 12:19:11 by isporras          #+#    #+#             */
+/*   Updated: 2023/04/21 17:37:12 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo_bonus.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_bzero(void *s, size_t n)
 {
-	t_philo	ph[200];
+	size_t			i;
+	unsigned char	*ptr;
 
-	sem_unlink("/sema");
-	if ((argc == 5 || argc == 6) && ft_check_argv(argv) == 0)
-		ft_init(ph, argv, argc);
-	else
-		ft_print_arg();
+	ptr = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		ptr[i] = 0;
+		i++;
+	}
 }
+
+//int main ()
+//{
+//	char b[] = "holakdise";
+
+//	ft_bzero(b, 1);
+//	printf("%i",b[2]);
+//	return (0);
+//}

@@ -1,24 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 13:05:09 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/14 13:05:11 by isporras         ###   ########.fr       */
+/*   Created: 2023/12/28 16:18:01 by isporras          #+#    #+#             */
+/*   Updated: 2023/12/28 16:18:01 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo_bonus.h"
+#include <iostream>
 
-int	main(int argc, char **argv)
+int	main(int argc, char *argv[])
 {
-	t_philo	ph[200];
+	int	i;
+	int j;
 
-	sem_unlink("/sema");
-	if ((argc == 5 || argc == 6) && ft_check_argv(argv) == 0)
-		ft_init(ph, argv, argc);
+	j = 0;
+	i = 1;
+	if (argc > 1)
+	{
+		while (i < argc)
+		{
+			j = 0;
+			while (argv[i][j])
+			{
+				std::cout << (char)std::toupper(argv[i][j]);
+				j++;
+			}
+			i++;
+		}
+		std::cout << '\n';
+	}
 	else
-		ft_print_arg();
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
+	return 0;
 }

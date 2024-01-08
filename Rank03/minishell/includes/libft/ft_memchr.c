@@ -1,24 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 13:05:09 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/14 13:05:11 by isporras         ###   ########.fr       */
+/*   Created: 2023/04/18 12:04:13 by isporras          #+#    #+#             */
+/*   Updated: 2023/04/21 17:44:14 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo_bonus.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	t_philo	ph[200];
+	unsigned char	val;
+	unsigned char	*ptr;
+	size_t			i;
 
-	sem_unlink("/sema");
-	if ((argc == 5 || argc == 6) && ft_check_argv(argv) == 0)
-		ft_init(ph, argv, argc);
-	else
-		ft_print_arg();
+	i = 0;
+	ptr = (unsigned char *)s;
+	val = (unsigned char)c;
+	while (i < n)
+	{
+		if (*ptr == val)
+			return ((void *)ptr);
+		ptr++;
+		i++;
+	}
+	return (0);
 }
+//int main ()
+//{
+//	char b[] = "holakdise";
+
+//	printf("%s",ft_memchr(b, 'k', 5));
+//	return (0);
+//}

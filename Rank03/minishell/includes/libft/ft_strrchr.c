@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 13:05:09 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/14 13:05:11 by isporras         ###   ########.fr       */
+/*   Created: 2023/04/17 18:13:48 by isporras          #+#    #+#             */
+/*   Updated: 2023/04/21 17:45:29 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo_bonus.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strrchr(const char *s, int c)
 {
-	t_philo	ph[200];
+	int	i;
+	int	x;
 
-	sem_unlink("/sema");
-	if ((argc == 5 || argc == 6) && ft_check_argv(argv) == 0)
-		ft_init(ph, argv, argc);
-	else
-		ft_print_arg();
+	x = 0;
+	i = ft_strlen(s);
+	while (i >= 0 && x == 0)
+	{
+		if (s[i] == (char)c)
+		{
+			return ((char *)&s[i]);
+			x = 1;
+		}
+		i--;
+	}
+	return (NULL);
 }
+
+//int main ()
+//{
+//	char *str1 = "hola";
+//	printf("%s", ft_strrchr(str1, '\0'));
+//}

@@ -9,6 +9,18 @@
 		"ft_printf.h": "c",
 		"_select.h": "c",
 		"so_long.h": "c",
-		"philo.h": "c"
+		"philo.h": "c",
+		"cmath": "cpp",
+		"cstdarg": "cpp",
+		"cstdio": "cpp",
+		"cstdlib": "cpp",
+		"cwchar": "cpp",
+		"cwctype": "cpp",
+		"type_traits": "cpp",
+		"limits": "cpp",
+		"*.tcc": "cpp",
+		"cinttypes": "cpp",
+		"cstdint": "cpp",
+		"typeinfo": "cpp"
 	}
 }
