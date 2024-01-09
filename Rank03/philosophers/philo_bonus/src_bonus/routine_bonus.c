@@ -6,39 +6,18 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 12:00:44 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/15 12:00:44 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:12:28 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_bonus.h"
 
-
-//El problema es que no se ejecuta la línea de illoooo al acabar los bucles
-void	ft_observer(t_philo *ph)
+void	ft_dead_flag(t_philo *ph)
 {
-	int		i;
-	t_philo	*obs;
-
-	obs = &ph[ph[0].total_phi];
-	i = 0;
-	while (obs->total_phi != 0 && obs->eaten != obs->total_phi)
-	{
-		i = 0;
-		obs->eaten = 0;
-		while (i < obs->total_phi)
-		{
-			if (ph[i].times_eat >= ph[i].max_eat && ph[i].max_eat != -1)
-				obs->eaten += 1;
-			if (ft_time() - ph[i].last_eat >= obs->to_die && ph[i].to_eat > -1)
-			{
-				printf("%" PRId64 " %d died\n", ft_stamp(&ph[i]), ph[i].n_phi);
-				obs->total_phi = 0;
-			}
-			i++;
-		}
-	}
-	printf("illoooo");
-	ft_dead_flag(ph);
+	if (ph->times_eat >= ph->max_eat && ph->max_eat != -1)
+		exit(1);
+	else if (ft_time() - ph->last_eat >= ph->to_die)
+		exit(0);
 }
 
 void	ft_thinking(t_philo *ph)
@@ -48,21 +27,19 @@ void	ft_thinking(t_philo *ph)
 
 void	ft_sleeping(t_philo *ph)
 {
+	ft_dead_flag(ph);
 	printf("%" PRId64 " %d is sleeping\n", ft_stamp(ph), ph->n_phi);
 	usleep(ph->to_sleep * 1000);
 }
 
 void	ft_eating(t_philo *ph)
 {
-	if (ph->to_eat < 0)
-		return ;
+	ft_dead_flag(ph);
 	sem_wait(ph->sem);
 	printf("%" PRId64 " %d has taken a fork\n", ft_stamp(ph), ph->n_phi);
-	if (ph->to_eat < 0)
-		return ;
+	ft_dead_flag(ph);
 	sem_wait(ph->sem);
-	if (ph->to_eat < 0)
-		return ;
+	ft_dead_flag(ph);
 	printf("%" PRId64 " %d has taken a fork\n", ft_stamp(ph), ph->n_phi);
 	printf("%" PRId64 " %d is eating\n", ft_stamp(ph), ph->n_phi);
 	ph->last_eat = ft_time();
@@ -76,10 +53,11 @@ void	ft_routine(t_philo *ph)
 {
 	while (ph->to_eat > 0)
 	{
+		ft_dead_flag(ph);
 		ft_thinking(ph);
-		if (ph->to_eat > 0)
-			ft_eating(ph);
-		if (ph->to_eat > 0)
-			ft_sleeping(ph);
+		ft_dead_flag(ph);
+		ft_eating(ph);
+		ft_dead_flag(ph);
+		ft_sleeping(ph);
 	}
 }

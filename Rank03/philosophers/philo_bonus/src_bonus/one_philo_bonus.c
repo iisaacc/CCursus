@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   one_philo_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 13:05:09 by isporras          #+#    #+#             */
-/*   Updated: 2024/01/09 17:31:56 by isporras         ###   ########.fr       */
+/*   Created: 2023/12/15 10:27:01 by isporras          #+#    #+#             */
+/*   Updated: 2024/01/09 17:17:37 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_bonus.h"
 
-void	ft_leaks(void)
+void	*ft_one_routine(void *arg)
 {
-	system("leaks philo_bonus");
+	t_philo	*ph;
+
+	ph = (t_philo *)arg;
+	ft_thinking(ph);
+	ft_dead_flag(ph);
+	printf("%" PRId64 " %d has taken a fork\n", ft_stamp(ph), ph->n_phi);
+	usleep(ph->to_die * 1000);
+	printf("%" PRId64 " %d is dead\n", ft_stamp(ph), ph->n_phi);
+	exit(1);
+	return (NULL);
 }
 
-int	main(int argc, char **argv)
+void	ft_one_philo_bonus(t_philo *ph)
 {
-	atexit(ft_leaks);
-	t_philo	ph[200];
-
-	sem_unlink("/sema");
-	if ((argc == 5 || argc == 6) && ft_check_argv(argv) == 0)
-		ft_init(ph, argv, argc);
-	else
-		ft_print_arg();
+	ph[0].pid = fork();
+	if (ph[0].pid == 0)
+		ft_one_routine(&ph[0]);
+	ft_wait_childs(ph);
 }

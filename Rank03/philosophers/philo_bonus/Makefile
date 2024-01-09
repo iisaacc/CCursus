@@ -5,7 +5,7 @@ LIB = ar rcs
 SRC_BONUS = src_bonus/
 
 SRCS_BONUS = main_bonus.c check_argv_bonus.c init_bonus.c \
-			routine_bonus.c ft_aux_bonus.c
+			routine_bonus.c ft_aux_bonus.c one_philo_bonus.c \
 
 OBJ_NAME_BONUS = $(SRCS_BONUS:.c=.o)
 
