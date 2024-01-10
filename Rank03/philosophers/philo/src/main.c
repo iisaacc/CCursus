@@ -6,11 +6,16 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:54:16 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/14 13:21:41 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/10 11:53:44 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+//void	ft_leaks(void)
+//{
+//	system("leaks philo");
+//}
 
 int	main(int argc, char **argv)
 {

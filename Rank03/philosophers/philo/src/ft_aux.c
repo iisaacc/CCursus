@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 13:34:26 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/14 13:21:47 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/10 11:49:15 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ void	ft_clean(t_philo *ph)
 		free(ph[0].forks[i]);
 		i++;
 	}
+	free(ph[0].mutex);
 	free(ph[0].forks);
 }

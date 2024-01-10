@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:45:42 by isporras          #+#    #+#             */
-/*   Updated: 2024/01/09 17:15:40 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/10 12:09:41 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <sys/time.h>
 # include <inttypes.h>
 # include <unistd.h>
-#include <sys/wait.h>
+# include <sys/wait.h>
 # include <semaphore.h>
 # include <signal.h>
 

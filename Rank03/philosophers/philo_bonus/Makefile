@@ -27,9 +27,6 @@ all: $(NAME)
 $(NAME): $(OBJ_BONUS) $(MYHEADERS_BONUS)
 	$(CC) $(CFLAGS) -o philo_bonus $(OBJ_BONUS)
 
-debug: $(OBJ_BONUS) $(MYHEADERS_BONUS)
-	$(CC) -fsanitize=thread $(CFLAGS) -o philo_d_bonus $(OBJ_BONUS) -g
-
 clean:
 	$(RM) $(OBJ_BONUS)
 
