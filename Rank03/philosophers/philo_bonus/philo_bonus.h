@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:45:42 by isporras          #+#    #+#             */
-/*   Updated: 2024/01/10 12:09:41 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:25:59 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_philo
 	int			times_eat;
 	int64_t		begin;
 	sem_t		*sem;
+	sem_t		*print;
 	pid_t		pid;
 }	t_philo;
 

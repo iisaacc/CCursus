@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 12:01:27 by isporras          #+#    #+#             */
-/*   Updated: 2024/01/10 13:01:50 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:32:52 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,18 @@ void	*ft_observing(void *arg)
 	ph = (t_philo *)arg;
 	while (1)
 	{
-		if (ft_time() - ph->last_eat >= ph->to_die)
+		if (ft_time() - ph->last_eat > ph->to_die && ph->n_phi == 0)
 		{
+			sem_wait(ph->print);
 			printf("%" PRId64 " %d died\n", ft_stamp(ph), ph->n_phi);
+			sem_post(ph->print);
+			exit(0);
+		}
+		else if (ft_time() - ph->last_eat > ph->to_die + 100 && ph->n_phi != 0)
+		{
+			sem_wait(ph->print);
+			printf("%" PRId64 " %d died\n", ft_stamp(ph), ph->n_phi);
+			sem_post(ph->print);
 			exit(0);
 		}
 		if (ph->to_eat == -1)

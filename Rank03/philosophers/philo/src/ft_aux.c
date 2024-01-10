@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 13:34:26 by isporras          #+#    #+#             */
-/*   Updated: 2024/01/10 11:49:15 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:48:58 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_atoi(char *str)
 void	ft_print_arg(void)
 {
 	printf("Introduce at least 4 arguments especifying:\n");
-	printf("- Number of philosophers\n");
+	printf("- Number of philosophers (Max 200)\n");
 	printf("- Time to die\n");
 	printf("- Time to eat\n");
 	printf("- Time to sleep\n");

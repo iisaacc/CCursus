@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:49:13 by isporras          #+#    #+#             */
-/*   Updated: 2024/01/10 13:09:58 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:25:41 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,14 @@ void	ft_init_process(t_philo *ph)
 		pthread_join(*(ph[i++].thread), NULL);
 }
 
-void	ft_init_struct(t_philo *ph, char **argv)
+void	ft_init_struct(t_philo *ph, char **argv, int total_phi, int64_t begin)
 {
-	int64_t	begin;
 	int		i;
-	int		total_phi;
 	sem_t	*sem;
+	sem_t	*print;
 
-	total_phi = ft_atoi(argv[1]);
 	sem = sem_open("/s", O_CREAT, S_IRUSR | S_IWUSR, (unsigned int)total_phi);
-	begin = ft_time();
+	print = sem_open("/p", O_CREAT, S_IRUSR | S_IWUSR, 1);
 	i = 0;
 	while (i <= total_phi)
 	{
@@ -81,6 +79,7 @@ void	ft_init_struct(t_philo *ph, char **argv)
 		ph[i].eaten = 0;
 		ph[i].sem = sem;
 		ph[i].pid = -1;
+		ph[i].print = print;
 		i++;
 	}
 }
@@ -89,9 +88,11 @@ void	ft_init(t_philo *ph, char **argv, int argc)
 {
 	int		total_phi;
 	int		i;
+	int64_t	begin;
 
 	total_phi = ft_atoi(argv[1]);
-	ft_init_struct(ph, argv);
+	begin = ft_time();
+	ft_init_struct(ph, argv, total_phi, begin);
 	i = 0;
 	while (i <= total_phi)
 	{
