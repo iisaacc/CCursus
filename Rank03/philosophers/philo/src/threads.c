@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:06:08 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/14 13:22:28 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:50:56 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	*ft_observing(void *arg)
 		{
 			if (ph[i].times_eat >= ph[i].max_eat && ph[i].max_eat != -1)
 				obs->eaten += 1;
-			if (ft_time() - ph[i].last_eat >= obs->to_die && ph[i].to_eat > -1)
+			if (ft_time() - ph[i].last_eat > obs->to_die && ph[i].to_eat > -1)
 			{
 				printf("%" PRId64 " %d died\n", ft_stamp(&ph[i]), ph[i].n_phi);
 				obs->total_phi = 0;
@@ -59,7 +59,7 @@ void	ft_eating(t_philo *ph)
 		return ;
 	printf("%" PRId64 " %d is eating\n", ft_stamp(ph), ph->n_phi);
 	ph->last_eat = ft_time();
-	usleep(ph->to_eat * 1000);
+	usleep((ph->to_eat * 1000) - 2000);
 	pthread_mutex_unlock(ph->forks[ph->n_phi]);
 	ph->mutex[ph->n_phi] = 0;
 	pthread_mutex_unlock(ph->forks[ft_next_fork(ph)]);

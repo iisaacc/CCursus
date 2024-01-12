@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:45:42 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/15 11:45:42 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:25:59 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@
 # include <sys/time.h>
 # include <inttypes.h>
 # include <unistd.h>
-#include <sys/wait.h>
+# include <sys/wait.h>
 # include <semaphore.h>
+# include <signal.h>
 
 typedef struct s_philo
 {
 	int			n_phi;
 	int			total_phi;
 	int64_t		last_eat;
+	pthread_t	*thread;
 	int64_t		to_die;
 	int64_t		to_eat;
 	int64_t		to_sleep;
@@ -36,6 +38,7 @@ typedef struct s_philo
 	int			times_eat;
 	int64_t		begin;
 	sem_t		*sem;
+	sem_t		*print;
 	pid_t		pid;
 }	t_philo;
 
@@ -47,6 +50,9 @@ int		ft_atoi(char *str);
 void	ft_init(t_philo *ph, char **argv, int argc);
 void	ft_routine(t_philo *ph);
 void	ft_dead_flag(t_philo *ph);
-void	ft_observer(t_philo *ph);
+void	ft_thinking(t_philo *ph);
+void	ft_one_philo_bonus(t_philo *ph);
+void	ft_wait_childs(t_philo *ph);
+void	*ft_observing(void *arg);
 
 #endif

@@ -6,19 +6,37 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 12:01:27 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/15 12:01:27 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:32:52 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_bonus.h"
 
-void	ft_dead_flag(t_philo *ph)
+void	*ft_observing(void *arg)
 {
-	int	i;
+	t_philo	*ph;
 
-	i = 0;
-	while (i < ph[0].total_phi)
-		ph[i++].to_eat = -1;
+	ph = (t_philo *)arg;
+	while (1)
+	{
+		if (ft_time() - ph->last_eat > ph->to_die && ph->n_phi == 0)
+		{
+			sem_wait(ph->print);
+			printf("%" PRId64 " %d died\n", ft_stamp(ph), ph->n_phi);
+			sem_post(ph->print);
+			exit(0);
+		}
+		else if (ft_time() - ph->last_eat > ph->to_die + 100 && ph->n_phi != 0)
+		{
+			sem_wait(ph->print);
+			printf("%" PRId64 " %d died\n", ft_stamp(ph), ph->n_phi);
+			sem_post(ph->print);
+			exit(0);
+		}
+		if (ph->to_eat == -1)
+			exit(1);
+	}
+	return (NULL);
 }
 
 int	ft_atoi(char *str)

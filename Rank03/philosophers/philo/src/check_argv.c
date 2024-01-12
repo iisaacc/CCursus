@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:23:28 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/14 13:29:52 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:52:04 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,19 @@ int	ft_int_range(char **argv)
 	return (0);
 }
 
+int	ft_check_max_ph(char **argv)
+{
+	if (ft_atolong(argv[1]) > 200 || ft_atolong(argv[1]) < 1)
+		return (1);
+	else
+		return (0);
+}
+
 int	ft_check_argv(char **argv)
 {
 	if (ft_check_int(argv) == 0)
 		return (1);
-	if (ft_int_range(argv) == 1)
+	if (ft_int_range(argv) == 1 || ft_check_max_ph(argv) == 1)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:36:39 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/14 13:21:50 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:10:23 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,10 @@ int	ft_next_fork(t_philo *ph)
 
 void	ft_first_fork(t_philo *ph)
 {
-	if (ph->n_phi % 2 == 0)
-	{
-		pthread_mutex_lock(ph->forks[ph->n_phi]);
-		ph->mutex[ph->n_phi] = 1;
-	}
-	else
-	{
-		pthread_mutex_lock(ph->forks[ft_next_fork(ph)]);
-		ph->mutex[ft_next_fork(ph)] = 1;
-	}
+	if (ph->n_phi % 2 != 0 && ph->times_eat == 0)
+		usleep(50);
+	pthread_mutex_lock(ph->forks[ph->n_phi]);
+	ph->mutex[ph->n_phi] = 1;
 	if (ph->to_eat == -1)
 		return ;
 	printf("%" PRId64 " %d has taken a fork\n", ft_stamp(ph), ph->n_phi);
@@ -52,16 +46,10 @@ void	ft_first_fork(t_philo *ph)
 
 void	ft_second_fork(t_philo *ph)
 {
-	if (ph->n_phi % 2 == 0)
-	{
-		pthread_mutex_lock(ph->forks[ft_next_fork(ph)]);
-		ph->mutex[ft_next_fork(ph)] = 1;
-	}
-	else
-	{
-		pthread_mutex_lock(ph->forks[ph->n_phi]);
-		ph->mutex[ph->n_phi] = 1;
-	}
+	if (ph->n_phi % 2 != 0 && ph->times_eat == 0)
+		usleep(50);
+	pthread_mutex_lock(ph->forks[ft_next_fork(ph)]);
+	ph->mutex[ft_next_fork(ph)] = 1;
 	if (ph->to_eat == -1)
 		return ;
 	printf("%" PRId64 " %d has taken a fork\n", ft_stamp(ph), ph->n_phi);
