@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 10:27:01 by isporras          #+#    #+#             */
-/*   Updated: 2024/01/09 17:17:37 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:58:26 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_one_routine(void *arg)
 	ft_thinking(ph);
 	ft_dead_flag(ph);
 	printf("%" PRId64 " %d has taken a fork\n", ft_stamp(ph), ph->n_phi);
-	usleep(ph->to_die * 1000);
+	ft_usleep(ph->to_die);
 	printf("%" PRId64 " %d is dead\n", ft_stamp(ph), ph->n_phi);
 	exit(1);
 	return (NULL);

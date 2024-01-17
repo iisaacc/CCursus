@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:07:38 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/13 10:45:09 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:52:05 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ void	ft_dead_flag(t_philo *ph);
 int		ft_check_argv(char **argv);
 void	ft_one_philo(t_philo *ph);
 void	ft_thinking(t_philo *ph);
+int		ft_usleep(size_t milliseconds);
 
 #endif

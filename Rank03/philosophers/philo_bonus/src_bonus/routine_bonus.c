@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 12:00:44 by isporras          #+#    #+#             */
-/*   Updated: 2024/01/10 18:32:07 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:59:09 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_sleeping(t_philo *ph)
 	sem_wait(ph->print);
 	printf("%" PRId64 " %d is sleeping\n", ft_stamp(ph), ph->n_phi);
 	sem_post(ph->print);
-	usleep(ph->to_sleep * 1000);
+	ft_usleep(ph->to_sleep);
 }
 
 void	ft_eating(t_philo *ph)
@@ -55,7 +55,7 @@ void	ft_eating(t_philo *ph)
 	printf("%" PRId64 " %d is eating\n", ft_stamp(ph), ph->n_phi);
 	sem_post(ph->print);
 	ph->last_eat = ft_time();
-	usleep(ph->to_eat * 1000);
+	ft_usleep(ph->to_eat);
 	sem_post(ph->sem);
 	sem_post(ph->sem);
 	ph->times_eat++;

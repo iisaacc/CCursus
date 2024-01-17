@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:54:16 by isporras          #+#    #+#             */
-/*   Updated: 2024/01/10 11:53:44 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:52:43 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 //{
 //	system("leaks philo");
 //}
+int	ft_usleep(size_t milliseconds)
+{
+	size_t	start;
+
+	start = ft_time();
+	while ((ft_time() - start) < milliseconds)
+		usleep(500);
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {

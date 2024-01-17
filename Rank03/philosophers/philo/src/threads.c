@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:06:08 by isporras          #+#    #+#             */
-/*   Updated: 2024/01/10 17:50:56 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:50:44 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_eating(t_philo *ph)
 		return ;
 	printf("%" PRId64 " %d is eating\n", ft_stamp(ph), ph->n_phi);
 	ph->last_eat = ft_time();
-	usleep((ph->to_eat * 1000) - 2000);
+	ft_usleep((ph->to_eat));
 	pthread_mutex_unlock(ph->forks[ph->n_phi]);
 	ph->mutex[ph->n_phi] = 0;
 	pthread_mutex_unlock(ph->forks[ft_next_fork(ph)]);
@@ -75,7 +75,7 @@ void	ft_thinking(t_philo *ph)
 void	ft_sleeping(t_philo *ph)
 {
 	printf("%" PRId64 " %d is sleeping\n", ft_stamp(ph), ph->n_phi);
-	usleep(ph->to_sleep * 1000);
+	ft_usleep(ph->to_sleep);
 }
 
 void	*ft_routine(void *arg)

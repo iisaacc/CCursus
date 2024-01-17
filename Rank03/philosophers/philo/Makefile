@@ -26,10 +26,7 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJ) $(MYHEADERS)
-	$(CC) $(CFLAGS) -o philo $(OBJ)
-
-debug: $(OBJ) $(MYHEADERS)
-	$(CC) -fsanitize=thread $(CFLAGS) -o philo_d $(OBJ) -g
+	$(CC) $(CFLAGS) -fsanitize=thread -o philo $(OBJ)
 
 clean:
 	$(RM) $(OBJ)

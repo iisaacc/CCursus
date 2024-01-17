@@ -6,81 +6,57 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 15:47:39 by isporras          #+#    #+#             */
-/*   Updated: 2024/01/08 15:47:39 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/16 10:30:44 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-# include <stdarg.h>
+#include <stdarg.h>
 
-int	ft_strlen(char *str)
+void	put_string(char *string, int *length)
 {
-	int	len;
-
-	len = 0;
-	while (str[len] && str)
-		len++;
-	return (len);
+	if (!string)
+		string = "(null)";
+	while (*string)
+		*length += write(1, string++, 1);
 }
 
-int	ft_putstr(char *s)
+void	put_digit(long long int number, int base, int *length)
 {
-	if (!s)
-		write(1, "(null)", 6);
-	else
-		write(1, s, ft_strlen(s));
-	return (ft_strlen(s));
-}
+	char	*hexadecimal = "0123456789abcdef";
 
-int	ft_putnbr(int num)
-{
-	int	n;
-
-	n = 0;
-	if(num < 0)
+	if (number < 0)
 	{
-		write(1, "-", 1);
-		num *= -1;
-		n++;
+		number *= -1;
+		*length += write(1, "-", 1);
 	}
-	if (num > 9)
-		ft_putnbr (num / 10);
-	write(1, '0' + (num % 10), 1);
-	n++;
-	return (n);
+	if (number >= base)
+		put_digit((number / base), base, length);
+	*length += write(1, &hexadecimal[number % base], 1);
 }
 
-int	ft_putvar(va_list var, char c)
+int	ft_printf(const char *format, ...)
 {
-	int	n;
+	int length = 0;
 
-	n = 0;
-	if (c == 's')
-		n += ft_putstr(va_arg(var, char *));
-	else if (c == 'd')
-		n += ft_putnbr(va_arg(var, int));
-	else if (c == 'x')
-		n += ft_puthexa(va_arg(var, char *));
-	return (n);
-}
+	va_list	pointer;
+	va_start(pointer, format);
 
-int ft_printf(const char *str, ... )
-{
-	va_list	var;
-	int		n;
-
-	n = 0;
-	if (!str)
-		return (n);
-	va_start(var, str);
-	while (*str)
+	while (*format)
 	{
-		if (*str == '%')
+		if ((*format == '%') && ((*(format + 1) == 's') || (*(format + 1) == 'd') || (*(format + 1) == 'x')))
 		{
-			n += ft_putvar(var, *(str + 1));
-			str++;
+			format++;
+			if (*format == 's')
+				put_string(va_arg(pointer, char *), &length);
+			else if (*format == 'd')
+				put_digit((long long int)va_arg(pointer, int), 10, &length);
+			else if (*format == 'x')
+				put_digit((long long int)va_arg(pointer, unsigned int), 16, &length);
 		}
+		else
+			length += write(1, format, 1);
+		format++;
 	}
+	return (va_end(pointer), length);
 }

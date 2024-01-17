@@ -6,15 +6,25 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:05:09 by isporras          #+#    #+#             */
-/*   Updated: 2024/01/10 18:33:03 by isporras         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:58:08 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_bonus.h"
 
-void	ft_leaks(void)
+//void	ft_leaks(void)
+//{
+//	system("leaks philo_bonus");
+//}
+
+int	ft_usleep(size_t milliseconds)
 {
-	system("leaks philo_bonus");
+	size_t	start;
+
+	start = ft_time();
+	while ((ft_time() - start) < milliseconds)
+		usleep(500);
+	return (0);
 }
 
 void	ft_clean(t_philo *ph)
