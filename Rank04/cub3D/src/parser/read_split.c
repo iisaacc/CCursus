@@ -11,6 +11,25 @@ int	ft_count_lines_fd(int fd)
 	return (count);
 }
 
+void	ft_cut_char(char **str, char c)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (str[i])
+	{
+		j = 0;
+		while (str[i][j])
+		{
+			if (str[i][j] == c)
+				str[i][j] = '\0';
+			j++;
+		}
+		i++;
+	}
+}
+
 char	**ft_read_and_split(char *file)
 {
 	char	**array;

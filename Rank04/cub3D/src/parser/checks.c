@@ -35,10 +35,10 @@ int	ft_check_walls(char **split_input)
 		j = 0;
 		while (split_input[i][j])
 		{
-			while (split_input[i][j] && (split_input[i][j] == '\n' || split_input[i][j] == ' ' || split_input[i][j] == 9))
+			while (split_input[i][j] && (split_input[i][j] == ' ' || split_input[i][j] == 9))
 				j++;
 			printf("split_input[i][j]: %c\n", split_input[i][j]);
-			printf("split_input[i][ft_strlen(split_input[i]) - 1]: %c\n", split_input[i][ft_strlen(split_input[i]) - 2]);
+			printf("split_input[i]: %s\n", split_input[i]);
 			if (split_input[i][j] != '1' || split_input[i][ft_strlen(split_input[i]) - 1] != '1')
 				return (ft_error_msg("Map is not surrounded by walls", NULL), 1);
 			if (i == 0 || i == ft_count_lines2d(split_input) - 1)

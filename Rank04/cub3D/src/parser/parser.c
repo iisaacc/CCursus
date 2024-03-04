@@ -18,7 +18,7 @@ char	**ft_get_map(char **split_input)
 			ft_strncmp(split_input[i], "EA ", 3) != 0 &&
 			ft_strncmp(split_input[i], "F ", 2) != 0 &&
 			ft_strncmp(split_input[i], "C ", 2) != 0)
-			return (&split_input[i]);
+			return (ft_cut_char(&split_input[i], '\n'), &split_input[i]);
 		i++;
 	}
 	return (ft_error_msg("No map found", NULL), NULL);

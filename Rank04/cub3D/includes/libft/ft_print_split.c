@@ -21,7 +21,7 @@ void	ft_print_split(char **split)
 		return ;
 	while (split[i])
 	{
-		printf("%s", split[i]);
+		printf("%s\n", split[i]);
 		i++;
 	}
 }
