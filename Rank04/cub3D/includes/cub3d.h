@@ -31,6 +31,7 @@ void	ft_parser(char	*file, t_cub *cub);
 char	*get_next_line(int fd);
 void	ft_error_msg(char *s1, char *s2);
 char	**ft_read_and_split(char *file);
-int		ft_checks(char **split_input);
+char	**ft_get_map(char **split_input);
+int		ft_checks(t_cub *cub);
 
 #endif
