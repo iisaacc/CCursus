@@ -22,7 +22,7 @@ MAIN = main
 
 MAIN_DEBUG = main_debug
 
-SRC_FILES = parser/error parser/gnl parser/parser parser/read_split parser/checks
+SRC_FILES = parser/error parser/gnl parser/parser parser/read_split parser/checks parser/dfs
 
 OBJS_SRC = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES) $(MAIN)))
 

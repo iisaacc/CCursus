@@ -33,6 +33,7 @@ void	ft_error_msg(char *s1, char *s2);
 char	**ft_read_and_split(char *file);
 char	**ft_get_map(char **split_input);
 int		ft_checks(t_cub *cub);
+int		ft_check_way(char **map);
 void	ft_cut_char(char **str, char c);
 
 #endif

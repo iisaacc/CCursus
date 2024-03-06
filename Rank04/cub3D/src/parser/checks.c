@@ -24,7 +24,7 @@ int	ft_valid_elements(char **split_input)
 	return (0);
 }
 
-int	ft_check_walls(char **split_input)
+int	ft_spaces_unclosed(char **split_input)
 {
 	int	i;
 	int	j;
@@ -35,23 +35,43 @@ int	ft_check_walls(char **split_input)
 		j = 0;
 		while (split_input[i][j])
 		{
-			while (split_input[i][j] && (split_input[i][j] == ' ' || split_input[i][j] == 9))
-				j++;
-			printf("split_input[i][j]: %c\n", split_input[i][j]);
-			printf("split_input[i]: %s\n", split_input[i]);
-			if (split_input[i][j] != '1' || split_input[i][ft_strlen(split_input[i]) - 1] != '1')
-				return (ft_error_msg("Map is not surrounded by walls", NULL), 1);
-			if (i == 0 || i == ft_count_lines2d(split_input) - 1)
-			{
-				while (split_input[i][j])
-				{
-					if (split_input[i][j] != '1' && split_input[i][j] != ' ')
-						return (ft_error_msg("Map is not surrounded by walls", NULL), 1);
-					j++;
-				}
-			}
-			i++;
+			if ((split_input[i][j] == '0' && split_input[i][j - 1] == ' ')
+				|| (split_input[i][j] == '0' && split_input[i][j + 1] == ' ')
+				|| (split_input[i][j] == '0' && split_input[i - 1][j] == ' ')
+				|| (split_input[i][j] == '0' && split_input[i + 1][j] == ' '))
+				return (1);
+			j++;
 		}
+		i++;
+	}
+	return (0);
+}
+
+int	ft_check_walls(char **split_input)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	if (ft_spaces_unclosed(split_input))
+		return (ft_error_msg("Map has spaces without closing walls", NULL), 1);
+	while (split_input[i])
+	{
+		j = 0;
+		while (split_input[i][j] && (split_input[i][j] == ' '))
+			j++;
+		if (split_input[i][j] != '1' || split_input[i][ft_strlen(split_input[i]) - 1] != '1')
+			return (ft_error_msg("Map is not surrounded by walls", NULL), 1);
+		if (i == 0 || i == ft_count_lines2d(split_input) - 1)
+		{
+			while (split_input[i][j])
+			{
+				if (split_input[i][j] != '1' && split_input[i][j] != ' ')
+					return (ft_error_msg("Map is not surrounded by walls", NULL), 1);
+				j++;
+			}
+		}
+		i++;
 	}
 	return (0);
 }
