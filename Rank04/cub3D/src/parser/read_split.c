@@ -38,6 +38,8 @@ char	**ft_read_and_split(char *file)
 	int		len;
 
 	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (ft_error_msg("Error\nInvalid file", NULL), NULL);
 	len = ft_count_lines_fd(fd);
 	fd = open(file, O_RDONLY);
 	array = ft_calloc((len + 1), sizeof(char *));
