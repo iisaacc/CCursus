@@ -8,6 +8,9 @@ int	main(int argc, char **argv)
 		ft_error_msg("Introduce a single argument specifying a .cub valid map.", NULL);
 	else
 	{
-		ft_parser(argv[1], &cub);
+		if (ft_parser(argv[1], &cub) == 1)
+			return (1);
+		ft_game_loop(&cub);
 	}
+	return (0);
 }

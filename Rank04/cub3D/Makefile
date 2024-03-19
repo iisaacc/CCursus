@@ -7,6 +7,7 @@ LIBFT = includes/libft
 LIBFLAG = 
 CC = gcc
 CFLAGS = -g -Wall -Wextra -Werror -I
+MLXFLAGS = -Iinclude -Lincludes/MLX42/build -lmlx42 -ldl -lglfw -pthread -lm
 RM = rm -f
 AR = ar rcs
 
@@ -22,7 +23,8 @@ MAIN = main
 
 MAIN_DEBUG = main_debug
 
-SRC_FILES = parser/error parser/gnl parser/parser parser/read_split parser/checks
+SRC_FILES = parser/error parser/gnl parser/parser parser/read_split parser/checks parser/dfs parser/checks_map parser/textures\
+			game/game_loop
 
 OBJS_SRC = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES) $(MAIN)))
 
@@ -39,7 +41,7 @@ $(NAME):$(OBJSF)	$(OBJS_SRC)
 	@mv libft.a $(NAME)
 	@echo "$(GREEN)Libft compiled!$(NC)"
 	@echo "$(BLUE)Compiling $(NAME)...$(NC)"
-	@$(CC) $(OBJS_SRC) $(LIBFLAG) -o $(NAME) $(LIBFT)/libft.a
+	@$(CC) $(OBJS_SRC) $(LIBFLAG) $(MLXFLAGS) -o $(NAME) $(LIBFT)/libft.a
 	@echo "$(GREEN)Succesful compilation!$(NC)"
 
 debug: $(OBJSF) $(OBJS_SRC_DEBUG)
@@ -49,7 +51,7 @@ debug: $(OBJSF) $(OBJS_SRC_DEBUG)
 	@mv libft.a $(NAME)
 	@echo "$(GREEN)Libft compiled!$(NC)"
 	@echo "$(BLUE)Compiling $(NAME)...$(NC)"
-	@$(CC) $(OBJS_SRC_DEBUG) $(LIBFLAG) -o mini_debug $(LIBFT)/libft.a
+	@$(CC) $(OBJS_SRC_DEBUG) $(LIBFLAG) $(MLXFLAGS) -o cub_debug $(LIBFT)/libft.a
 	@echo "$(GREEN)Succesful compilation!$(NC)"
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
