@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 16:18:01 by isporras          #+#    #+#             */
-/*   Updated: 2023/12/28 16:18:01 by isporras         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:39:37 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,14 @@
 
 int	main(int argc, char *argv[])
 {
-	int	i;
-	int j;
-
-	j = 0;
-	i = 1;
 	if (argc > 1)
 	{
-		while (i < argc)
+		for (int i = 1; i < argc; i++)
 		{
-			j = 0;
-			while (argv[i][j])
-			{
+			for (int j = 0; argv[i][j]; j++)
 				std::cout << (char)std::toupper(argv[i][j]);
-				j++;
-			}
-			i++;
 		}
-		std::cout << '\n';
+			std::cout << '\n';
 	}
 	else
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
