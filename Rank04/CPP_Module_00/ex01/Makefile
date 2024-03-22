@@ -4,10 +4,17 @@ CXX  = g++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
+SOURCE = $(NAME).cpp \
+		main.cpp \
+		Contact.cpp
+
+HEADERS = Contact.hpp \
+		PhoneBook.hpp
+
 all: $(NAME)
 
-$(NAME): $(NAME).cpp
-	$(CXX) $(CXXFLAGS) -o $(NAME) $(NAME).cpp
+$(NAME): $(SOURCE) $(HEADERS)
+	$(CXX) $(CXXFLAGS) $(SOURCE) -o $(NAME)
 
 clean:
 	rm -f $(NAME)

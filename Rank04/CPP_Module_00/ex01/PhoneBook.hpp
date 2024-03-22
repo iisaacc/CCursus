@@ -1,16 +1,18 @@
-#include "Contact.hpp"
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
-class PhoneBook{
+# include "Contact.hpp"
+# include <string>
+
+class PhoneBook {
 public:
-	PhoneBook(){
-		//Constructor
-	}
-	~PhoneBook(){
-		//Destructor
-	}
-	void funcion(){
-
-	}
+	PhoneBook();
+	~PhoneBook();
+	void	Search();
+	void	Add();
 private:
-	Contact contacts[8];
-}
+	Contact	contacts[8];
+	int		oldest;
+};
+
+#endif
