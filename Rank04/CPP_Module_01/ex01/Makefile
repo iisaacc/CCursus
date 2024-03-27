@@ -1,13 +1,12 @@
-NAME = Zombie
+NAME = ZombieHorde
 
 CXX  = g++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SOURCE = Zombie.cpp \
-		randomChump.cpp \
-		newZombie.cpp \
-		main.cpp
+		main.cpp \
+		zombieHorde.cpp
 
 HEADERS = Zombie.hpp
 

@@ -1,15 +1,12 @@
-NAME = Zombie
+NAME = Unnecessary_violence
 
 CXX  = g++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SOURCE = Zombie.cpp \
-		randomChump.cpp \
-		newZombie.cpp \
-		main.cpp
+SOURCE = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 
-HEADERS = Zombie.hpp
+HEADERS = HumanA.hpp HumanB.hpp Weapon.hpp
 
 all: $(NAME)
 

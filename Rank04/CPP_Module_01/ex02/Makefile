@@ -1,15 +1,12 @@
-NAME = Zombie
+NAME = HI_THIS_BRAIN
 
 CXX  = g++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SOURCE = Zombie.cpp \
-		randomChump.cpp \
-		newZombie.cpp \
-		main.cpp
+SOURCE = main.cpp
 
-HEADERS = Zombie.hpp
+HEADERS = 
 
 all: $(NAME)
 
