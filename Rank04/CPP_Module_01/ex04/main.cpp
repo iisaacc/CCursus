@@ -48,12 +48,12 @@ int main(int argc, char *argv[])
 			return (1);
 		}
 		else {
-			buffer << file.rdbuf();
+			buffer << file.rdbuf();										//Leemos el contenido de file y lo insertamos en buffer
 			contents = buffer.str();
-			new_contents = ft_replace_str(contents, argv[2], argv[3]);
+			new_contents = ft_replace_str(contents, argv[2], argv[3]);	//Reemplaza las ocurrencias de s1 por s2 y devuelve un nuevo contenido modificado
 			if (!new_contents.empty()) {
 				std::string	filename = std::string(argv[1]) + ".replace";
-				std::ofstream file(filename.c_str());
+				std::ofstream file(filename.c_str());					//Creamos un flujo de salida con ofstream y convertimos filename a const char con .c_str()
 				if (!file) {
 					std::cerr << "Unable to create output file.";
 					return (1);
