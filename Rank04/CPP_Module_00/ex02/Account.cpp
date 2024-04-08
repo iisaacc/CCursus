@@ -20,6 +20,7 @@ Account::~Account() {
 	_displayTimestamp();
 	std::cout << " index:" << _accountIndex << ";amount:" << _amount << ";closed" << std::endl;
 }
+
 //Métodos static
 int	Account::getNbAccounts() {
 	return _nbAccounts;
