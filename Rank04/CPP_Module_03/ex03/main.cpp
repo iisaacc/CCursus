@@ -1,8 +1,8 @@
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 void	paco_rundown(void)
 {
-	FragTrap paco("paco");
+	DiamondTrap paco("paco");
 
 	paco.attack("Uan");
 	paco.attack("Chris");
@@ -16,20 +16,18 @@ void	paco_rundown(void)
 	paco.attack("Kevin");
 	paco.attack("Laura");
 	paco.attack("Mike");
-	paco.highFivesGuys();
+	paco.WhoAmI();
 }
 
 void	Uan_rundown(void)
 {
-	FragTrap	Uan("Uan");
+	DiamondTrap	Uan("Uan");
 
 	while (Uan.get_Hit())
 	{
 		Uan.takeDamage(20);
-		Uan.beRepaired(10);
 	}
 	Uan.takeDamage(1);
-	Uan.highFivesGuys();
 }
 
 int	main(void)

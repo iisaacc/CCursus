@@ -7,7 +7,7 @@ ScavTrap::ScavTrap()//Solo es necesario llamar al constructor de ClapTrap en cas
 	set_Energy(50);
 	set_Attack_Damage(20);
 	this->_guarding_gate = false;
-	std::cout << "Scavtrap noname has been invoked" << std::endl;
+	std::cout << "Scavptrap noname has been invoked" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name)//Solo es necesario llamar al constructor de ClapTrap en caso de que quieras llamar a uno que no sea el de por defecto, en caso contrario se hace automáticamente.
@@ -17,7 +17,7 @@ ScavTrap::ScavTrap(std::string name)//Solo es necesario llamar al constructor de
 	set_Energy(50);
 	set_Attack_Damage(20);
 	this->_guarding_gate = false;
-	std::cout << "Scavtrap " << name << " has been invoked" << std::endl;
+	std::cout << "Scavptrap " << name << " has been invoked" << std::endl;
 }
 
 ScavTrap::~ScavTrap() {
