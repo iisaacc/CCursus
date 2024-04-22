@@ -5,16 +5,6 @@ void	paco_rundown(void)
 	DiamondTrap paco("paco");
 
 	paco.attack("Uan");
-	paco.attack("Chris");
-	paco.attack("Diana");
-	paco.attack("Elisa");
-	paco.attack("Fred");
-	paco.attack("Gemma");
-	paco.attack("Henry");
-	paco.attack("Isabella");
-	paco.attack("Jack");
-	paco.attack("Kevin");
-	paco.attack("Laura");
 	paco.attack("Mike");
 	paco.WhoAmI();
 }
@@ -26,6 +16,7 @@ void	Uan_rundown(void)
 	while (Uan.get_Hit())
 	{
 		Uan.takeDamage(20);
+		Uan.beRepaired(10);
 	}
 	Uan.takeDamage(1);
 }
