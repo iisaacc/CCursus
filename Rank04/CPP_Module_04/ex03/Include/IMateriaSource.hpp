@@ -1,6 +1,6 @@
 #pragma once
 
-#include "AMateria.hpp"
+#include "CommonInclude.hpp"
 
 class IMateriaSource
 {

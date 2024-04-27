@@ -1,9 +1,11 @@
 #include "WrongAnimal.hpp"
 
 WrongAnimal::WrongAnimal() {
+	std::cout << "A noname WrongCat has appeared" << std::endl;
 }
 
 WrongAnimal::~WrongAnimal() {
+	std::cout << "A noname WrongCat has been destroyed" << std::endl;
 }
 
 void	WrongAnimal::makeSound(void) const {

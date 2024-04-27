@@ -1,17 +1,26 @@
-NAME = Animal
+NAME = Interface_recap
 
 CXX  = g++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SOURCE = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
+SRC_PATH = ./Source
 
-HEADERS = Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp
+INCLUDE_PATH = ./Include
+
+SOURCES = main.cpp MateriaSource.cpp Ice.cpp Cure.cpp Character.cpp AMateria.cpp
+
+HEADERS = MateriaSource.hpp Ice.hpp Cure.hpp Character.hpp AMateria.hpp ICharacter.hpp IMateriaSource.hpp
+
+SOURCES := $(addprefix $(SRC_PATH)/, $(SOURCES))
+
+# Agrega el prefijo INCLUDE_PATH a cada archivo de cabecera
+HEADERS := $(addprefix $(INCLUDE_PATH)/, $(HEADERS))
 
 all: $(NAME)
 
-$(NAME): $(SOURCE) $(HEADERS)
-	$(CXX) $(CXXFLAGS) $(SOURCE) -o $(NAME)
+$(NAME): $(SOURCES) $(HEADERS)
+	$(CXX) $(CXXFLAGS) -I $(INCLUDE_PATH) $(SOURCES) -o $(NAME)
 
 clean:
 	rm -f $(NAME)
