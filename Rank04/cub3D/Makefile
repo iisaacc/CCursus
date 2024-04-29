@@ -4,10 +4,10 @@ INCLUDES = libft/include -I/Users/$(USER)/.brew/opt/readline/include
 SRCS_DIR = src/
 OBJS_DIR = obj/
 LIBFT = includes/libft
-LIBFLAG = 
+LIBFLAG =
 CC = gcc
 CFLAGS = -g -Wall -Wextra -Werror -I
-MLXFLAGS = -Iinclude -Lincludes/MLX42/build -lmlx42 -ldl -lglfw -pthread -lm
+MLXFLAGS = -Iinclude -Lincludes/MLX42/build -lmlx42 -ldl -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm
 RM = rm -f
 AR = ar rcs
 
@@ -23,7 +23,7 @@ MAIN = main
 
 MAIN_DEBUG = main_debug
 
-SRC_FILES = parser/error parser/gnl parser/parser parser/read_split parser/checks parser/dfs parser/checks_map parser/textures\
+SRC_FILES = parser/error parser/gnl parser/parser parser/read_split parser/checks parser/dfs parser/checks_map parser/p_textures\
 			game/game_loop
 
 OBJS_SRC = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES) $(MAIN)))
