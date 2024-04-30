@@ -7,7 +7,7 @@ Zombie::Zombie(std::string name) {
 	_name = name;
 }
 Zombie::~Zombie() {
-	std::cout << _name << std::endl;
+	std::cout << _name << " ha desaparecido." << std::endl;
 }
 Zombie	*Zombie::newZombie(std::string name) {
 	Zombie *newZombie = new Zombie(name);

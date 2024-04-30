@@ -4,7 +4,7 @@ Harl::Harl(void){
 	std::cout << "Ey you my name is Harl" << std::endl;
 }
 Harl::~Harl(void){
-	std::cout << "Noss bemo" << std::endl;
+	std::cout << "Noss vemo" << std::endl;
 }
 
 void	Harl::debug(){
