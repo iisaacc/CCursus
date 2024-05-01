@@ -14,5 +14,5 @@
 
 int	ft_load_textures(t_cub *cub)
 {
-
+	//Hola
 }
