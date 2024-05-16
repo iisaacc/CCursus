@@ -1,9 +1,15 @@
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal() {
+WrongAnimal::WrongAnimal() : _type("") {
+	std::cout << "A noname WrongAnimal has appeared" << std::endl;
+}
+
+WrongAnimal::WrongAnimal(std::string const &type) : _type(type) {
+	std::cout << "A noname WrongAnimal has appeared" << std::endl;
 }
 
 WrongAnimal::~WrongAnimal() {
+	std::cout << "WrongAnimal " << _type << " has disappeared" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &other) {

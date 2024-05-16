@@ -10,8 +10,23 @@ Dog::Dog(std::string type) : Animal(type) {
 }
 
 Dog::~Dog() {
-	std::cout << "Dog has been deleted" << std::endl;
 	delete this->brain;
+	std::cout << "Dog has been deleted" << std::endl;
+}
+
+Dog::Dog(const Dog &other) : Animal(other) {
+	this->brain = new Brain(*other.brain);
+	std::cout << "Dog has been copied" << std::endl;
+}
+
+Dog	&Dog::operator=(const Dog &other) {
+	if (this == &other)
+		return (*this);
+	Animal::operator=(other);
+	delete this->brain;
+	this->brain = new Brain(*other.brain);
+	std::cout << "Dog has been assigned" << std::endl;
+	return (*this);
 }
 
 void	Dog::makeSound(void) const {

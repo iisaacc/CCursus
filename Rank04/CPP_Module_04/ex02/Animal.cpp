@@ -9,6 +9,16 @@ Animal::Animal(std::string type) : _type(type) {
 }
 
 Animal::~Animal() {
+	std::cout << "Animal " << this->_type << " has disappeared" << std::endl;
+}
+
+Animal::Animal(const Animal &other) {
+	*this = other;
+}
+
+Animal &Animal::operator=(const Animal &other) {
+	this->_type = other._type;
+	return (*this);
 }
 
 std::string	Animal::getType(void) const {

@@ -9,6 +9,16 @@ Dog::Dog(std::string type) : Animal(type) {
 }
 
 Dog::~Dog() {
+	std::cout << "Dog " << this->getType() << " has disappeared" << std::endl;
+}
+
+Dog::Dog(const Dog &other) {
+	*this = other;
+}
+
+Dog &Dog::operator=(const Dog &other) {
+	this->setType(other.getType());
+	return (*this);
 }
 
 void	Dog::makeSound(void) const {

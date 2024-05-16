@@ -11,5 +11,8 @@ int main()
 	std::cout << i->getType() << " " << std::endl;
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
+
+	delete j;//Se llama al destructor de Cat
+	delete i;//Se llama al destructor de Dog
 	return 0;
 }

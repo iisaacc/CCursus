@@ -1,11 +1,26 @@
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal() {
-	std::cout << "A noname WrongCat has appeared" << std::endl;
+WrongAnimal::WrongAnimal() : _type("") {
+	std::cout << "A noname WrongAnimal has appeared" << std::endl;
+}
+
+WrongAnimal::WrongAnimal(std::string const &type) : _type(type) {
+	std::cout << "A noname WrongAnimal has appeared" << std::endl;
 }
 
 WrongAnimal::~WrongAnimal() {
-	std::cout << "A noname WrongCat has been destroyed" << std::endl;
+	std::cout << "WrongAnimal " << _type << " has disappeared" << std::endl;
+}
+
+WrongAnimal::WrongAnimal(const WrongAnimal &other) {
+	*this = other;
+}
+
+WrongAnimal& WrongAnimal::operator=(const WrongAnimal &other) {
+	if (this != &other) {
+		this->_type = other._type;
+	}
+	return (*this);
 }
 
 void	WrongAnimal::makeSound(void) const {

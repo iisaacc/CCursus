@@ -4,6 +4,9 @@
 
 class Cure : public AMateria
 {
+	private:
+		std::string	_type;
+
 	public:
 		Cure();
 		Cure(const Cure &other);
@@ -11,6 +14,4 @@ class Cure : public AMateria
 		Cure&		operator=(const Cure &other);
 		AMateria*	clone() const;
 		void		use(ICharacter& target);
-	private:
-		std::string	_type;
 };

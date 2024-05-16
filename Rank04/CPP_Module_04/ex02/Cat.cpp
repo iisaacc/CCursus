@@ -9,6 +9,16 @@ Cat::Cat(std::string type) : Animal(type) {
 }
 
 Cat::~Cat() {
+	std::cout << "Cat " << this->getType() << " has disappeared" << std::endl;
+}
+
+Cat::Cat(const Cat &other) {
+	*this = other;
+}
+
+Cat &Cat::operator=(const Cat &other) {
+	this->setType(other.getType());
+	return (*this);
 }
 
 void	Cat::makeSound(void) const {

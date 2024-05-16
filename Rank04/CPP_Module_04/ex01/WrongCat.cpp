@@ -1,13 +1,25 @@
 #include "WrongCat.hpp"
 
-WrongCat::WrongCat() {
-	std::cout << "A noname WrongCat has appeared" << std::endl;
+WrongCat::WrongCat(): WrongAnimal("WrongCat") {
+	std::cout << "A noname WrongCat appeared" << std::endl;
 }
 
 WrongCat::~WrongCat(){
-	std::cout << "A WrongCat has been destroyed" << std::endl;
+	std::cout << "WrongCat has been deleted" << std::endl;
+}
+
+WrongCat::WrongCat(const WrongCat &other): WrongAnimal(other) {
+	std::cout << "WrongCat has been copied" << std::endl;
+}
+
+WrongCat	&WrongCat::operator=(const WrongCat &other) {
+	if (this == &other)
+		return (*this);
+	WrongAnimal::operator=(other);
+	std::cout << "WrongCat has been assigned" << std::endl;
+	return (*this);
 }
 
 void	WrongCat::makeSound(void) const {
-	std::cout << "WrongCat sound" << std::endl;
+	std::cout << "MiAAooo WrongCat" << std::endl;
 }

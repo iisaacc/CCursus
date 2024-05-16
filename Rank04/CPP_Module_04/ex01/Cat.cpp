@@ -10,8 +10,23 @@ Cat::Cat(std::string type) : Animal(type) {
 }
 
 Cat::~Cat() {
-	std::cout << "Cat has been deleted" << std::endl;
 	delete this->brain;
+	std::cout << "Cat has been deleted" << std::endl;
+}
+
+Cat::Cat(const Cat &other) : Animal(other) {
+	this->brain = new Brain(*other.brain);
+	std::cout << "Cat has been copied" << std::endl;
+}
+
+Cat	&Cat::operator=(const Cat &other) {
+	if (this == &other)
+		return (*this);
+	Animal::operator=(other);
+	delete this->brain;
+	this->brain = new Brain(*other.brain);
+	std::cout << "Cat has been assigned" << std::endl;
+	return (*this);
 }
 
 void	Cat::makeSound(void) const {

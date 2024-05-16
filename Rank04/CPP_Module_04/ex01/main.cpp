@@ -9,24 +9,31 @@
 
 int main()
 {
-const Animal* j = new Dog();
-const Animal* i = new Cat();
-delete j;//should not create a leak
-delete i;
+	const Animal* j = new Dog();
+	const Animal* i = new Cat();
+	delete j;//should not create a leak
+	delete i;
 
-const Animal *array[10];
+	const Animal *array[4];
 
-for (int i = 0; i < 10; i++) {
-	if (i < 5)
-		array[i] = new Cat();
-	else
-		array[i] = new Dog();
-}
+	for (int i = 0; i < 4; i++) {
+		if (i < 2)
+			array[i] = new Cat();
+		else
+			array[i] = new Dog();
+	}
 
-for (int i = 0; i < 10; i++) {
-	delete array[i];
-}
-return 0;
+	for (int i = 0; i < 4; i++) {
+		delete array[i];
+	}
+
+	//std::cout << "---------Brain deep copy tests tests----------" << std::endl;
+	//Dog basic;
+	//Dog tmp = basic;
+	//std::cout << basic.brain << std::endl;
+	//std::cout << tmp.brain << std::endl;
+
+	return 0;
 } //Shouldnt leak
 
 
