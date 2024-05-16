@@ -11,8 +11,8 @@ private:
 
 	std::string	_name;
 	int			_hit;			//Hit points
-	int			_attack_dmg;	//Attact damage
 	int			_energy;		//Energy points
+	int			_attack_dmg;	//Attact damage
 
 public:
 

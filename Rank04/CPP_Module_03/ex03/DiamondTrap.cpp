@@ -28,7 +28,6 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other) {
 	this->ScavTrap::set_Energy(other.ScavTrap::get_Energy());
 	this->ScavTrap::set_Attack_Damage(other.ScavTrap::get_Attack_Damage());
 	return *this;
-
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &copy) :  ClapTrap(copy), ScavTrap(copy), FragTrap(copy) {

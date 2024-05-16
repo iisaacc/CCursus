@@ -9,6 +9,7 @@ Animal::Animal(std::string type) : _type(type) {
 }
 
 Animal::~Animal() {
+	std::cout << "Animal " << _type << " has disappeared" << std::endl;
 }
 
 Animal::Animal(const Animal &other) : _type(other._type) {
@@ -31,4 +32,5 @@ void	Animal::setType(std::string type) {
 }
 
 void	Animal::makeSound(void) const {
+	std::cout << "Animal sound" << std::endl;
 }
