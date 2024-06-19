@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat() : _name(""), _grade(150) {
 	std::cout << "A noname Bureaucrat has appeared." << std::endl;
@@ -44,6 +44,11 @@ void	Bureaucrat::signForm(Form &form) {
 	}
 	else
 		std::cout << this->getName() << " couldn't sign " << form.getName() << " because his grade isn't enough" << std::endl;
+}
+
+void	Bureaucrat::executeForm(const Form &form) const {
+	form.execute(*this);
+	std::cout << this->getName() << " executed " << form.getName() << std::endl;
 }
 
 int	Bureaucrat::incrementGrade(int amount) {
