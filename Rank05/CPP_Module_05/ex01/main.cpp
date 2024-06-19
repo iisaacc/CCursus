@@ -37,4 +37,6 @@ int main()
 	{
 		std::cerr << e.what() << std::endl;
 	}
+	b1.signForm(f1);
+	b2.signForm(f1);
 }
