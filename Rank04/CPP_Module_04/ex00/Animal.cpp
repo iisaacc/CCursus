@@ -13,6 +13,7 @@ Animal::~Animal() {
 }
 
 Animal::Animal(const Animal &other) : _type(other._type) {
+	std::cout << "Animal copy constructor called" << std::endl;
 }
 
 Animal& Animal::operator=(const Animal &other) {
