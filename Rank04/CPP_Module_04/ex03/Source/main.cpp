@@ -14,6 +14,7 @@ int main()
 	AMateria	*allMaterias[20];
 	int			count = 0;
 
+	std::cout << "---------CREATING----------" << std::endl << std::endl;
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
@@ -21,6 +22,7 @@ int main()
 	AMateria* tmp;
 	tmp = src->createMateria("ice");
 	allMaterias[count++] = tmp;
+	std::cout << std::endl <<"---------EQUIPPING & USING----------" << std::endl << std::endl;
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
 	me->equip(tmp);

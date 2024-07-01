@@ -27,11 +27,11 @@ int main()
 		delete array[i];
 	}
 
-	//std::cout << "---------Brain deep copy tests tests----------" << std::endl;
-	//Dog basic;
-	//Dog tmp = basic;
-	//std::cout << basic.brain << std::endl;
-	//std::cout << tmp.brain << std::endl;
+	std::cout << "---------Brain deep copy tests tests----------" << std::endl;
+	Dog basic;
+	Dog tmp = basic;
+	std::cout << basic.getBrain() << std::endl;
+	std::cout << tmp.getBrain() << std::endl;
 
 	return 0;
 } //Shouldnt leak

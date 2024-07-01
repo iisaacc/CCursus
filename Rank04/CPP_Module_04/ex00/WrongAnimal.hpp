@@ -17,6 +17,6 @@ class WrongAnimal
 		std::string		getType(void) const;
 		void			setType(std::string type);
 
-	void	makeSound(void) const;
+		void	makeSound(void) const;
 };
 
