@@ -1,7 +1,7 @@
 
 #include <string>
 #include <iostream>
-#include <cmath>
+#include <cstdint> // Para uintptr_t
 
 struct Data {
 	int n;
@@ -13,7 +13,8 @@ class Serialization {
 		~Serialization();
 		Serialization(Serialization const &obj);
 		Serialization &operator=(Serialization const &obj);
+
 	public:
-		uintptr_t	serialize(Data* ptr);
-		Data*		deserialize(uintptr_t raw);
+		static	uintptr_t	serialize(Data* ptr);
+		static	Data*		deserialize(uintptr_t raw);
 };

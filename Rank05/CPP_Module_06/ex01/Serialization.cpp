@@ -14,9 +14,15 @@ Serialization &Serialization::operator=(Serialization const &obj) {
 }
 
 uintptr_t	Serialization::serialize(Data* ptr) {
-	
+	uintptr_t	serialized;
+
+	serialized = reinterpret_cast<uintptr_t>(ptr);
+	return (serialized);
 }
 
 Data*		Serialization::deserialize(uintptr_t raw) {
+	Data *ptr = new Data;
 
+	ptr = reinterpret_cast<Data*>(raw);
+	return (ptr);
 }

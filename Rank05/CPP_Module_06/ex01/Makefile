@@ -1,12 +1,12 @@
-NAME = convert
+NAME = Serialize
 
 CXX  = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SOURCE = ScalarConverter.cpp main.cpp
+SOURCE = Serialization.cpp main.cpp
 
-HEADERS = ScalarConverter.hpp
+HEADERS = Serialization.hpp
 
 all: $(NAME)
 
