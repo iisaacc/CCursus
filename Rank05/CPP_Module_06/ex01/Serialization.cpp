@@ -13,6 +13,7 @@ Serialization &Serialization::operator=(Serialization const &obj) {
 	return (*this);
 }
 
+//Reinterpret_cast is used to convert one pointer to another type of data without changing the actual bites data.
 uintptr_t	Serialization::serialize(Data* ptr) {
 	uintptr_t	serialized;
 

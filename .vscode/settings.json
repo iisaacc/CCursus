@@ -79,6 +79,9 @@
 		"clocale": "cpp",
 		"memory_resource": "cpp",
 		"numeric": "cpp",
-		"random": "cpp"
+		"random": "cpp",
+		"csignal": "cpp",
+		"map": "cpp",
+		"*.tpp": "cpp"
 	}
 }

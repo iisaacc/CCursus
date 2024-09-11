@@ -33,6 +33,8 @@ void	ScalarConverter::convert(std::string literal) {
 			modifiedLiteral = literal.substr(0, literal.size() - 1); // Quita el último carácter
 			std::cout << "double: " << modifiedLiteral << std::endl;
 		}
+		else
+			std::cout << "double: " << literal << std::endl;
 		return ;
 	}
 	if ((literal[0] >= '0' && literal[0] <= '9') || literal[0] == '-' || literal[0] == '+')
@@ -67,14 +69,14 @@ void	ScalarConverter::convert(std::string literal) {
 	// Conversion to float
 	float f = static_cast<float>(d);
 	if (std::floor(f) == f)
-		std::cout << "float: " << f << ".0f" << std::endl;
+		std::cout << "float: " << f << "f" << std::endl;
 	else
 		std::cout << "float: " << f << "f" << std::endl;
 	if (end == literal.c_str()) {
 		std::cerr << "double: Error: Invalid input" << std::endl;
 	}
 	else if (std::floor(d) == d)
-		std::cout << "double: " << d << ".0" << std::endl;
+		std::cout << "double: " << d << "" << std::endl;
 	else
 		std::cout << "double: " << d << std::endl;
 
