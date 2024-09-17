@@ -2,6 +2,7 @@
 
 
 int main() {
+
     // Test 1: Default constructor (empty array)
     Array<int> emptyArray;
     std::cout << "Size of emptyArray: " << emptyArray.size() << std::endl;

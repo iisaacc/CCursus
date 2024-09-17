@@ -82,6 +82,7 @@
 		"random": "cpp",
 		"csignal": "cpp",
 		"map": "cpp",
-		"*.tpp": "cpp"
+		"*.tpp": "cpp",
+		"set": "cpp"
 	}
 }
