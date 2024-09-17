@@ -1,7 +1,7 @@
 
 #include <string>
 #include <iostream>
-#include <cstdint> // Para uintptr_t
+#include <stdint.h>
 
 struct Data {
 	int n;

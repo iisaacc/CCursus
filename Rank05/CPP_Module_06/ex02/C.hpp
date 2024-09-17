@@ -1,4 +1,6 @@
 #include "Base.hpp"
 
-class  C : public Base{
+class A : public Base {
+	public:
+		virtual ~A() {};
 };
