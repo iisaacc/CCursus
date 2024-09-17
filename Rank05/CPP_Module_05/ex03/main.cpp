@@ -19,6 +19,15 @@ int main()
 	{
 		std::cout << e.what() << std::endl;
 	}
+	
+	try
+	{
+		rrf = someRandomIntern.makeForm("presidential par", "Bender");
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 	if (rrf)
 		delete rrf;
 }

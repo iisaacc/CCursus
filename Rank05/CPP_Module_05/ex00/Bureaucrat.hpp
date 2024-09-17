@@ -17,8 +17,8 @@ class Bureaucrat {
 
 		std::string	getName() const;
 		int			getGrade() const;
-		int			incrementGrade(int amount);//Devuelve el valor resultado
-		int			decrementGrade(int amount);//""
+		int			incrementGrade(int amount);
+		int			decrementGrade(int amount);
 
 	class GradeTooHighException: public std::exception {
 		public:
