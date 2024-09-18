@@ -10,6 +10,5 @@ int	main()
 
 	serialize = Serialization::serialize(ptr);
 	deserialize = Serialization::deserialize(serialize);
-
-	std::cout << "Hemos convertido el puntero Data 'ptr' a uintptr_t y lo hemos vuelto a convertir  un puntero Data sin perder información. El contenido de Data->n sigue siendo: " << deserialize->n << std::endl;
+	std::cout << "Data pointer was converted to uintptr_t and converted back to Data pointer without losing information. The Dta->n content is still: " << deserialize->n << std::endl;
 }

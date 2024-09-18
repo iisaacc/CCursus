@@ -65,19 +65,14 @@ void	ScalarConverter::convert(std::string literal) {
 		std::cout << "int: impossible" << std::endl;
 	}
 
+	//configures the std::cout stream to format floating-point numbers in a specific way
 	std::cout << std::fixed << std::setprecision(1);
 	// Conversion to float
 	float f = static_cast<float>(d);
-	if (std::floor(f) == f)
-		std::cout << "float: " << f << "f" << std::endl;
-	else
-		std::cout << "float: " << f << "f" << std::endl;
+	std::cout << "float: " << f << "f" << std::endl;
 	if (end == literal.c_str()) {
 		std::cerr << "double: Error: Invalid input" << std::endl;
-	}
-	else if (std::floor(d) == d)
-		std::cout << "double: " << d << "" << std::endl;
-	else
+	} else
 		std::cout << "double: " << d << std::endl;
 
 }

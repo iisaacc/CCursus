@@ -15,15 +15,10 @@ Serialization &Serialization::operator=(Serialization const &obj) {
 
 //Reinterpret_cast is used to convert one pointer to another type of data without changing the actual bites data.
 uintptr_t	Serialization::serialize(Data* ptr) {
-	uintptr_t	serialized;
-
-	serialized = reinterpret_cast<uintptr_t>(ptr);
-	return (serialized);
+	return (reinterpret_cast<uintptr_t>(ptr));
 }
 
 Data*		Serialization::deserialize(uintptr_t raw) {
-	Data *ptr = new Data;
-
-	ptr = reinterpret_cast<Data*>(raw);
-	return (ptr);
+	
+	return (reinterpret_cast<Data*>(raw));
 }

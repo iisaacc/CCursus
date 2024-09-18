@@ -3,13 +3,11 @@
 #include <string>
 #include <iostream>
 #include <stdint.h>
+#include <ctime>
+#include <cstdlib>
 
 class Base {
 	private:
 	public:
-		virtual ~Base();
-		Base	*generate(void);
-		virtual void identify(Base *p);
-		virtual void identify(Base &p);
-
+		virtual		~Base();
 };
