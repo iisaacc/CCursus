@@ -1,5 +1,11 @@
 #include "BitcoinExchange.hpp"
 
+std::string to_string(int value) {
+	std::stringstream ss;
+	ss << value;
+	return ss.str();
+}
+
 float ft_StoFloat(std::string str) {
 	float res;
 
@@ -27,23 +33,14 @@ void	BitcoinExchange::parseCalculatePrices(BitcoinExchange::Date input_date, flo
 		throw std::runtime_error("Error: not a positive numnber.");
 	if (value > 1000)
 		throw std::runtime_error("Error: too large a number.");
-	std::map<Date, float>::iterator it = database.begin();
-	prev_it = it;
-	while (it != database.end() && input_date.year <= it->first.year) {
-		prev_it = it;
-		it++;
-	}
-	it = prev_it;
-	while (it != database.end() && input_date.month <= it->first.month) {
-		prev_it = it;
-		it++;
-	}
-	it = prev_it;
-	while (it != database.end() && input_date.day <= it->first.day) {
-		prev_it = it;
-		it++;
-	}
-	it = prev_it;
+	//Returns the first element that is not less than key.
+	std::map<Date, float>::iterator it = database.lower_bound(input_date);
+	//If it isn't equal we want the previous element (closest and lower).
+	if (it != database.begin() && it->first > input_date)
+		it--;
+	//If the input date is lower than the first date in the database.
+	if (it->first > input_date)
+		throw std::runtime_error("Error: no equal or lower date found for that input: " + to_string(input_date.year) + "-" + to_string(input_date.month) + "-" + to_string(input_date.day) + ".");
 	std::cout << input_date.year << "-" << input_date.month << "-" << input_date.day << " => " << value << " = " << value * it->second << std::endl;
 }
 
@@ -88,7 +85,7 @@ std::map<BitcoinExchange::Date, float> BitcoinExchange::strToMap(std::string str
 		std::string line = str.substr(prev, pos - prev);
 		try {
 			if (line.find(delim) == std::string::npos) {
-				throw std::runtime_error("Error: Bad input => " + line);
+				throw std::runtime_error("Error: bad input => " + line);
 				continue;
 			}
 			std::string key = line.substr(0, line.find(delim));
@@ -130,7 +127,7 @@ BitcoinExchange::BitcoinExchange(std::string file_name) {
 
 	database_content = extractFileContent("data.csv");
 	this->database = strToMap(database_content, ',');
-	printMap(database);
+	//printMap(database);
 	input_content = extractFileContent(file_name);
 	this->input = strToMap(input_content, '|');
 }
