@@ -11,7 +11,11 @@ int main()
 	mstack_cpy = mstack;
 	std::cout << "Original stack top: "<< mstack.top() << std::endl;
 	std::cout << "Copied stack top: "<< mstack_cpy.top() << std::endl;
+	std::cout << std::endl;
 	mstack_cpy.pop();
+	std::cout << "Original stack top: "<< mstack.top() << std::endl;
+	std::cout << "Copied stack top: "<< mstack_cpy.top() << std::endl;
+	std::cout << std::endl;
 	std::cout << "Original stack size: "<< mstack.size() << std::endl;
 	std::cout << "Copied stack size: "<< mstack_cpy.size() << std::endl;
 
