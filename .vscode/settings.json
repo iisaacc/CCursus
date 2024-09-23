@@ -98,6 +98,7 @@
 		"variant": "cpp",
 		"any": "cpp",
 		"condition_variable": "cpp",
-		"thread": "cpp"
+		"thread": "cpp",
+		"*.ipp": "cpp"
 	}
 }
