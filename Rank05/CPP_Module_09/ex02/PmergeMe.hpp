@@ -8,6 +8,14 @@
 #include <iostream>
 #include <ctime>
 
+template < typename T >
+void	printContainer(T container)
+{
+	for (size_t i = 0; i < container.size(); ++i)
+		std::cout << container[i] << " ";
+
+	std::cout << std::endl;
+}
 
 class PmergeMe {
 
@@ -25,12 +33,3 @@ class PmergeMe {
 		std::deque<unsigned int>	mergeDeq(std::deque<unsigned int> deq1, std::deque<unsigned int> deq2);
 		std::vector<unsigned int>	mergeVec(std::vector<unsigned int> vec1, std::vector<unsigned int> vec2);
 };
-
-template < typename T >
-void	printContainer(T container)
-{
-	for (size_t i = 0; i < container.size(); ++i)
-		std::cout << container[i] << " ";
-
-	std::cout << std::endl;
-}

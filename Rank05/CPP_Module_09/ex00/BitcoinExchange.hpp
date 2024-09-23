@@ -21,20 +21,8 @@ class BitcoinExchange {
 			int month;
 			int year;
 			//Overcharge the operator < to compare the dates and sort them automatically in the map.
-			bool operator<(const Date& other) const {
-				if (year != other.year)
-					return year < other.year;
-				if (month != other.month)
-					return month < other.month;
-				return day < other.day;
-			}
-			bool operator>(const Date& other) const {
-				if (year != other.year)
-					return year > other.year;
-				if (month != other.month)
-					return month > other.month;
-				return day > other.day;
-			}
+			bool operator<(const Date& other) const;
+			bool operator>(const Date& other) const;
 		};
 	private:
 

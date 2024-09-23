@@ -1,5 +1,21 @@
 #include "BitcoinExchange.hpp"
 
+bool BitcoinExchange::Date::operator<(const Date& other) const {
+	if (year != other.year)
+		return year < other.year;
+	if (month != other.month)
+		return month < other.month;
+	return day < other.day;
+}
+
+bool BitcoinExchange::Date::operator>(const Date& other) const {
+	if (year != other.year)
+		return year > other.year;
+	if (month != other.month)
+		return month > other.month;
+	return day > other.day;
+}
+
 std::string to_string(int value) {
 	std::stringstream ss;
 	ss << value;
