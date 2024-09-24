@@ -1,0 +1,16 @@
+
+services:
+  nginx:
+    build: ./srcs/nginx
+    ports:
+      - "8080:443" #Mapea el puerto 443 de mi host para redirigirlo al 443 del container
+    volumes:
+      - ./srcs/nginx/ssl:/etc/nginx/ssl
+      - ./srcs/nginx/conf:/etc/nginx
+    networks:
+      - my_network
+
+# De forma predeterminada se crea un espacio de nombres de red personalizado con el
+# controlador Bridge que crea una red interna con una ip única por contenedor.
+networks:
+  my_network 

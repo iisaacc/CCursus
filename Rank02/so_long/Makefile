@@ -57,7 +57,7 @@ bonus: $(OBJ_BONUS) $(LIBFT) $(MYHEADERS_BONUS) $(PRINTF) $(MINILIBX)
 	$(CC) $(CFLAGS) -o so_long_bonus $(OBJ_BONUS) $(MINILIBX) $(MLXFLAGS) $(LIBFT) $(PRINTF)
 
 linux: $(OBJ) $(LIBFT) $(MYHEADERS) $(PRINTF)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -Lminilibx-linux -lmlx_Linux -lX11 -lXext -o so_long
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -Lminilibx-linux -lX11 -lXext -o so_long
 
 debug: $(OBJ) $(LIBFT) $(MYHEADERS) $(PRINTF) $(MINILIBX)
 	$(CC) $(CFLAGS) -o so_longd -g $(OBJ) $(MINILIBX) $(MLXFLAGS) $(LIBFT) $(PRINTF)
