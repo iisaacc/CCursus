@@ -16,5 +16,5 @@ RUN mkdir -p /usr/share/nginx/html && \
 # Exponer el puerto 443 para TLS
 EXPOSE 443
 
-# Comando por defecto para iniciar NGINX
+# Comando por defecto para iniciar NGINX (daemon off hace que se ejecute en primer plano, haciendo que docker pueda gestionar bien el ciclo de vida del contenedor)
 CMD ["nginx", "-g", "daemon off;"]
