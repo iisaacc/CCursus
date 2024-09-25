@@ -2,6 +2,7 @@
 services:
   nginx:
     build: ./requirements/nginx
+    image: inception-nginx
     ports:
       - "8080:443" # Mapea el puerto 443 de mi host para redirigirlo al 443 del container
     volumes: # Defines persistant storage
