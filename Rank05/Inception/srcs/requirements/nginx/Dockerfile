@@ -6,8 +6,8 @@ RUN apk add --no-cache nginx openssl
 
 # Copiar archivos de configuración y certificados
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
-COPY ssl/cert.pem /etc/nginx/ssl/cert.pem
-COPY ssl/key.pem /etc/nginx/ssl/key.pem
+COPY ./conf/ssl/cert.pem /etc/nginx/ssl/cert.pem
+COPY ./conf/ssl/key.pem /etc/nginx/ssl/key.pem
 
 # Crear directorio para el contenido HTML (puedes agregar archivos personalizados)
 RUN mkdir -p /usr/share/nginx/html && \
