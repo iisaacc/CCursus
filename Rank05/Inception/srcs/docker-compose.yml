@@ -1,7 +1,9 @@
 
 services:
   nginx:
+    container_name: nginx
     build: ./requirements/nginx
+    env_file: .env
     image: inception-nginx
     ports:
       - "8080:443" # Mapea el puerto 443 de mi host para redirigirlo al 443 del container
@@ -12,14 +14,14 @@ services:
       - my_network
 
   mariadb:
-      build:
-        #context: ../..
-        dockerfile: srcs/requirements/mariadb/Dockerfile
+      container_name: mariadb
+      build: ./requirements/mariadb
       environment:
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         MYSQL_DATABASE: ${MYSQL_DATABASE}
         MYSQL_USER: ${MYSQL_USER}
         MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      env_file: .env
       image: inception-mariadb
       volumes:
         - db_data:/var/lib/mysql

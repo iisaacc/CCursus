@@ -1,5 +1,4 @@
 #!/bin/bash
-source /usr/local/bin/.env
 
 # Variables de entorno desde el archivo .env
 DB_NAME=${MYSQL_DATABASE}
