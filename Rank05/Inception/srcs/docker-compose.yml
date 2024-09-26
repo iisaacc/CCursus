@@ -12,14 +12,21 @@ services:
       - my_network
 
   mariadb:
-      build: ./requirements/mariadb
+      build:
+        #context: ../..
+        dockerfile: srcs/requirements/mariadb/Dockerfile
+      environment:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       image: inception-mariadb
       volumes:
-        - mariadb_data:/var/lib/mysql
-        - ./requirements/mariadb/tools/db1.sql:/docker-entrypoint-initdb.d/db1.sql  # Montar el script
+        - db_data:/var/lib/mysql
+      ports:
+        - "3306:3306"
       networks:
-      - my_network
-      command: ["mysqld_safe"]  # Mantener el contenedor corriendo
+        - my_network
 
 
 # De forma predeterminada se crea un espacio de nombres de red personalizado con el
@@ -29,4 +36,4 @@ networks:
     driver: bridge
   
 volumes:
-  mariadb_data:
+  db_data:
