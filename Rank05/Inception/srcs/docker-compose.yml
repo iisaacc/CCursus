@@ -7,28 +7,42 @@ services:
     image: inception-nginx
     ports:
       - "8080:443" # Mapea el puerto 443 de mi host para redirigirlo al 443 del container
-    volumes: # Defines persistant storage
-      - ./requirements/nginx/conf/ssl:/etc/nginx/ssl 
-      - ./requirements/nginx/conf:/etc/nginx
+    volumes:
+      - wordpress_data:/var/www/html
     networks:
       - my_network
+    depends_on:
+      - mariadb
+  
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    environment:
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_USER: ${MYSQL_USER}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+    networks:
+      - my_network
+    volumes:
+      - wordpress_data:/var/www/html
 
   mariadb:
-      container_name: mariadb
-      build: ./requirements/mariadb
-      environment:
-        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-        MYSQL_DATABASE: ${MYSQL_DATABASE}
-        MYSQL_USER: ${MYSQL_USER}
-        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      env_file: .env
-      image: inception-mariadb
-      volumes:
-        - db_data:/var/lib/mysql
-      ports:
-        - "3306:3306"
-      networks:
-        - my_network
+    container_name: mariadb
+    build: ./requirements/mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    env_file: .env
+    image: inception-mariadb
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - my_network
 
 
 # De forma predeterminada se crea un espacio de nombres de red personalizado con el
@@ -40,3 +54,14 @@ networks:
 volumes:
   db_data:
     driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/isporras/data/mariadb'
+
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/isporras/data/wordpress'	

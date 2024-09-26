@@ -5,13 +5,12 @@ FROM alpine:3.18
 RUN apk add --no-cache nginx openssl
 
 # Copiar archivos de configuración y certificados
+COPY tools/wait-for-mariadb.sh /usr/local/bin/wait-for-mariadb.sh
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 COPY ./conf/ssl/cert.pem /etc/nginx/ssl/cert.pem
 COPY ./conf/ssl/key.pem /etc/nginx/ssl/key.pem
 
-# Crear directorio para el contenido HTML (puedes agregar archivos personalizados)
-RUN mkdir -p /usr/share/nginx/html && \
-    echo '<h1>Servidor NGINX con TLS</h1>' > /usr/share/nginx/html/index.html
+RUN chmod +x /usr/local/bin/wait-for-mariadb.sh
 
 # Exponer el puerto 443 para TLS
 EXPOSE 443
