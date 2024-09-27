@@ -15,15 +15,16 @@ RUN mkdir -p /var/lib/mysql /run/mysqld && \
 COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 RUN chmod 644 /etc/mysql/mariadb.conf.d/50-server.cnf
 
-COPY tools/init_db.sh /init_db.sh
-
+COPY tools/init_db.sh /etc/mysql/init_db.sh
 # Asegurarse de que el script tenga permisos de ejecución
-RUN chmod +x /init_db.sh
+RUN chmod +x /etc/mysql/init_db.sh
+
 
 # Exponer el puerto de MariaDB
 EXPOSE 3306
 
-# Comando para iniciar el servicio de MariaDB de forma segura
+# Tini es un gestor de procesos que se encarga de iniciar y supervisar el proceso principal del contenedor
 ENTRYPOINT ["/usr/bin/tini", "--"]
-CMD ["mysqld_safe"]
+# Comando para iniciar el servicio de MariaDB de forma segura
+CMD ["/bin/bash", "-c", "/etc/mysql/init_db.sh && exec mysqld_safe"]
 

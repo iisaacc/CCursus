@@ -7,7 +7,7 @@ DB_PASS=${MYSQL_PASSWORD}
 ROOT_PASS=${MYSQL_ROOT_PASSWORD}
 
 # Esperar a que MariaDB esté disponible
-until mysqladmin ping -h "localhost" --silent; do
+until mysqladmin ping -h "mariadb" --silent; do
     echo "Esperando a que MariaDB esté disponible..."
     sleep 2
 done

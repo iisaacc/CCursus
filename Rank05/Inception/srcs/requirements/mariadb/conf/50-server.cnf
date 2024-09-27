@@ -1,2 +1,5 @@
 [mysqld]
 bind-address = 0.0.0.0
+
+[server]
+init_file = /etc/mysql/init_db.sh
