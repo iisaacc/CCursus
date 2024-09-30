@@ -1,25 +1,18 @@
 #!/bin/bash
 
-# Variables de entorno desde el archivo .env
-DB_NAME=${MYSQL_DATABASE}
-DB_USER=${MYSQL_USER}
-DB_PASS=${MYSQL_PASSWORD}
-ROOT_PASS=${MYSQL_ROOT_PASSWORD}
+# Reemplaza los marcadores de posición en el archivo SQL con las variables de entorno
+envsubst < /usr/local/bin/init.sql > /usr/local/bin/init.sql
 
-# Esperar a que MariaDB esté disponible
-until mysqladmin ping -h "mariadb" --silent; do
-    echo "Esperando a que MariaDB esté disponible..."
-    sleep 2
+# Inicia el servidor MySQL en segundo plano
+mysqld_safe &
+
+# Espera a que el servidor MySQL esté listo
+until mysqladmin ping --silent; do
+  echo -n "."; sleep 1
 done
 
-# Ejecuta comandos para configurar la base de datos
-mysql -u root -p"${ROOT_PASS}" << EOF
-CREATE DATABASE IF NOT EXISTS ${DB_NAME};
-CREATE USER IF NOT EXISTS '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASS}';
-GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'%';
-ALTER USER 'root'@'localhost' IDENTIFIED BY '${ROOT_PASS}';
-FLUSH PRIVILEGES;
-EOF
+# Ejecuta el archivo SQL con las variables de entorno reemplazadas
+mysql -u root -p"${MYSQL_ROOT_PASSWORD}" < /usr/local/bin/init.sql
 
-# Detener el servicio de MariaDB si es necesario
-service mysql stop
+# Detén el servidor MySQL
+mysqladmin shutdown -p"${MYSQL_ROOT_PASSWORD}"
