@@ -1,8 +1,9 @@
 
 services:
+
   nginx:
     image: nginx
-    build: 
+    build:
       context: requirements/nginx/.
       args:
         - CRED_PATH
@@ -24,6 +25,7 @@ services:
       - "443:443"
     volumes:
       - v_web:/var/www/html
+
   wordpress:
     image: wordpress
     build: requirements/wordpress/.
@@ -39,6 +41,7 @@ services:
       - v_web:/var/www/html
     env_file:
       - .env
+
   mariadb:
     image: mariadb
     build: requirements/mariadb/.
@@ -52,6 +55,7 @@ services:
       - v_db:/var/lib/mysql
     env_file:
       - .env
+
 volumes:
   v_web:
     driver: local
@@ -65,6 +69,7 @@ volumes:
       type: none
       o: bind
       device: ../home/isporras/data/mariadb
+
 networks:
   inception:
     driver: bridge
